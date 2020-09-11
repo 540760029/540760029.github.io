@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ceshi</title>
+    <title>Ceshi</title>
     <url>/2020/09/11/ceshi/</url>
     <content><![CDATA[<p><img src="/2020/09/11/ceshi/aaa.jpg" alt="aaa"><br><img src="/2020/09/11/ceshi/head.jpg" alt="sss"></p>
 ]]></content>
@@ -30,7 +30,7 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo使用教程</title>
+    <title>Hexo使用教程</title>
     <url>/2020/09/10/first/</url>
     <content><![CDATA[<h3 id="创建一个新文件"><a href="#创建一个新文件" class="headerlink" title="创建一个新文件"></a>创建一个新文件</h3>]]></content>
       <categories>
@@ -41,7 +41,7 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo 教程</title>
+    <title>Hexo 教程</title>
     <url>/2020/09/10/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
@@ -65,9 +65,10 @@
       </tags>
   </entry>
   <entry>
-    <title>markdown</title>
+    <title>Markdown</title>
     <url>/2020/09/11/markdown/</url>
-    <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>Markdown 可以使用以下几种字体：</p>
