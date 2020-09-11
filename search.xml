@@ -13,7 +13,7 @@
       </tags>
   </entry>
   <entry>
-    <title>解决:您目前无法访问 因为此网站使用了 HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常</title>
+    <title>访问网页出错</title>
     <url>/2020/09/11/day1/</url>
     <content><![CDATA[<ol>
 <li>在Chrome地址栏中输入:   chrome://net-internals/#hsts; 进入Domain Sercurity Policy界面。</li>
@@ -67,8 +67,7 @@
   <entry>
     <title>Markdown</title>
     <url>/2020/09/11/markdown/</url>
-    <content><![CDATA[<a id="more"></a>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
+    <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>Markdown 可以使用以下几种字体：</p>
