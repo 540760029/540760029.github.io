@@ -141,6 +141,7 @@
     <url>/2020/09/12/gitLearn/</url>
     <content><![CDATA[<h3 id="安装完git"><a href="#安装完git" class="headerlink" title="安装完git:"></a>安装完git:</h3><h4 id="1-每个机器都必须自报家门：你的名字和Email地址"><a href="#1-每个机器都必须自报家门：你的名字和Email地址" class="headerlink" title="1. 每个机器都必须自报家门：你的名字和Email地址"></a>1. 每个机器都必须自报家门：你的名字和Email地址</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
 <p><code> --global</code>参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置.</p>
+<a id="more"></a>
 <h4 id="2-新建文件夹，交给git-托管"><a href="#2-新建文件夹，交给git-托管" class="headerlink" title="2. 新建文件夹，交给git 托管"></a>2. 新建文件夹，交给git 托管</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 <h4 id="3-新建readme-txt做完工作后添加修改的文件到仓库暂存区"><a href="#3-新建readme-txt做完工作后添加修改的文件到仓库暂存区" class="headerlink" title="3. 新建readme.txt做完工作后添加修改的文件到仓库暂存区"></a>3. 新建readme.txt做完工作后添加修改的文件到仓库暂存区</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure>
 <p>然后提交到仓库</p>
