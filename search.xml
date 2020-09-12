@@ -136,4 +136,134 @@
         <tag>markdown</tag>
       </tags>
   </entry>
+  <entry>
+    <title>gitLearn</title>
+    <url>/2020/09/12/gitLearn/</url>
+    <content><![CDATA[<h3 id="安装完git"><a href="#安装完git" class="headerlink" title="安装完git:"></a>安装完git:</h3><h4 id="1-每个机器都必须自报家门：你的名字和Email地址"><a href="#1-每个机器都必须自报家门：你的名字和Email地址" class="headerlink" title="1. 每个机器都必须自报家门：你的名字和Email地址"></a>1. 每个机器都必须自报家门：你的名字和Email地址</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code> --global</code>参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置.</p>
+<h4 id="2-新建文件夹，交给git-托管"><a href="#2-新建文件夹，交给git-托管" class="headerlink" title="2. 新建文件夹，交给git 托管"></a>2. 新建文件夹，交给git 托管</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="3-新建readme-txt做完工作后添加修改的文件到仓库暂存区"><a href="#3-新建readme-txt做完工作后添加修改的文件到仓库暂存区" class="headerlink" title="3. 新建readme.txt做完工作后添加修改的文件到仓库暂存区"></a>3. 新建readme.txt做完工作后添加修改的文件到仓库暂存区</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure>
+<p>然后提交到仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;wrote a readme file&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4、查看库当前的状态，看看工作区情况"><a href="#4、查看库当前的状态，看看工作区情况" class="headerlink" title="4、查看库当前的状态，看看工作区情况"></a>4、查看库当前的状态，看看工作区情况</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">modified:   readme.txt</span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="5-记不清上次怎么修改的，所以，需要用git-diff这个命令看-顾名思义就是查看difference"><a href="#5-记不清上次怎么修改的，所以，需要用git-diff这个命令看-顾名思义就是查看difference" class="headerlink" title="5.记不清上次怎么修改的，所以，需要用git diff这个命令看 顾名思义就是查看difference"></a>5.记不清上次怎么修改的，所以，需要用git diff这个命令看 顾名思义就是查看difference</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff readme.txt</span><br></pre></td></tr></table></figure>
+<h4 id="6、版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git-log命令查看："><a href="#6、版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git-log命令查看：" class="headerlink" title="6、版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git log命令查看："></a>6、版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git log命令查看：</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上<code>--pretty=oneline</code>参数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br></pre></td></tr></table></figure>
+<h4 id="7、版本回退"><a href="#7、版本回退" class="headerlink" title="7、版本回退"></a>7、版本回退</h4><table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>$ git reset --hard HEAD^</code></td>
+<td align="center">退回到上一个版本</td>
+</tr>
+<tr>
+<td align="center"><code>$ git reset --hard HEAD^^</code></td>
+<td align="center">回到上上一个版本</td>
+</tr>
+<tr>
+<td align="center">………</td>
+<td align="center">……</td>
+</tr>
+</tbody></table>
+<h4 id="8、-git-reflog用来记录你的每一次命令"><a href="#8、-git-reflog用来记录你的每一次命令" class="headerlink" title="8、 git reflog用来记录你的每一次命令"></a>8、 <code>git reflog</code>用来记录你的每一次命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">版本号</th>
+<th align="center">head</th>
+<th align="center">命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">86a9b0d</td>
+<td align="center">(HEAD -&gt; master) HEAD@{0}:</td>
+<td align="center">commit: 添加一行(当前head的指向)</td>
+</tr>
+<tr>
+<td align="center">66853e9</td>
+<td align="center">HEAD@{1}:</td>
+<td align="center">commit: dsfds</td>
+</tr>
+<tr>
+<td align="center">5c159eb</td>
+<td align="center">HEAD@{2}:</td>
+<td align="center">reset: moving to 5c159eb</td>
+</tr>
+<tr>
+<td align="center">1db339d</td>
+<td align="center">HEAD@{3}:</td>
+<td align="center">reset: moving to 1db339d</td>
+</tr>
+<tr>
+<td align="center">5c159eb</td>
+<td align="center">HEAD@{4}:</td>
+<td align="center">reset: moving to file</td>
+</tr>
+</tbody></table>
+<p>回退到指定版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard 5c159eb</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">Git  log</th>
+<th align="center">Git  reflog</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">显示所有提交过的版本信息</td>
+<td align="center">可以查看所有分支的所有操作记录</td>
+</tr>
+</tbody></table>
+<h4 id="9、用git-diff-HEAD-readme-txt命令可以查看工作区和版本库里面最新版本的区别"><a href="#9、用git-diff-HEAD-readme-txt命令可以查看工作区和版本库里面最新版本的区别" class="headerlink" title="9、用git diff HEAD -- readme.txt命令可以查看工作区和版本库里面最新版本的区别"></a>9、用<code>git diff HEAD -- readme.txt</code>命令可以查看工作区和版本库里面最新版本的区别</h4><h4 id="10、git-checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。"><a href="#10、git-checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。" class="headerlink" title="10、git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。"></a>10、<code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Git checkout -- test.txt     ( 将版本库中的文件替换到工作区)</span><br></pre></td></tr></table></figure>
+<h4 id="11、远程仓库"><a href="#11、远程仓库" class="headerlink" title="11、远程仓库"></a>11、远程仓库</h4><h5 id="1-创建SSH-Key。"><a href="#1-创建SSH-Key。" class="headerlink" title="1. 创建SSH Key。"></a>1. 创建SSH Key。</h5><p>在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;youremail@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-登录GitHub-添加-id-rsa-pub到-sshkey"><a href="#2-登录GitHub-添加-id-rsa-pub到-sshkey" class="headerlink" title="2. 登录GitHub 添加 id_rsa.pub到 sshkey"></a>2. 登录GitHub 添加 id_rsa.pub到 sshkey</h5><h5 id="3-新建-leargit-仓库"><a href="#3-新建-leargit-仓库" class="headerlink" title="3. 新建 leargit 仓库"></a>3. 新建 leargit 仓库</h5><h5 id="4-关联远程库与本地库"><a href="#4-关联远程库与本地库" class="headerlink" title="4. 关联远程库与本地库"></a>4. 关联远程库与本地库</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@github.com:540760029/leargit.git</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-把本地库推送到远程库"><a href="#5-把本地库推送到远程库" class="headerlink" title="5.  把本地库推送到远程库"></a>5.  把本地库推送到远程库</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>由于远程库是空的，我们第一次推送<code>master</code>分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令<br>之后直接使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<p>把本地master分支的最新修改推送至GitHub</p>
+<p><strong>指定分支</strong>推送到<em>指定分支</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin <span class="built_in">source</span>:<span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+
+<h5 id="6-从远程仓库克隆"><a href="#6-从远程仓库克隆" class="headerlink" title="6. 从远程仓库克隆"></a>6. 从远程仓库克隆</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:540760029/leargit.git</span><br></pre></td></tr></table></figure>
+<h4 id="12、分支与合并"><a href="#12、分支与合并" class="headerlink" title="12、分支与合并"></a>12、分支与合并</h4><h5 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h5><p>创建<code>dev</code> 分支然后切换到<code>dev</code> 分支</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -b dev</span><br></pre></td></tr></table></figure>
+<p><code>git checkout</code>命令加上<code>-b</code>参数表示创建并切换，相当于以下两条命令</p>
+<figure class="highlight plain"><figcaption><span>bash</span></figcaption><table><tr><td class="code"><pre><span class="line">$ git branch dev</span><br><span class="line">$ git checkout dev</span><br></pre></td></tr></table></figure>
+
+<p>新版本支持</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git switch -c dev</span><br></pre></td></tr></table></figure>
+<p>创建并切换分支</p>
+<h5 id="查看当前分支"><a href="#查看当前分支" class="headerlink" title="查看当前分支"></a>查看当前分支</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+<h5 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge dev</span><br></pre></td></tr></table></figure>
+<p>#####删除分支</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch -d dev</span><br></pre></td></tr></table></figure>
+<h4 id="13、-修复bug-保存现场与恢复"><a href="#13、-修复bug-保存现场与恢复" class="headerlink" title="13、 修复bug 保存现场与恢复"></a>13、 修复bug 保存现场与恢复</h4><p><code>git stash </code> 将修改的地方保存到隐秘的地方。</p>
+<p>切换分支 修改bug,</p>
+<p>修改完之后，分支切回来 </p>
+<p>将bug在本分支重放：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick  9726d19</span><br></pre></td></tr></table></figure>
+<p>查询隐秘地方保存的东西：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Git stash list</span><br></pre></td></tr></table></figure>
+<p>回复现场</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git stash pop</span><br><span class="line">或者</span><br><span class="line">$ git stash apply stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
+<p>继续工作 keeping!!!</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
 </search>
