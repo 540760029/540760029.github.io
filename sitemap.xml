@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lixiaofan.info/2020/09/19/algor1/</loc>
+    
+    <lastmod>2020-09-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lixiaofan.info/2020/09/11/markdown/</loc>
+    
+    <lastmod>2020-09-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lixiaofan.info/2020/09/12/gitLearn/</loc>
     
     <lastmod>2020-09-12</lastmod>
@@ -31,13 +45,6 @@
   
   <url>
     <loc>http://lixiaofan.info/2020/09/11/day1/</loc>
-    
-    <lastmod>2020-09-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lixiaofan.info/2020/09/11/markdown/</loc>
     
     <lastmod>2020-09-11</lastmod>
     
@@ -74,6 +81,13 @@
 
   
   <url>
+    <loc>http://lixiaofan.info/tags/%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2020-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://lixiaofan.info/tags/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
@@ -95,14 +109,14 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/hexo/</loc>
+    <loc>http://lixiaofan.info/tags/git/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/git/</loc>
+    <loc>http://lixiaofan.info/tags/hexo/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -116,6 +130,13 @@
   </url>
   
 
+  
+  <url>
+    <loc>http://lixiaofan.info/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2020-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://lixiaofan.info/categories/%E6%B5%8B%E8%AF%95/</loc>
@@ -132,7 +153,7 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://lixiaofan.info/categories/git/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -140,13 +161,6 @@
   
   <url>
     <loc>http://lixiaofan.info/categories/hexo-%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://lixiaofan.info/categories/git/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

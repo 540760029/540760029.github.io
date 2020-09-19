@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://lixiaofan.info/2020/09/19/algor1/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://lixiaofan.info/2020/09/11/markdown/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
     <loc>http://lixiaofan.info/2020/09/12/gitLearn/</loc>
     <lastmod>2020-09-12</lastmod>
   </url>
@@ -18,10 +26,6 @@
   </url>
   <url>
     <loc>http://lixiaofan.info/2020/09/11/day1/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  <url>
-    <loc>http://lixiaofan.info/2020/09/11/markdown/</loc>
     <lastmod>2020-09-11</lastmod>
   </url>
 </urlset> 
