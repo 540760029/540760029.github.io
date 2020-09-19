@@ -191,6 +191,16 @@ Markdown 制作表格使用 **|** 来分隔不同的单元格，使用 **-** 来
 
 使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> 
 
+### 上标与下标
+```bash
+H<sub>2</sub>O
+爆米<sup>TM</sup>
+```
+>`H<sub>2</sub>O  爆米<sup>TM</sup>
+
+### 换行
+两个空格加回车
+
 ### 公式
 
 
