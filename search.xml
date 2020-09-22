@@ -53,17 +53,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo使用教程</title>
-    <url>/2020/09/10/first/</url>
-    <content><![CDATA[<h3 id="创建一个新文件"><a href="#创建一个新文件" class="headerlink" title="创建一个新文件"></a>创建一个新文件</h3>]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gitLearn</title>
     <url>/2020/09/12/gitLearn/</url>
     <content><![CDATA[<h3 id="安装完git"><a href="#安装完git" class="headerlink" title="安装完git:"></a>安装完git:</h3><h4 id="1-每个机器都必须自报家门：你的名字和Email地址"><a href="#1-每个机器都必须自报家门：你的名字和Email地址" class="headerlink" title="1. 每个机器都必须自报家门：你的名字和Email地址"></a>1. 每个机器都必须自报家门：你的名字和Email地址</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
@@ -194,30 +183,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo 教程</title>
-    <url>/2020/09/10/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>hexo 教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown</title>
     <url>/2020/09/11/markdown/</url>
     <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
@@ -260,7 +225,7 @@
 <p>&lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a></p>
 <h3 id="markdown-图片"><a href="#markdown-图片" class="headerlink" title="markdown 图片"></a>markdown 图片</h3><p>Markdown 图片语法格式如下：</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt 属性文本</span>](<span class="link">图片地址</span>)</span><br></pre></td></tr></table></figure>
-
+<p><img src="/2020/09/11/markdown/aaa.jpg" alt="本人"></p>
 <p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;logo.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;50%&quot;</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
@@ -292,6 +257,60 @@
       </categories>
       <tags>
         <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>插入排序</title>
+    <url>/2020/09/21/algor2/</url>
+    <content><![CDATA[<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>通常人们整理桥牌的方法是一张一张的来，将每一张牌插入到其他已经有序的牌中的适当位置。再计算机中的实现中，为了给要插入的元素腾出空间，我们需要将其余的所有元素再插入之前都向右移动一位。这种算法叫做<code>插入排序</code>。<br>选择排序一样，当前索引左半边的所有元素都是有序的，但它们的最终位置还不确定，为了给更小的元素腾出空间，他们可能会被移动。但是当索引到达数组的右端时，数组就排序完成了。<br>和选择排序不同的是，插入排序所需的时间取决于输入中元素的初始顺序。例如，对一个很大且其中的元素已经有序的数组进行排序将会比随机顺序的数组或是逆序数组进行排序要快的多。</p>
+<h3 id="排序模板"><a href="#排序模板" class="headerlink" title="排序模板"></a>排序模板</h3><p><a href="/2020/09/19/algor1">排序模板</a></p>
+<h3 id="插入排序-1"><a href="#插入排序-1" class="headerlink" title="插入排序"></a>插入排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Insertion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = a.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span> ;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j&gt;<span class="number">0</span>&amp;&amp;less(a[j],a[j-<span class="number">1</span>]);j--)&#123;</span><br><span class="line">                exch(a,j,j-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v, Comparable w)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v.compareTo(w)&lt;<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        Comparable t  = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Comparable[] a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;a.length;i++)</span><br><span class="line">            StdOut.print(a[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        StdOut.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSorted</span><span class="params">(Comparable[] a )</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)</span><br><span class="line">            <span class="keyword">if</span>(less(a[i],a[i-<span class="number">1</span>])) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        String[] a = In.readStrings();</span><br><span class="line">        sort(a);</span><br><span class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">isSorted</span><span class="params">(a)</span></span>;</span><br><span class="line">        show(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="https://pic.downk.cc/item/5f69c784160a154a673ef0bc.jpg"></p>
+<h3 id="动画插入排序"><a href="#动画插入排序" class="headerlink" title="动画插入排序"></a>动画插入排序</h3><p><img src="https://pic.downk.cc/item/5f69c0d3160a154a673bc4da.gif"></p>
+<h3 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h3><p>对插入排序和选择排序，分别对1000个数进行100次排序求和  比时间</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">time</span><span class="params">(String alg,Comparable[] a)</span></span>&#123;</span><br><span class="line">        Stopwatch timer = <span class="keyword">new</span> Stopwatch();</span><br><span class="line">        <span class="keyword">switch</span> (alg)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Insertion&quot;</span>: Insertion.sort(a); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Selection&quot;</span>: Selection.sort(a); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timer.elapsedTime();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">timeRandomInput</span><span class="params">(String alg,<span class="keyword">int</span> N, <span class="keyword">int</span> T)</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> total = <span class="number">0</span>;</span><br><span class="line">        Double[] a = <span class="keyword">new</span> Double[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt; T ; t++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">                a[i] = StdRandom.uniform();</span><br><span class="line">            &#125;</span><br><span class="line">            total += time(alg,a);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String alg1 = args[<span class="number">0</span>];</span><br><span class="line">        String alg2 = args[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> N = Integer.parseInt(args[<span class="number">2</span>]);</span><br><span class="line">        <span class="keyword">int</span> T = Integer.parseInt(args[<span class="number">3</span>]);</span><br><span class="line">        <span class="keyword">double</span> t1 = timeRandomInput(alg1,N,T);</span><br><span class="line">        <span class="keyword">double</span> t2 = timeRandomInput(alg2,N,T);</span><br><span class="line">        System.out.println(t2);</span><br><span class="line">        System.out.println(t1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：结果第一行是插入排序结果<br>      第二行是选择排序的结果</p>
+</blockquote>
+<p>第一次结果：<br><img src="https://pic.downk.cc/item/5f69f65c160a154a675582a4.jpg"></p>
+<p>第二次结果：<br><img src="https://pic.downk.cc/item/5f69f690160a154a67559fdf.jpg"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 教程</title>
+    <url>/2020/09/10/hexo_learning/</url>
+    <content><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="创建一个新文章-md-文件"><a href="#创建一个新文章-md-文件" class="headerlink" title="创建一个新文章 .md 文件"></a>创建一个新文章 .md 文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="将md-生成静态文件"><a href="#将md-生成静态文件" class="headerlink" title="将md 生成静态文件"></a>将md 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="启动本地服务器查看"><a href="#启动本地服务器查看" class="headerlink" title="启动本地服务器查看"></a>启动本地服务器查看</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="无误后将文章发布到GitHub"><a href="#无误后将文章发布到GitHub" class="headerlink" title="无误后将文章发布到GitHub"></a>无误后将文章发布到GitHub</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="引用自己写的别的文章"><a href="#引用自己写的别的文章" class="headerlink" title="引用自己写的别的文章"></a>引用自己写的别的文章</h3><p>有两种方式：<br>1、通过模板：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% post_link md的名字  显示的名字%&#125;</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line">&#123;% post_link algor1 排序模板 %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<a href="/2020/09/19/algor1/" title="排序模板">排序模板</a>
+
+<p>2、引用永久链接： hexo 生成的文章是 /年/月/日/文件 格式，所以markdown引用链接就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[排序模板](&#x2F;2020&#x2F;09&#x2F;19&#x2F;algor1)</span><br></pre></td></tr></table></figure>
+<p>效果：<br><a href="/2020/09/19/algor1">排序模板</a></p>
+]]></content>
+      <categories>
+        <category>hexo 教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>

@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lixiaofan.info/2020/09/21/algor2/</loc>
+    
+    <lastmod>2020-09-22</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lixiaofan.info/2020/09/19/algor1/</loc>
     
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
     <loc>http://lixiaofan.info/2020/09/11/markdown/</loc>
     
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lixiaofan.info/2020/09/10/hexo_learning/</loc>
+    
+    <lastmod>2020-09-21</lastmod>
     
   </url>
   
@@ -19,20 +33,6 @@
     <loc>http://lixiaofan.info/2020/09/12/gitLearn/</loc>
     
     <lastmod>2020-09-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lixiaofan.info/2020/09/10/hello-world/</loc>
-    
-    <lastmod>2020-09-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lixiaofan.info/2020/09/10/first/</loc>
-    
-    <lastmod>2020-09-11</lastmod>
     
   </url>
   
@@ -74,7 +74,7 @@
 
   <url>
     <loc>http://lixiaofan.info/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -82,49 +82,42 @@
   
   <url>
     <loc>http://lixiaofan.info/tags/%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/tags/HSTS/</loc>
-    <lastmod>2020-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://lixiaofan.info/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/tags/git/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/tags/hexo/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/tags/markdown/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -133,42 +126,42 @@
   
   <url>
     <loc>http://lixiaofan.info/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/categories/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/categories/%E9%94%99%E8%AF%AF%E7%A7%AF%E7%B4%AF/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/categories/git/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/categories/hexo-%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lixiaofan.info/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2020-09-19</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
