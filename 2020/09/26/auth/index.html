@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lixiaofan.info","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="正文被隐藏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jwt权限控制api 访问">
+<meta property="og:url" content="http://lixiaofan.info/2020/09/26/auth/index.html">
+<meta property="og:site_name" content="逆袭之旅">
+<meta property="og:description" content="正文被隐藏">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-26T13:24:35.000Z">
+<meta property="article:modified_time" content="2020-09-26T13:28:25.138Z">
+<meta property="article:author" content="李小凡">
+<meta property="article:tag" content="jwt令牌">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lixiaofan.info/2020/09/26/auth/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Jwt权限控制api 访问 | 逆袭之旅</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">逆袭之旅</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">路在脚下</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lixiaofan.info/2020/09/26/auth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xiaofan.jpg">
+      <meta itemprop="name" content="李小凡">
+      <meta itemprop="description" content="菜鸟逆袭">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆袭之旅">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jwt权限控制api 访问
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-26 21:24:35 / 修改时间：21:28:25" itemprop="dateCreated datePublished" datetime="2020-09-26T21:24:35+08:00">2020-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jwt/" itemprop="url" rel="index"><span itemprop="name">jwt</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">正文被隐藏</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>给一个api 上添加 <code>@ScopeLevel</code>   来确定这个api 的等级</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/name/&#123;name&#125;&quot;)</span></span><br><span class="line"> <span class="meta">@ScopeLevel</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> Banner <span class="title">getByName</span><span class="params">(<span class="meta">@PathVariable</span> <span class="meta">@NotBlank</span> String name)</span></span>&#123;</span><br><span class="line">     Banner banner = bannerService.getByName(name);</span><br><span class="line">     <span class="keyword">if</span> (banner==<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> NotFoundException(<span class="number">30005</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> banner;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>@ScopeLevel</code> 注解:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ScopeLevel &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> 4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>之所以可以完成是因为:</p>
+<ol>
+<li>通过<code>TokenController</code> 获取token</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/v1/token&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WxAuthenticationService wxAuthenticationService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取token</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String,String&gt; <span class="title">getToken</span><span class="params">(<span class="meta">@RequestBody</span> <span class="meta">@Validated</span> TokenGetDTO userData)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        String token = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (userData.getType())&#123;</span><br><span class="line">            <span class="keyword">case</span> USER_WX:</span><br><span class="line">                token = wxAuthenticationService.code2Session(userData.getAccount());</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> USER_Email:<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">throw</span> <span class="keyword">new</span> NotFoundException(<span class="number">10003</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        map.put(<span class="string">&quot;token&quot;</span>,token);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 验证token</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/verify&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String, Boolean&gt; <span class="title">verify</span><span class="params">(<span class="meta">@RequestBody</span> TokenDTO token)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Boolean&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Boolean valid = JwtToken.verifyToken(token.getToken());</span><br><span class="line">        map.put(<span class="string">&quot;is_valid&quot;</span>, valid);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>TokenGetDTO</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenGetDTO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;account 不允许为空&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String account;</span><br><span class="line">    <span class="meta">@TokenPassword(message=&quot;&#123;token.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> LoginType type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>LoginType</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">LoginType</span> </span>&#123;</span><br><span class="line">    USER_WX(<span class="number">0</span>,<span class="string">&quot;微信登录&quot;</span>),</span><br><span class="line">    USER_Email(<span class="number">1</span>,<span class="string">&quot;邮箱登录&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer value;</span><br><span class="line">    LoginType(Integer value,String description)&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>WxAuthenticationService</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WxAuthenticationService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ObjectMapper mapper;  <span class="comment">//用于反序列化 .readValue()方法</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//用appid  secret  code 码 换取session</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;wx.code2session&#125;&quot;)</span> </span><br><span class="line">    <span class="comment">//https://api.weixin.qq.com/sns/jscode2session?appid=&#123;0&#125;&amp;secret=&#123;1&#125;&amp;js_code=&#123;2&#125;&amp;grant_type=authorization_code</span></span><br><span class="line">    <span class="keyword">private</span> String code2SessionUrl;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;wx.appid&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String appid;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;wx.appsecret&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String appsecret;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">code2Session</span><span class="params">(String code)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//messageFormat.format 模板填充&#123;0&#125;&#123;1&#125;&#123;2&#125;,组装成一个可以使用的url.</span></span><br><span class="line">        String url = MessageFormat.format(<span class="keyword">this</span>.code2SessionUrl, <span class="keyword">this</span>.appid, <span class="keyword">this</span>.appsecret, code);</span><br><span class="line">        <span class="comment">//RestTemplate 用来发送http 请求</span></span><br><span class="line">        RestTemplate rest = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        <span class="comment">//发送请求 </span></span><br><span class="line">        String sessionText = rest.getForObject(url, String.class);</span><br><span class="line">        Map&lt;String, Object&gt; session = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//将String 序列化到session 中 </span></span><br><span class="line">            <span class="comment">//访问微信服务器正确将得到</span></span><br><span class="line">            <span class="comment">//&#123;&quot;appid&quot;:&quot;xxx&quot;,&quot;session&quot;:&quot;xxx&quot;&#125;</span></span><br><span class="line">            session = mapper.readValue(sessionText, Map.class);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.registerUser(session);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//发放令牌</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">registerUser</span><span class="params">(Map&lt;String, Object&gt; session)</span> </span>&#123;</span><br><span class="line">        String openid = (String) session.get(<span class="string">&quot;openid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (openid == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//如果没获取到openid,抛出获取用户openid失败异常</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ParameterException(<span class="number">20004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//通过openid 获得这个user</span></span><br><span class="line">        Optional&lt;User&gt; userOptional = <span class="keyword">this</span>.userRepository.findByOpenid(openid);</span><br><span class="line">        <span class="keyword">if</span> (userOptional.isPresent()) &#123;</span><br><span class="line">			<span class="comment">// 入如果user不为空,获取id 颁发令牌</span></span><br><span class="line">            <span class="keyword">return</span> JwtToken.makeToken(userOptional.get().getId());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//user 为空 先注册到user 表</span></span><br><span class="line">        User user = User.builder().openid(openid)</span><br><span class="line">                .build();</span><br><span class="line">        userRepository.save(user);</span><br><span class="line">        <span class="comment">// 再次重新获得该用户id ,颁发令牌</span></span><br><span class="line">        Long uid = user.getId();</span><br><span class="line">        <span class="keyword">return</span> JwtToken.makeToken(uid);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>UserRepository</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">User</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">User <span class="title">findByEmail</span><span class="params">(String email)</span></span>;</span><br><span class="line">    <span class="function">Optional&lt;User&gt; <span class="title">findByOpenid</span><span class="params">(String openid)</span></span>;</span><br><span class="line">    <span class="function">User <span class="title">findFirstById</span><span class="params">(Long id)</span></span>;</span><br><span class="line">    <span class="function">User <span class="title">findByUnifyUid</span><span class="params">(Long uuid)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>jwtToken</code>    令牌生成具体方法//    默认可访问的等级是8   8以下的都可以被访问</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JwtToken</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String jwtKey;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer expiredTimeIn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer defaultScope = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//密钥 :  yml 配置的</span></span><br><span class="line">    <span class="comment">//security:</span></span><br><span class="line">    <span class="comment">//	jwt-key: sssssssfan</span></span><br><span class="line">    <span class="comment">//	token-expired-in: 86400</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;security.jwt-key&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJwtKey</span><span class="params">(String jwtKey)</span> </span>&#123;</span><br><span class="line">        JwtToken.jwtKey = jwtKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;security.token-expired-in&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExpiredTimeIn</span><span class="params">(Integer expiredTimeIn)</span> </span>&#123;</span><br><span class="line">        JwtToken.expiredTimeIn = expiredTimeIn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Optional&lt;Map&lt;String, Claim&gt;&gt; getClaims(String token) &#123;</span><br><span class="line">        DecodedJWT decodedJWT;</span><br><span class="line">        Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);</span><br><span class="line">        JWTVerifier jwtVerifier = JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            decodedJWT = jwtVerifier.verify(token);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> Optional.empty();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(decodedJWT.getClaims());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">verifyToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);</span><br><span class="line">            JWTVerifier verifier = JWT.require(algorithm).build();</span><br><span class="line">            verifier.verify(token);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">makeToken</span><span class="params">(Long uid, Integer scope)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JwtToken.getToken(uid, scope);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">makeToken</span><span class="params">(Long uid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JwtToken.getToken(uid, JwtToken.defaultScope);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 颁发jwt 令牌</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getToken</span><span class="params">(Long uid, Integer scope)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//使用HMAC256 算法 对key 加密</span></span><br><span class="line">        Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);</span><br><span class="line">        Map&lt;String, Date&gt; map = JwtToken.calculateExpiredIssues();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 颁发jwt</span></span><br><span class="line">        <span class="keyword">return</span> JWT.create()</span><br><span class="line">                .withClaim(<span class="string">&quot;uid&quot;</span>, uid)</span><br><span class="line">                .withClaim(<span class="string">&quot;scope&quot;</span>, scope)</span><br><span class="line">                .withExpiresAt(map.get(<span class="string">&quot;expiredTime&quot;</span>))</span><br><span class="line">                .withIssuedAt(map.get(<span class="string">&quot;now&quot;</span>))</span><br><span class="line">                .sign(algorithm);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Date&gt; <span class="title">calculateExpiredIssues</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Date&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line">        Date now = calendar.getTime(); <span class="comment">//当前时间</span></span><br><span class="line">        calendar.add(Calendar.SECOND, JwtToken.expiredTimeIn); <span class="comment">// 过期时间</span></span><br><span class="line">        map.put(<span class="string">&quot;now&quot;</span>, now);</span><br><span class="line">        map.put(<span class="string">&quot;expiredTime&quot;</span>, calendar.getTime());</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>用拦截器获取所有的http 访问:</p>
+<p><code>PermissionInterceptor</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PermissionInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"><span class="comment">//或者     implement  HandlerInterceptor  都可以</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PermissionInterceptor</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">// 获取注解 scopelevel的值</span></span><br><span class="line">        Optional&lt;ScopeLevel&gt; scopeLevel = <span class="keyword">this</span>.getScopeLevel(handler);</span><br><span class="line">        <span class="comment">// 不存在 任何人可访问</span></span><br><span class="line">        <span class="keyword">if</span> (!scopeLevel.isPresent())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 获取 Header Authorization 的值,也就是 token值</span></span><br><span class="line">        String bearerToken = request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        <span class="comment">//空值 报不合法异常</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(bearerToken))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnAuthenticatedException(<span class="number">10004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//非jwt Bearer 开头的令牌 不合法异常</span></span><br><span class="line">        <span class="keyword">if</span> (!bearerToken.startsWith(<span class="string">&quot;Bearer&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnAuthenticatedException(<span class="number">10004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 防止非法输入   输入中带空格</span></span><br><span class="line">        String tokens[] = bearerToken.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (!(tokens.length ==<span class="number">2</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnAuthenticatedException(<span class="number">10004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//提取token  tokens[0] 值是Bearer</span></span><br><span class="line">        String token = tokens[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">//验证token</span></span><br><span class="line">        <span class="comment">//optionalMap :: optional[&#123;uid=com.auth0.jwt.impl.JsonNodeClaim@7211e007, exp=com.auth0.jwt.impl.JsonNodeClaim@ea3d01c, iat=com.auth0.jwt.impl.JsonNodeClaim@25cfbd5, scope=com.auth0.jwt.impl.JsonNodeClaim@4e547dbe&#125;]</span></span><br><span class="line">        Optional&lt;Map&lt;String, Claim&gt;&gt; optionalMap = JwtToken.getClaims(token);</span><br><span class="line">        <span class="comment">//将optionalMap 的值放入 map</span></span><br><span class="line">        Map&lt;String, Claim&gt; map = optionalMap.orElseThrow(() -&gt; <span class="keyword">new</span> UnAuthenticatedException(<span class="number">10004</span>));</span><br><span class="line">        <span class="keyword">boolean</span> valid = hasPermission(scopeLevel.get(), map);</span><br><span class="line">        <span class="keyword">return</span> valid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取ScopeLevel 的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> handler</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Optional&lt;ScopeLevel&gt; <span class="title">getScopeLevel</span><span class="params">(Object handler)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (handler <span class="keyword">instanceof</span> HandlerMethod) &#123;</span><br><span class="line">            HandlerMethod handlerMethod = (HandlerMethod) handler;</span><br><span class="line">            ScopeLevel scopeLevel = handlerMethod.getMethod().getAnnotation(ScopeLevel.class);</span><br><span class="line">            <span class="keyword">if</span> (scopeLevel == <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> Optional.empty();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>  Optional.of(scopeLevel);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Optional.empty();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断 scopeLevel 和 defaultscope (8) 的大小. 超过8 不能访问</span></span><br><span class="line">    <span class="comment">// 当给一个类加上@ScopeLevel() 默认4 </span></span><br><span class="line">    <span class="comment">// 可以做到 没有登录访问不了api</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasPermission</span><span class="params">(ScopeLevel scopeLevel, Map&lt;String, Claim&gt; map)</span> </span>&#123;</span><br><span class="line">        Integer level = scopeLevel.value();</span><br><span class="line">        Integer scope = map.get(<span class="string">&quot;scope&quot;</span>).asInt();</span><br><span class="line">        <span class="keyword">if</span> (level &gt; scope) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ForbiddenException(<span class="number">10005</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">super</span>.postHandle(request, response, handler, modelAndView);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">super</span>.afterCompletion(request, response, handler, ex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将拦截器加入到(注册到)系统,也就是成功拦截一切的http 访问</p>
+<p><code>PermissionInterceptor</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfiguration</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> PermissionInterceptor());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>总结: </p>
+<ol>
+<li>用户登录 颁发jwt 令牌 ,该令牌中 放入了uid 和 scope 值     ``JwtToken.makeToken()`</li>
+<li>用拦截器获取任何http访问 ``PermissionInterceptor<code>  </code>PermissionInterceptor`</li>
+<li>拦截器中获取自定义注解@ScopeLevel 的值  <code>PermissionInterceptor</code>中的<code>getScopeLevel() </code>方法<ol>
+<li>为空值,所有权限可访问</li>
+</ol>
+</li>
+<li>在Header的 <code>Authorization</code>  获取token   <code>PermissionInterceptor</code>的 <code>preHandle  .     request.getHeader(&quot;Authorization&quot;)   </code></li>
+<li>获取token 的   scope   <code>JwtToken.getClaims(token).get(&quot;scope&quot;)</code></li>
+<li>比较  level 和 scope 值,判断是否可以访问 <code>PermissionInterceptor</code>.<code>hasPermission()</code></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jwt%E4%BB%A4%E7%89%8C/" rel="tag"># jwt令牌</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/21/algor2/" rel="prev" title="插入排序">
+      <i class="fa fa-chevron-left"></i> 插入排序
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="李小凡"
+      src="/images/xiaofan.jpg">
+  <p class="site-author-name" itemprop="name">李小凡</p>
+  <div class="site-description" itemprop="description">菜鸟逆袭</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">晋ICP备20003816号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李小凡</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
