@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://lixiaofan.info/2020/09/26/auth/</loc>
-    <lastmod>2020-09-26</lastmod>
+    <loc>http://lixiaofan.info/2020/10/12/lc344/</loc>
+    <lastmod>2020-10-12</lastmod>
   </url>
   <url>
     <loc>http://lixiaofan.info/2020/09/21/algor2/</loc>
-    <lastmod>2020-09-22</lastmod>
+    <lastmod>2020-10-12</lastmod>
+  </url>
+  <url>
+    <loc>http://lixiaofan.info/2020/09/26/auth/</loc>
+    <lastmod>2020-09-26</lastmod>
   </url>
   <url>
     <loc>http://lixiaofan.info/2020/09/19/algor1/</loc>
@@ -23,10 +27,6 @@
   <url>
     <loc>http://lixiaofan.info/2020/09/12/gitLearn/</loc>
     <lastmod>2020-09-12</lastmod>
-  </url>
-  <url>
-    <loc>http://lixiaofan.info/2020/09/11/ceshi/</loc>
-    <lastmod>2020-09-11</lastmod>
   </url>
   <url>
     <loc>http://lixiaofan.info/2020/09/11/day1/</loc>
