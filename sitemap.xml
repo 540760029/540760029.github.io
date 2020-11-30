@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lixiaofan.info/404.html</loc>
+    
+    <lastmod>2020-11-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lixiaofan.info/2020/11/30/nginx/</loc>
     
     <lastmod>2020-11-30</lastmod>
@@ -85,13 +92,6 @@
     
   </url>
   
-  <url>
-    <loc>http://lixiaofan.info/404.html</loc>
-    
-    <lastmod>2020-09-11</lastmod>
-    
-  </url>
-  
 
   <url>
     <loc>http://lixiaofan.info/</loc>
@@ -144,14 +144,14 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/nginx/</loc>
+    <loc>http://lixiaofan.info/tags/markdown/</loc>
     <lastmod>2020-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/markdown/</loc>
+    <loc>http://lixiaofan.info/tags/nginx/</loc>
     <lastmod>2020-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -195,14 +195,14 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>http://lixiaofan.info/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2020-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
+    <loc>http://lixiaofan.info/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2020-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
