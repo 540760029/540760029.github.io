@@ -47,23 +47,6 @@
       </tags>
   </entry>
   <entry>
-    <title>访问网页出错</title>
-    <url>/2020/09/11/day1/</url>
-    <content><![CDATA[<ol>
-<li>在Chrome地址栏中输入:   chrome://net-internals/#hsts; 进入Domain Sercurity Policy界面。</li>
-<li>在下图中输入二级域名查询是否使用了强制 HTTPS 请求。<br><img src="/2020/09/11/day1/cuowu.png" alt="错误"></li>
-<li>如果有查询结果，则在最下方的delete栏处，删除该域名的信息<br><img src="/2020/09/11/day1/delete.png" alt="删除"></li>
-<li>再次查询，如下图所示，“NOT FOUND”则表示删除成功。<br><img src="/2020/09/11/day1/restore.png" alt="重新查询"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>错误积累</category>
-      </categories>
-      <tags>
-        <tag>HSTS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Jwt权限控制api 访问</title>
     <url>/2020/09/26/auth/</url>
     <content><![CDATA[<p>给一个api 上添加 <code>@ScopeLevel</code>   来确定这个api 的等级</p>
@@ -127,6 +110,23 @@
       </categories>
       <tags>
         <tag>jwt令牌</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>访问网页出错</title>
+    <url>/2020/09/11/day1/</url>
+    <content><![CDATA[<ol>
+<li>在Chrome地址栏中输入:   chrome://net-internals/#hsts; 进入Domain Sercurity Policy界面。</li>
+<li>在下图中输入二级域名查询是否使用了强制 HTTPS 请求。<br><img src="/2020/09/11/day1/cuowu.png" alt="错误"></li>
+<li>如果有查询结果，则在最下方的delete栏处，删除该域名的信息<br><img src="/2020/09/11/day1/delete.png" alt="删除"></li>
+<li>再次查询，如下图所示，“NOT FOUND”则表示删除成功。<br><img src="/2020/09/11/day1/restore.png" alt="重新查询"></li>
+</ol>
+]]></content>
+      <categories>
+        <category>错误积累</category>
+      </categories>
+      <tags>
+        <tag>HSTS</tag>
       </tags>
   </entry>
   <entry>
@@ -291,6 +291,12 @@
       </tags>
   </entry>
   <entry>
+    <title>权限</title>
+    <url>/2020/10/24/javaauth/</url>
+    <content><![CDATA[<p>HTTP 请求<br>filter interceptor aop -&gt; controller<br>controller -&gt; aop-&gt; interceptor-&gt;filter</p>
+]]></content>
+  </entry>
+  <entry>
     <title>反转字符串（Lc344)</title>
     <url>/2020/10/12/lc344/</url>
     <content><![CDATA[<p>|  编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。<br>你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。</p>
@@ -316,6 +322,38 @@
       </categories>
       <tags>
         <tag>力扣</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx</title>
+    <url>/2020/11/30/nginx/</url>
+    <content><![CDATA[<blockquote>
+<p>原文地址：<a href="https://www.cnblogs.com/xxoome/p/5866475.html">https://www.cnblogs.com/xxoome/p/5866475.html</a></p>
+</blockquote>
+<blockquote>
+<p>Linux版本： CentOS7 64位</p>
+</blockquote>
+<h3 id="nginx-安装"><a href="#nginx-安装" class="headerlink" title="nginx 安装"></a>nginx 安装</h3><p><strong>在安装nginx前首先要确认系统中安装了gcc、pcre-devel、zlib-devel、openssl-devel。</strong>安装的命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
+<p>nginx 下载地址：<a href="http://nginx.org/download">http://nginx.org/download</a><br>下载：“nginx-1.9.9.tar.gz” 移动到/usr/local/ 下。</p>
+<p><img src="https://pic.downk.cc/item/5fc47bd7d590d4788a1b5f6b.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 解压</span></span><br><span class="line">tar -zxvf nginx-1.9.9.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment">##进入nginx 目录：</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.9.9</span><br><span class="line"></span><br><span class="line"><span class="comment">##配置</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">## make</span></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注解：源码的安装一般有3个步骤组成：配置(configure)、编译(make)、安装(makeinstall)。 <code>Configure</code>是一个可执行脚本，它有很多选项，在待安装的源码路径下使用命令<code>./configure -–help</code>输出详细的选项列表。其中<code>--prefix</code>选项是配置安装的路径，如果不配置该选项，安装后可执行文件默认放在<code>/usr/local/bin</code>，库文件默认放在<code>/usr/local/lib</code>，配置文件默认放在<code>/usr/local/etc</code>，其它的资源文件放在<code>/usr/local/share</code>，比较凌乱。如果配置–prefix，如：<code>./configure --prefix=/usr/local/nginx</code><br>可以把所有资源文件放在<code>/usr/local/nginx</code>的路径中，不会杂乱。<br>用了—prefix选项的另一个好处是卸载软件或移植软件。当某个安装的软件不再需要时，只须简单的删除该安装目录，就可以把软件卸载得干干净净；移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）。<br><img src="https://pic.downk.cc/item/5fc47e54d590d4788a1c8ebf.jpg"><br><img src="https://pic.downk.cc/item/5fc47fd8d590d4788a1d5f9a.jpg"></p>
+</blockquote>
+<h3 id="测试是否安装成功："><a href="#测试是否安装成功：" class="headerlink" title="测试是否安装成功："></a>测试是否安装成功：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## cd 到安装目录 /usr/local/nginx</span></span><br><span class="line">./sbin/nginx -t</span><br></pre></td></tr></table></figure>
+<p>安装成功的显示：<br><img src="https://pic.downk.cc/item/5fc48080d590d4788a1dac6b.jpg"></p>
+<h3 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx:"></a>启动nginx:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin</span><br><span class="line">./nginx</span><br></pre></td></tr></table></figure>
+<p>在浏览器输入ip 地址就可以看到结果了</p>
+<h3 id="修改默认访问地址："><a href="#修改默认访问地址：" class="headerlink" title="修改默认访问地址："></a>修改默认访问地址：</h3><p><img src="https://pic.downk.cc/item/5fc485c8d590d4788a1fd7ae.jpg"><br><img src="https://pic.downk.cc/item/5fc4864bd590d4788a200ff2.jpg"><br><img src="https://pic.downk.cc/item/5fc48700d590d4788a205b06.jpg"></p>
+<p>根据访问路径在相应的位置创建好的文件夹:放入测试文件<br><img src="https://pic.downk.cc/item/5fc48741d590d4788a206e89.jpg"></p>
+<h3 id="重启nginx-服务："><a href="#重启nginx-服务：" class="headerlink" title="重启nginx 服务："></a>重启nginx 服务：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 进入到 /usr/local/nginx/sbin</span></span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>

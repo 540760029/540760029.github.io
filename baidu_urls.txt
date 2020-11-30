@@ -1,3 +1,5 @@
+http://lixiaofan.info/2020/11/30/nginx/
+http://lixiaofan.info/2020/10/24/javaauth/
 http://lixiaofan.info/2020/10/12/lc344/
 http://lixiaofan.info/2020/09/26/auth/
 http://lixiaofan.info/2020/09/21/algor2/
