@@ -165,6 +165,7 @@
     {#################}
     {### POST BODY ###}
     {#################}
+
     <div class="post-body{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="articleBody">
 
       {# Gallery support #}
@@ -206,7 +207,16 @@
         {{ post.content }}
       {%- endif %}
     </div>
-
+    <div>
+      {% if not is_index %}
+        {% include 'passage-end-tag.swig' %}
+      {% endif %}
+    </div>
+    <div>
+      {% if not is_index %}
+        {% include 'my-copyright.swig' %}
+      {% endif %}
+    </div>
     {#####################}
     {### END POST BODY ###}
     {#####################}

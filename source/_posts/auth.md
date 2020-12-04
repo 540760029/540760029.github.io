@@ -2,7 +2,7 @@
 title: Jwt权限控制api 访问
 description: 正文被隐藏
 date: 2020-09-26 21:24:35
-tags:  jwt令牌
+tags: jwt令牌
 categories: jwt
 ---
 给一个api 上添加 `@ScopeLevel`   来确定这个api 的等级

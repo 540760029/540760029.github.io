@@ -5,6 +5,7 @@ date: 2020-09-19 17:27:08
 tags: 排序
 categories: 数据结构与算法
 ---
+
 ### 排序模板
 
 `less()`方法进行比较，`exch()`方法进行交换 ，通过`comparable`接口实现`less()`方法。
