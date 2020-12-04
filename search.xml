@@ -331,9 +331,6 @@
     <title>Nginx</title>
     <url>/2020/11/30/nginx/</url>
     <content><![CDATA[<blockquote>
-<p>参考：<a href="https://www.cnblogs.com/xxoome/p/5866475.html">https://www.cnblogs.com/xxoome/p/5866475.html</a></p>
-</blockquote>
-<blockquote>
 <p>Linux版本： CentOS7 64位</p>
 </blockquote>
 <h2 id="nginx-安装"><a href="#nginx-安装" class="headerlink" title="nginx 安装"></a>nginx 安装</h2><p><strong>在安装nginx前首先要确认系统中安装了gcc、pcre-devel、zlib-devel、openssl-devel。</strong>安装的命令如下：</p>
@@ -406,6 +403,9 @@
 <li><p>当然， worker 进程的异常退出，肯定是程序有 bug 了，异常退出，会导致当前 worker 上的所有请求失败，不过不会影响到所有请求，所以降低了风险</p>
 </li>
 </ul>
+<blockquote>
+<p>参考：<a href="https://www.cnblogs.com/xxoome/p/5866475.html">https://www.cnblogs.com/xxoome/p/5866475.html</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>服务器</category>
