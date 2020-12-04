@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -346,7 +348,15 @@
 <h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>$$<br>\mathbf{V}_1<br>$$</p>
 
     </div>
-
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
     
     
     
@@ -362,12 +372,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/11/day1/" rel="prev" title="访问网页出错">
-      <i class="fa fa-chevron-left"></i> 访问网页出错
+    <a href="/2020/09/12/gitLearn/" rel="prev" title="gitLearn">
+      <i class="fa fa-chevron-left"></i> gitLearn
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/12/gitLearn/" rel="next" title="gitLearn">
-      gitLearn <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/11/day1/" rel="next" title="访问网页出错">
+      访问网页出错 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -591,6 +601,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 

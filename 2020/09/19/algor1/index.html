@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -291,7 +293,15 @@
 <p><code>运行时间和输入无关</code> 。为了找出最小元素而扫描一遍数组并不能为下一遍扫描提供什么信息。 某些情况下是缺点。比如 数据本身有序<br><code>数据移动是最少的</code>。每次交换都会改变两个数组的元素的值，因此选择排序用了N次交换–交换次数和数组的大小是线性关系。</p>
 
     </div>
-
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
     
     
     
@@ -307,12 +317,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/12/gitLearn/" rel="prev" title="gitLearn">
-      <i class="fa fa-chevron-left"></i> gitLearn
+    <a href="/2020/09/21/algor2/" rel="prev" title="插入排序">
+      <i class="fa fa-chevron-left"></i> 插入排序
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/21/algor2/" rel="next" title="插入排序">
-      插入排序 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/12/gitLearn/" rel="next" title="gitLearn">
+      gitLearn <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -536,6 +546,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 

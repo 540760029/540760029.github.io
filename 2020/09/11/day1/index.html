@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -282,7 +284,15 @@
 </ol>
 
     </div>
-
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
     
     
     
@@ -298,12 +308,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/10/hexo_learning/" rel="prev" title="Hexo 教程">
-      <i class="fa fa-chevron-left"></i> Hexo 教程
+    <a href="/2020/09/11/markdown/" rel="prev" title="Markdown">
+      <i class="fa fa-chevron-left"></i> Markdown
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/11/markdown/" rel="next" title="Markdown">
-      Markdown <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/10/hexo_learning/" rel="next" title="Hexo 教程">
+      Hexo 教程 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -526,6 +536,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 

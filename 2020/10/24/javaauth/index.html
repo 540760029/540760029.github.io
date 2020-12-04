@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -271,7 +273,15 @@
 <p>HTTP 请求<br>filter interceptor aop -&gt; controller<br>controller -&gt; aop-&gt; interceptor-&gt;filter</p>
 
     </div>
-
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
     
     
     
@@ -284,12 +294,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/12/lc344/" rel="prev" title="反转字符串（Lc344)">
-      <i class="fa fa-chevron-left"></i> 反转字符串（Lc344)
+    <a href="/2020/11/30/nginx/" rel="prev" title="Nginx">
+      <i class="fa fa-chevron-left"></i> Nginx
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/11/30/nginx/" rel="next" title="Nginx">
-      Nginx <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/12/lc344/" rel="next" title="反转字符串（Lc344)">
+      反转字符串（Lc344) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -512,6 +522,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 
