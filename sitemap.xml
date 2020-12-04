@@ -116,7 +116,7 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/git/</loc>
+    <loc>http://lixiaofan.info/tags/jwt%E4%BB%A4%E7%89%8C/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -130,7 +130,7 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/jwt%E4%BB%A4%E7%89%8C/</loc>
+    <loc>http://lixiaofan.info/tags/git/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -151,14 +151,14 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/nginx/</loc>
+    <loc>http://lixiaofan.info/tags/markdown/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/tags/markdown/</loc>
+    <loc>http://lixiaofan.info/tags/nginx/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -174,7 +174,7 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/git/</loc>
+    <loc>http://lixiaofan.info/categories/jwt/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -188,7 +188,7 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/jwt/</loc>
+    <loc>http://lixiaofan.info/categories/git/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -202,14 +202,14 @@
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>http://lixiaofan.info/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://lixiaofan.info/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
+    <loc>http://lixiaofan.info/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
