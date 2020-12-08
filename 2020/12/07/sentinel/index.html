@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"lixiaofan.info","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="菜鸟逆袭">
-<meta property="og:type" content="website">
-<meta property="og:title" content="逆袭之旅">
-<meta property="og:url" content="http://lixiaofan.info/archives/index.html">
+  <meta name="description" content="正文被隐藏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哨兵机制，主库挂了如何不间断服务">
+<meta property="og:url" content="http://lixiaofan.info/2020/12/07/sentinel/index.html">
 <meta property="og:site_name" content="逆袭之旅">
-<meta property="og:description" content="菜鸟逆袭">
+<meta property="og:description" content="正文被隐藏">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-07T06:56:55.000Z">
+<meta property="article:modified_time" content="2020-12-08T14:03:55.553Z">
 <meta property="article:author" content="李小凡">
-<meta property="article:tag" content="java nginx 教程">
+<meta property="article:tag" content="哨兵">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://lixiaofan.info/archives/">
+<link rel="canonical" href="http://lixiaofan.info/2020/12/07/sentinel/">
 
 
 <script id="page-configurations">
@@ -39,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 逆袭之旅</title>
+  <title>哨兵机制，主库挂了如何不间断服务 | 逆袭之旅</title>
   
 
 
@@ -194,239 +196,165 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lixiaofan.info/2020/12/07/sentinel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xiaofan.jpg">
+      <meta itemprop="name" content="李小凡">
+      <meta itemprop="description" content="菜鸟逆袭">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆袭之旅">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          哨兵机制，主库挂了如何不间断服务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-07 14:56:55" itemprop="dateCreated datePublished" datetime="2020-12-07T14:56:55+08:00">2020-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-08 22:03:55" itemprop="dateModified" datetime="2020-12-08T22:03:55+08:00">2020-12-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 11 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/07/sentinel/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/07/sentinel/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">正文被隐藏</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-07T14:56:55+08:00"
-              content="2020-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/07/sentinel/" itemprop="url">
-            <span itemprop="name">哨兵机制，主库挂了如何不间断服务</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-30T12:50:52+08:00"
-              content="2020-11-30">
-          11-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/30/nginx/" itemprop="url">
-            <span itemprop="name">Nginx</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-24T15:38:30+08:00"
-              content="2020-10-24">
-          10-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/24/javaauth/" itemprop="url">
-            <span itemprop="name">Java 启动 Jar 包</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-12T18:05:50+08:00"
-              content="2020-10-12">
-          10-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/12/lc344/" itemprop="url">
-            <span itemprop="name">反转字符串（Lc344)</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T21:24:35+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/auth/" itemprop="url">
-            <span itemprop="name">Jwt权限控制api 访问</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-21T14:48:32+08:00"
-              content="2020-09-21">
-          09-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/21/algor2/" itemprop="url">
-            <span itemprop="name">插入排序</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-19T17:27:08+08:00"
-              content="2020-09-19">
-          09-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/19/algor1/" itemprop="url">
-            <span itemprop="name">选择排序</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-12T20:20:06+08:00"
-              content="2020-09-12">
-          09-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/12/gitLearn/" itemprop="url">
-            <span itemprop="name">gitLearn</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-11T17:17:01+08:00"
-              content="2020-09-11">
-          09-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/11/markdown/" itemprop="url">
-            <span itemprop="name">Markdown</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-11T16:48:02+08:00"
-              content="2020-09-11">
-          09-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/11/day1/" itemprop="url">
-            <span itemprop="name">访问网页出错</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <p>这几天小黑和小胖闲聊Redis,就一个问题展开了讨论：<strong>主库挂了，如何不间断服务</strong>。 </p>
+<p>小黑：Redis的主从库集群，使访问更加的稳固。如果从库发生了故障，客户端还可以继续向主库或其他从库发送请求，进行相关操作，但是如果是主库发生了故障，那就直接影响到从库的同步，从库没有办法从主库进行数据复制操作了。一脸懵的看向小胖，那Redis是怎么解决这个问题的？<br>小胖：主库挂了，Redis会重新选择一个从库作为主库，然后继续运行。<br>小黑：卧槽 这么神奇？通过什么机制就能确定主库挂了？那么多从库，要选择哪一个从库作为主库？选了主库之后，其他的从库怎么确定他就是新的主库？<br>小胖：你的问题怎么这么多，那我大致就给你讲讲吧。 解决这些问题就要靠<code>哨兵机制</code>了。再Redis主从集群中，哨兵机制是实现主从库自动切换的关键机制，你先吧这个名字记一下。<br>小黑：<code>哨兵机制</code> ？跟那时候打仗放哨一样，有情况就通知呗。<br>小胖： 有那么个意思。哨兵其实就是一个运行再特殊模式下的Redis进程，主从库实例运行的同时，它也在运行。主要有三个任务：<code>监控、选主、通知</code>。<br>小黑：好像懂点了。<br>小胖：我们先看<strong>监控</strong>。 哨兵进程再运行时，会周期性的给所有的主从库发送PING命令，检测他们是否仍在线运行。如果<em>从库</em>没有再规定的时间内响应哨兵的PING命令，哨兵就会把它标记为“下线状态”；同样的，如果<em>主库</em>也没有再规定的时间内响应哨兵的PING命令，哨兵就会判定主库下线，接着就开始自动切换主库的流程了。<br>小黑：（猛地点点头）你继续，怎么个自动切换主库法？<br>小胖： 这个流程首先是执行哨兵的第二个任务，<strong>选主</strong>。主库挂了以后，哨兵就需要从很多个从库里，按照一定的规则选择一个从库实例，把它作为新的主库。这一步完成后，现在的集群里就有了新的主库了。<br>小黑： 奥。<br>小胖紧接着说： 然后，哨兵会执行最后一个任务<strong>通知</strong>。在执行通知任务时候，哨兵会把新主库的连接信息发给其他从库，让他们执行replicaof命令，和新主库建立连接，并进行数据复制。同时，哨兵会把新主库的连接信息通知给客户端，让他们把请求操作发到新主库上。<br>小黑：在监控中通过PING 命令来确定主库挂不挂，那要是哨兵的网络有问题，那可不是误判了么。<br>小胖： 这个问题有点深度。那就来说说如何判断主库的下线状态。哨兵对主库的下线判断有<code>主观下线</code>和<code>客观下线</code>两种。我就先解释下什么是<strong>主观下线</strong>。<br>哨兵进程会使用PING命令检测它自己和主、从库的网络连接情况，用来判断实例的状态。如果哨兵发现主库或从库对PING命令超时了，那么哨兵就会先把它标记为<strong>主观下线</strong>。<br>如果检测的是从库，那么，哨兵简单地把它标记为<em>主观下线</em>就行了，因为从库的下线影响一般不太大，集群的对外服务不会间断。  但是，如果检测的是主库，那么，哨兵还不能简单地把它标记为<em>主观下线</em>，开启主从切换。因为很有可能存在这么一个情况：那就是哨兵误判了，其实主库并没有故障。可是，一旦启动了主从切换，后续的选主和通知操作都会带来额外的计算和通信的开销。 为了避免这些不必要的开销，我们要特别注意误判的情况。<br>小黑：什么是<code>误判</code>、什么情况下会发生？<br>小胖：很简单，就是主库实际并没有下线，但是哨兵误以为它下线了。一般发生在网络压力较大、网络拥塞、或者是主库本身压力较大的情况下<br>小黑： 怎么减少误判呢？<br>小胖： 一般呢，在我们要决定一件特别犹豫的事的时候，一般会找好多人询问。哨兵机制也是类似。我多放几个哨兵看守，少数服从多数，从而减少误判。这就是所谓的<code>哨兵集群</code>。大多数的哨兵都标记为<em>主观下线</em>，主库才能标记为<em>客观下线</em>。客观事实嘛。<br>小黑：客观下线那就得切换主库了，如何选择的新主库？<br>小胖：简单来说，在多个从库中，先按照一定的筛选条件，把不符合条件的从库去掉。然后，我们再按照一定的规则，给剩下的从库逐个打分，将得分最高的从库选为新主库。<br>小黑憨憨笑着说：那你讲讲都是什么条件和规则。<br>小胖： 一般条件下，要保证从库仍然在线运行。并且保证网络连接状态一直良好。不然刚选上主库，没反应了，还得再次选。具体的判断就要使用配置项<code>down-after-milliseconds * 10</code>。在down-after-milliseconds毫秒内主从节点都没有联系上，就认为主从节点断连了。如果断连次数超过10次，就说明从库网络状况不好，剔除。就完成了筛选工作。剩下的就要打分决定了。打分为三个规则依次进行三轮打分。三个规则分别是<em>从库优先级</em>（用户自己设置 slave-priority）、<em>从库复制进度</em>（和旧主库同步程度最接近的从库得分高，找slave_repl_offset 最接近 master_repl_offset）、<em>从库ID号</em>（ID号小得分高）。选主就完成了。</p>
+<p>小黑：我总结一下选主的过程： 按照在线状态、网络状态、筛选过滤掉一部分不符合要求的从库，然后一次按照优先级、复制进度、ID号大小再对剩余的从库进行打分，只要有得分最好的从库出现，就把它选为新主库。</p>
 
     </div>
-  </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
   
-  
-  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>原始链接:</span><a href="/2020/12/07/sentinel/" title="哨兵机制，主库挂了如何不间断服务">http://lixiaofan.info/2020/12/07/sentinel/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://lixiaofan.info/2020/12/07/sentinel/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span>本文为博主原创文章，遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC 4.0 BY-SA</a>版权协议，转载请保留原文链接</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
 
+      
+    </div>
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%93%A8%E5%85%B5/" rel="tag"># 哨兵</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/30/nginx/" rel="next" title="Nginx">
+      Nginx <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
