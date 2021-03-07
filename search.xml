@@ -251,7 +251,19 @@
 <p>回复现场</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git stash pop</span><br><span class="line">或者</span><br><span class="line">$ git stash apply stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
 <p>继续工作 keeping!!!</p>
-]]></content>
+<p>如何对word进行管理。</p>
+<p>默认git 是不支持word格式的,但是：</p>
+<ol>
+<li>pandoc 可以解决<br>下载地址链接：<a href="https://pan.baidu.com/s/1-nnlHN6gDuFLIVCaZkzCHw">https://pan.baidu.com/s/1-nnlHN6gDuFLIVCaZkzCHw</a> 提取码：6666 </li>
+<li>安装完成之后在C盘找到.gitconfig 文件：<br><img src="https://img.imgdb.cn/item/60444a94cef1ec5e6fa15aee.jpg"><br>添加：几行代码：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[diff <span class="string">&quot;pandoc&quot;</span>]</span><br><span class="line">   textconv=pandoc --to=markdown</span><br><span class="line">   prompt = <span class="literal">false</span></span><br><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">   wdiff = diff --word-diff=color --unified=1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在工程目录下新建一个文本：<code>xx.gitattributes</code><br>里面写上：<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">*.docx diff=pandoc</span><br></pre></td></tr></table></figure>
+<img src="https://img.imgdb.cn/item/60444c66cef1ec5e6fa269a8.jpg"></li>
+<li>至此 环境配置完成了。<br>新建文件写作开始/今天写完保存 </li>
+</ol>
+<p>然后</p>
+<p><code>git add .</code> </p>
+<p> <code> git commit</code></p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;描述&quot;</span></span><br><span class="line">git reflog 文件名    <span class="comment"># 查看该文件的历史提交记录</span></span><br><span class="line">git diff 版本号1 版本号2  <span class="comment"># 查看两个版本之间的改动</span></span><br><span class="line">git reset --hard 版本号  <span class="comment"># 版本切换</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>git</category>
       </categories>
@@ -494,15 +506,103 @@
   <entry>
     <title>哨兵机制，主库挂了如何不间断服务</title>
     <url>/2020/12/07/sentinel/</url>
-    <content><![CDATA[<p>这几天小黑和小胖闲聊Redis,就一个问题展开了讨论：<strong>主库挂了，如何不间断服务</strong>。 </p>
-<p>小黑：Redis的主从库集群，使访问更加的稳固。如果从库发生了故障，客户端还可以继续向主库或其他从库发送请求，进行相关操作，但是如果是主库发生了故障，那就直接影响到从库的同步，从库没有办法从主库进行数据复制操作了。一脸懵的看向小胖，那Redis是怎么解决这个问题的？<br>小胖：主库挂了，Redis会重新选择一个从库作为主库，然后继续运行。<br>小黑：卧槽 这么神奇？通过什么机制就能确定主库挂了？那么多从库，要选择哪一个从库作为主库？选了主库之后，其他的从库怎么确定他就是新的主库？<br>小胖：你的问题怎么这么多，那我大致就给你讲讲吧。 解决这些问题就要靠<code>哨兵机制</code>了。再Redis主从集群中，哨兵机制是实现主从库自动切换的关键机制，你先吧这个名字记一下。<br>小黑：<code>哨兵机制</code> ？跟那时候打仗放哨一样，有情况就通知呗。<br>小胖： 有那么个意思。哨兵其实就是一个运行再特殊模式下的Redis进程，主从库实例运行的同时，它也在运行。主要有三个任务：<code>监控、选主、通知</code>。<br>小黑：好像懂点了。<br>小胖：我们先看<strong>监控</strong>。 哨兵进程再运行时，会周期性的给所有的主从库发送PING命令，检测他们是否仍在线运行。如果<em>从库</em>没有再规定的时间内响应哨兵的PING命令，哨兵就会把它标记为“下线状态”；同样的，如果<em>主库</em>也没有再规定的时间内响应哨兵的PING命令，哨兵就会判定主库下线，接着就开始自动切换主库的流程了。<br>小黑：（猛地点点头）你继续，怎么个自动切换主库法？<br>小胖： 这个流程首先是执行哨兵的第二个任务，<strong>选主</strong>。主库挂了以后，哨兵就需要从很多个从库里，按照一定的规则选择一个从库实例，把它作为新的主库。这一步完成后，现在的集群里就有了新的主库了。<br>小黑： 奥。<br>小胖紧接着说： 然后，哨兵会执行最后一个任务<strong>通知</strong>。在执行通知任务时候，哨兵会把新主库的连接信息发给其他从库，让他们执行replicaof命令，和新主库建立连接，并进行数据复制。同时，哨兵会把新主库的连接信息通知给客户端，让他们把请求操作发到新主库上。<br>小黑：在监控中通过PING 命令来确定主库挂不挂，那要是哨兵的网络有问题，那可不是误判了么。<br>小胖： 这个问题有点深度。那就来说说如何判断主库的下线状态。哨兵对主库的下线判断有<code>主观下线</code>和<code>客观下线</code>两种。我就先解释下什么是<strong>主观下线</strong>。<br>哨兵进程会使用PING命令检测它自己和主、从库的网络连接情况，用来判断实例的状态。如果哨兵发现主库或从库对PING命令超时了，那么哨兵就会先把它标记为<strong>主观下线</strong>。<br>如果检测的是从库，那么，哨兵简单地把它标记为<em>主观下线</em>就行了，因为从库的下线影响一般不太大，集群的对外服务不会间断。  但是，如果检测的是主库，那么，哨兵还不能简单地把它标记为<em>主观下线</em>，开启主从切换。因为很有可能存在这么一个情况：那就是哨兵误判了，其实主库并没有故障。可是，一旦启动了主从切换，后续的选主和通知操作都会带来额外的计算和通信的开销。 为了避免这些不必要的开销，我们要特别注意误判的情况。<br>小黑：什么是<code>误判</code>、什么情况下会发生？<br>小胖：很简单，就是主库实际并没有下线，但是哨兵误以为它下线了。一般发生在网络压力较大、网络拥塞、或者是主库本身压力较大的情况下<br>小黑： 怎么减少误判呢？<br>小胖： 一般呢，在我们要决定一件特别犹豫的事的时候，一般会找好多人询问。哨兵机制也是类似。我多放几个哨兵看守，少数服从多数，从而减少误判。这就是所谓的<code>哨兵集群</code>。大多数的哨兵都标记为<em>主观下线</em>，主库才能标记为<em>客观下线</em>。客观事实嘛。<br>小黑：客观下线那就得切换主库了，如何选择的新主库？<br>小胖：简单来说，在多个从库中，先按照一定的筛选条件，把不符合条件的从库去掉。然后，我们再按照一定的规则，给剩下的从库逐个打分，将得分最高的从库选为新主库。<br>小黑憨憨笑着说：那你讲讲都是什么条件和规则。<br>小胖： 一般条件下，要保证从库仍然在线运行。并且保证网络连接状态一直良好。不然刚选上主库，没反应了，还得再次选。具体的判断就要使用配置项<code>down-after-milliseconds * 10</code>。在down-after-milliseconds毫秒内主从节点都没有联系上，就认为主从节点断连了。如果断连次数超过10次，就说明从库网络状况不好，剔除。就完成了筛选工作。剩下的就要打分决定了。打分为三个规则依次进行三轮打分。三个规则分别是<em>从库优先级</em>（用户自己设置 slave-priority）、<em>从库复制进度</em>（和旧主库同步程度最接近的从库得分高，找slave_repl_offset 最接近 master_repl_offset）、<em>从库ID号</em>（ID号小得分高）。选主就完成了。</p>
-<p>小黑：我总结一下选主的过程： 按照在线状态、网络状态、筛选过滤掉一部分不符合要求的从库，然后一次按照优先级、复制进度、ID号大小再对剩余的从库进行打分，只要有得分最好的从库出现，就把它选为新主库。</p>
+    <content><![CDATA[<p>这几天小黑和小胖闲聊Redis,就一个问题展开了讨论：<strong>主库挂了，如何不间断服务</strong>。<br><img src="https://pic.downk.cc/item/5fcf8a363ffa7d37b312ddd0.jpg"><br>小黑：Redis的主从库集群，使访问更加的稳固。如果从库发生了故障，客户端还可以继续向主库或其他从库发送请求，进行相关操作，但是如果是主库发生了故障，那就直接影响到从库的同步，从库没有办法从主库进行数据复制操作了。一脸懵的看向小胖，那Redis是怎么解决这个问题的？ </p>
+<p>小胖：主库挂了，Redis会重新选择一个从库作为主库，然后继续运行。  </p>
+<p>小黑：卧槽 这么神奇？通过什么机制就能确定主库挂了？那么多从库，要选择哪一个从库作为主库？选了主库之后，其他的从库怎么确定他就是新的主库？ </p>
+<p>小胖：你的问题怎么这么多，那我大致就给你讲讲吧。 解决这些问题就要靠<code>哨兵机制</code>了。再Redis主从集群中，哨兵机制是实现主从库自动切换的关键机制，你先吧这个名字记一下。</p>
+<p>小黑：<code>哨兵机制</code> ？跟那时候打仗放哨一样，有情况就通知呗。  </p>
+<p>小胖： 有那么个意思。哨兵其实就是一个运行再特殊模式下的Redis进程，主从库实例运行的同时，它也在运行。主要有三个任务：<code>监控、选主、通知</code>。<br><img src="https://pic.downk.cc/item/5fcf8a543ffa7d37b312ff1d.jpg"><br>小黑：好像懂点了。  </p>
+<p>小胖：我们先看<strong>监控</strong>。 哨兵进程再运行时，会周期性的给所有的主从库发送PING命令，检测他们是否仍在线运行。如果<em>从库</em>没有再规定的时间内响应哨兵的PING命令，哨兵就会把它标记为“下线状态”；同样的，如果<em>主库</em>也没有再规定的时间内响应哨兵的PING命令，哨兵就会判定主库下线，接着就开始自动切换主库的流程了。  </p>
+<p>小黑：（猛地点点头）你继续，怎么个自动切换主库法？   </p>
+<p>小胖： 这个流程首先是执行哨兵的第二个任务，<strong>选主</strong>。主库挂了以后，哨兵就需要从很多个从库里，按照一定的规则选择一个从库实例，把它作为新的主库。这一步完成后，现在的集群里就有了新的主库了。</p>
+<p>小黑： 奥。  </p>
+<p>小胖紧接着说： 然后，哨兵会执行最后一个任务<strong>通知</strong>。在执行通知任务时候，哨兵会把新主库的连接信息发给其他从库，让他们执行replicaof命令，和新主库建立连接，并进行数据复制。同时，哨兵会把新主库的连接信息通知给客户端，让他们把请求操作发到新主库上。</p>
+<p>小黑：在监控中通过PING 命令来确定主库挂不挂，那要是哨兵的网络有问题，那可不是误判了么。</p>
+<p>小胖： 这个问题有点深度。那就来说说如何判断主库的下线状态。哨兵对主库的下线判断有<code>主观下线</code>和<code>客观下线</code>两种。我就先解释下什么是<strong>主观下线</strong>。<br>哨兵进程会使用PING命令检测它自己和主、从库的网络连接情况，用来判断实例的状态。如果哨兵发现主库或从库对PING命令超时了，那么哨兵就会先把它标记为<strong>主观下线</strong>。<br>如果检测的是从库，那么，哨兵简单地把它标记为<em>主观下线</em>就行了，因为从库的下线影响一般不太大，集群的对外服务不会间断。  但是，如果检测的是主库，那么，哨兵还不能简单地把它标记为<em>主观下线</em>，开启主从切换。因为很有可能存在这么一个情况：那就是哨兵误判了，其实主库并没有故障。可是，一旦启动了主从切换，后续的选主和通知操作都会带来额外的计算和通信的开销。 为了避免这些不必要的开销，我们要特别注意误判的情况。  </p>
+<p>小黑：什么是<code>误判</code>、什么情况下会发生？</p>
+<p>小胖：很简单，就是主库实际并没有下线，但是哨兵误以为它下线了。一般发生在网络压力较大、网络拥塞、或者是主库本身压力较大的情况下</p>
+<p>小黑： 怎么减少误判呢？</p>
+<p>小胖： 一般呢，在我们要决定一件特别犹豫的事的时候，一般会找好多人询问。哨兵机制也是类似。我多放几个哨兵看守，少数服从多数，从而减少误判。这就是所谓的<code>哨兵集群</code>。大多数的哨兵都标记为<em>主观下线</em>，主库才能标记为<em>客观下线</em>。客观事实嘛。<br><img src="https://pic.downk.cc/item/5fcf8a5b3ffa7d37b3130614.jpg"><br>小黑：客观下线那就得切换主库了，如何选择的新主库？</p>
+<p>小胖：简单来说，在多个从库中，先按照一定的筛选条件，把不符合条件的从库去掉。然后，我们再按照一定的规则，给剩下的从库逐个打分，将得分最高的从库选为新主库。</p>
+<p>小黑憨憨笑着说：那你讲讲都是什么条件和规则。</p>
+<p>小胖： 一般条件下，要保证从库仍然在线运行。并且保证网络连接状态一直良好。不然刚选上主库，没反应了，还得再次选。具体的判断就要使用配置项<code>down-after-milliseconds * 10</code>。在down-after-milliseconds毫秒内主从节点都没有联系上，就认为主从节点断连了。如果断连次数超过10次，就说明从库网络状况不好，剔除。就完成了筛选工作。剩下的就要打分决定了。打分为三个规则依次进行三轮打分。三个规则分别是<em>从库优先级</em>（用户自己设置 slave-priority）、<em>从库复制进度</em>（和旧主库同步程度最接近的从库得分高，找slave_repl_offset 最接近 master_repl_offset）、<em>从库ID号</em>（ID号小得分高）。选主就完成了。<br><img src="https://pic.downk.cc/item/5fcf8a633ffa7d37b3130fcd.jpg"><br><img src="https://pic.downk.cc/item/5fcf8a763ffa7d37b313284d.jpg"><br>小黑：我总结一下选主的过程： 按照在线状态、网络状态、筛选过滤掉一部分不符合要求的从库，然后一次按照优先级、复制进度、ID号大小再对剩余的从库进行打分，只要有得分最好的从库出现，就把它选为新主库。</p>
 ]]></content>
       <categories>
         <category>redis</category>
       </categories>
       <tags>
         <tag>哨兵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA 集合框架</title>
+    <url>/2020/12/13/collection/</url>
+    <content><![CDATA[<p><img src="https://pic.downk.cc/item/5fd5bc3c3ffa7d37b338ea92.jpg"></p>
+<h3 id="Collection父接口"><a href="#Collection父接口" class="headerlink" title="Collection父接口"></a>Collection父接口</h3><hr>
+<p><strong>特点：</strong>  </p>
+<ul>
+<li>特点就是没有什么特点。</li>
+</ul>
+<p><strong>方法</strong>：</p>
+<ul>
+<li>boolean add(Object obj) //添加一个对象。</li>
+<li>boolean addAll(Collection c) //讲一个集合中的所有对象添加到此集合中。</li>
+<li>void clear() //清空此集合中的所有对象。</li>
+<li>boolean contains(Object o) //检查此集合中是否包含o对象。</li>
+<li>boolean equals(Object o) //比较此集合是否与指定对象相等。</li>
+<li>boolean isEmpty() //判断此集合是否为空。</li>
+<li>boolean remove(Object o) //在此集合中移除o对象。</li>
+<li>int size() //返回此集合中的元素个数。</li>
+<li>Object[] toArray() //姜此集合转换成数组。  </li>
+</ul>
+<p>使用：<br><strong>例子 collection的使用</strong>：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建集合</span></span><br><span class="line">Collection collection = <span class="keyword">new</span> ArrayList();</span><br><span class="line"><span class="comment">// 添加元素</span></span><br><span class="line">collection.add(<span class="string">&quot;苹果&quot;</span>);</span><br><span class="line">collection.add(<span class="string">&quot;西瓜&quot;</span>);</span><br><span class="line">collection.add(<span class="string">&quot;榴莲&quot;</span>);</span><br><span class="line"><span class="comment">//删除元素</span></span><br><span class="line">collection.remove(<span class="string">&quot;榴莲&quot;</span>)</span><br><span class="line"><span class="comment">//清空元素</span></span><br><span class="line">collection.clear();</span><br><span class="line"><span class="comment">//遍历元素  1.增强for</span></span><br><span class="line"><span class="keyword">for</span> (Object object:collection)&#123;</span><br><span class="line">   System.out.println(object);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历元素  2.使用迭代器Iterator</span></span><br><span class="line"><span class="comment">//     hasNext():有没有下一个元素</span></span><br><span class="line"><span class="comment">//     next():获取下一个元素</span></span><br><span class="line"><span class="comment">//     remove():删除当前元素</span></span><br><span class="line">Iterator it = collection.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">  String s = (String)it.next();</span><br><span class="line">  System.out.println(s);</span><br><span class="line">  <span class="comment">//迭代过程中不能使用collection的删除方法 collection.remove(s) 会有并发操作异常</span></span><br><span class="line">  <span class="comment">//可以使用迭代器的删除方法 it.remove(s)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断</span></span><br><span class="line">System.out.println(collection.contains(<span class="string">&quot;西瓜&quot;</span>));</span><br><span class="line">System.out.println(collection.isEmpty());</span><br></pre></td></tr></table></figure>
+<h3 id="collection子接口-List"><a href="#collection子接口-List" class="headerlink" title="collection子接口 List"></a>collection子接口 List</h3><hr>
+<p>特点：有序、有下标、可重复。<br>方法：  </p>
+<ul>
+<li>void add(int index,Object o) //在index位置插入对象o。</li>
+<li>boolean addAll(index,Collection c) //将一个集合中的元素添加到此集合中的index位置。</li>
+<li>Object get(int index) //返回集合中指定位置的元素。</li>
+<li>List subList(int fromIndex,int toIndex) //返回fromIndex和toIndex之间的集合元素。  </li>
+</ul>
+<p>使用：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">//添加元素</span></span><br><span class="line">list.add(<span class="string">&quot;苹果&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;华为&quot;</span>);</span><br><span class="line">list.add(<span class="number">0</span>,<span class="string">&quot;小米&quot;</span>);<span class="comment">//插入操作</span></span><br><span class="line">System.out.println(<span class="string">&quot;元素个数：&quot;</span>+list.size());</span><br><span class="line">System.out.println(list.toString());</span><br><span class="line"><span class="comment">//删除元素</span></span><br><span class="line">list.remove(<span class="number">0</span>);</span><br><span class="line">list.remove(<span class="string">&quot;小米&quot;</span>);</span><br><span class="line"><span class="comment">//遍历元素  1、for</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">    System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历元素  2、增强for</span></span><br><span class="line"><span class="keyword">for</span>(Object object : list)&#123;</span><br><span class="line">    System.out.println(object);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历元素  3、迭代器</span></span><br><span class="line">Iterator it = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">    System.out.println(it.next());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历元素  4、列表迭代器  ListIterator</span></span><br><span class="line"><span class="comment">//        从前往后遍历，从后往前遍历都可以</span></span><br><span class="line"><span class="comment">//         可添加、删除、修改</span></span><br><span class="line"></span><br><span class="line">ListIterator lit = list.listIterator();</span><br><span class="line"><span class="comment">// 从前往后</span></span><br><span class="line"><span class="keyword">while</span>(lit.hasNext())&#123;</span><br><span class="line">    System.out.println(lit.nextIndex()+<span class="string">&quot;:&quot;</span>+ lit.next());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从后往前</span></span><br><span class="line"><span class="keyword">while</span>(list.hasPrevious())&#123;</span><br><span class="line">    System.out.println(lit.previousIndex()+<span class="string">&quot;:&quot;</span>+lit.previous());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断</span></span><br><span class="line">System.out.println(list.contains(<span class="string">&quot;西瓜&quot;</span>));</span><br><span class="line">System.out.println(list.isEmpty());</span><br><span class="line"><span class="comment">// 获取位置</span></span><br><span class="line">System.out.println(list.indexOf(<span class="string">&quot;华为&quot;</span>));</span><br><span class="line"><span class="comment">// 子集合 </span></span><br><span class="line">list.subList(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="List-实现类"><a href="#List-实现类" class="headerlink" title="List 实现类"></a>List 实现类</h4><ul>
+<li>ArrayList  <ul>
+<li>数组结构实现，查询快、增删慢</li>
+<li>JDK1.2加入，运行效率快，线程不安全  </li>
+</ul>
+</li>
+</ul>
+<p>默认容量大小：DEFAULT_CAPACITY = 10  </p>
+<ul>
+<li>如过没有向集合中添加任何元素，容量是0  </li>
+<li>添加任意元素，容量为10</li>
+<li>超过10 扩容为原来的1.5倍。</li>
+</ul>
+<p>存放元素的数组：elementData<br>实际元素的个数：size<br>add() :   </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>); <span class="comment">// </span></span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityInternal</span><span class="params">(<span class="keyword">int</span> minCapacity)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (elemenData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">        minCapacity = Math.max(DEFAULT_CAPACITY,minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">    ensureExplicitCapacity(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span></span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="keyword">if</span>(minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="keyword">if</span>(newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ArrayList arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">//添加元素</span></span><br><span class="line">Student s1=<span class="keyword">new</span> Student(<span class="string">&quot;学生1&quot;</span>, <span class="number">21</span>);</span><br><span class="line">Student s2=<span class="keyword">new</span> Student(<span class="string">&quot;学生2&quot;</span>, <span class="number">22</span>);</span><br><span class="line">Student s3=<span class="keyword">new</span> Student(<span class="string">&quot;学生3&quot;</span>, <span class="number">21</span>);</span><br><span class="line">arrayList.add(s1);</span><br><span class="line">arrayList.add(s2);</span><br><span class="line">arrayList.add(s3);</span><br><span class="line">System.out.println(<span class="string">&quot;元素个数：&quot;</span>+arrayList.size());</span><br><span class="line">System.out.println(arrayList.toString());</span><br><span class="line"><span class="comment">//删除元素</span></span><br><span class="line">arrayList.remove(s1);</span><br><span class="line"><span class="comment">//遍历元素</span></span><br><span class="line"><span class="comment">//1.迭代器</span></span><br><span class="line"><span class="comment">//2.列表迭代器</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//判断</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Vector:  <ul>
+<li>数组结构实现，查询快、增删慢；</li>
+<li>JDK1.0版本，运行效率慢、线程安全</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>LinkedList:<ul>
+<li>双向链表结构实现，增删快，查询慢。</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a><a href="https://lazydog036.gitee.io/2020/10/29/JAVA%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/">参考</a></h2>]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>集合</tag>
       </tags>
   </entry>
 </search>

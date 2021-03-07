@@ -27,11 +27,17 @@
 <meta property="og:site_name" content="逆袭之旅">
 <meta property="og:description" content="正文被隐藏">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.downk.cc/item/5fcf8a363ffa7d37b312ddd0.jpg">
+<meta property="og:image" content="https://pic.downk.cc/item/5fcf8a543ffa7d37b312ff1d.jpg">
+<meta property="og:image" content="https://pic.downk.cc/item/5fcf8a5b3ffa7d37b3130614.jpg">
+<meta property="og:image" content="https://pic.downk.cc/item/5fcf8a633ffa7d37b3130fcd.jpg">
+<meta property="og:image" content="https://pic.downk.cc/item/5fcf8a763ffa7d37b313284d.jpg">
 <meta property="article:published_time" content="2020-12-07T06:56:55.000Z">
-<meta property="article:modified_time" content="2020-12-08T14:03:55.553Z">
+<meta property="article:modified_time" content="2020-12-08T14:20:09.479Z">
 <meta property="article:author" content="李小凡">
 <meta property="article:tag" content="哨兵">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.downk.cc/item/5fcf8a363ffa7d37b312ddd0.jpg">
 
 <link rel="canonical" href="http://lixiaofan.info/2020/12/07/sentinel/">
 
@@ -233,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-08 22:03:55" itemprop="dateModified" datetime="2020-12-08T22:03:55+08:00">2020-12-08</time>
+                <time title="修改时间：2020-12-08 22:20:09" itemprop="dateModified" datetime="2020-12-08T22:20:09+08:00">2020-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,9 +285,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这几天小黑和小胖闲聊Redis,就一个问题展开了讨论：<strong>主库挂了，如何不间断服务</strong>。 </p>
-<p>小黑：Redis的主从库集群，使访问更加的稳固。如果从库发生了故障，客户端还可以继续向主库或其他从库发送请求，进行相关操作，但是如果是主库发生了故障，那就直接影响到从库的同步，从库没有办法从主库进行数据复制操作了。一脸懵的看向小胖，那Redis是怎么解决这个问题的？<br>小胖：主库挂了，Redis会重新选择一个从库作为主库，然后继续运行。<br>小黑：卧槽 这么神奇？通过什么机制就能确定主库挂了？那么多从库，要选择哪一个从库作为主库？选了主库之后，其他的从库怎么确定他就是新的主库？<br>小胖：你的问题怎么这么多，那我大致就给你讲讲吧。 解决这些问题就要靠<code>哨兵机制</code>了。再Redis主从集群中，哨兵机制是实现主从库自动切换的关键机制，你先吧这个名字记一下。<br>小黑：<code>哨兵机制</code> ？跟那时候打仗放哨一样，有情况就通知呗。<br>小胖： 有那么个意思。哨兵其实就是一个运行再特殊模式下的Redis进程，主从库实例运行的同时，它也在运行。主要有三个任务：<code>监控、选主、通知</code>。<br>小黑：好像懂点了。<br>小胖：我们先看<strong>监控</strong>。 哨兵进程再运行时，会周期性的给所有的主从库发送PING命令，检测他们是否仍在线运行。如果<em>从库</em>没有再规定的时间内响应哨兵的PING命令，哨兵就会把它标记为“下线状态”；同样的，如果<em>主库</em>也没有再规定的时间内响应哨兵的PING命令，哨兵就会判定主库下线，接着就开始自动切换主库的流程了。<br>小黑：（猛地点点头）你继续，怎么个自动切换主库法？<br>小胖： 这个流程首先是执行哨兵的第二个任务，<strong>选主</strong>。主库挂了以后，哨兵就需要从很多个从库里，按照一定的规则选择一个从库实例，把它作为新的主库。这一步完成后，现在的集群里就有了新的主库了。<br>小黑： 奥。<br>小胖紧接着说： 然后，哨兵会执行最后一个任务<strong>通知</strong>。在执行通知任务时候，哨兵会把新主库的连接信息发给其他从库，让他们执行replicaof命令，和新主库建立连接，并进行数据复制。同时，哨兵会把新主库的连接信息通知给客户端，让他们把请求操作发到新主库上。<br>小黑：在监控中通过PING 命令来确定主库挂不挂，那要是哨兵的网络有问题，那可不是误判了么。<br>小胖： 这个问题有点深度。那就来说说如何判断主库的下线状态。哨兵对主库的下线判断有<code>主观下线</code>和<code>客观下线</code>两种。我就先解释下什么是<strong>主观下线</strong>。<br>哨兵进程会使用PING命令检测它自己和主、从库的网络连接情况，用来判断实例的状态。如果哨兵发现主库或从库对PING命令超时了，那么哨兵就会先把它标记为<strong>主观下线</strong>。<br>如果检测的是从库，那么，哨兵简单地把它标记为<em>主观下线</em>就行了，因为从库的下线影响一般不太大，集群的对外服务不会间断。  但是，如果检测的是主库，那么，哨兵还不能简单地把它标记为<em>主观下线</em>，开启主从切换。因为很有可能存在这么一个情况：那就是哨兵误判了，其实主库并没有故障。可是，一旦启动了主从切换，后续的选主和通知操作都会带来额外的计算和通信的开销。 为了避免这些不必要的开销，我们要特别注意误判的情况。<br>小黑：什么是<code>误判</code>、什么情况下会发生？<br>小胖：很简单，就是主库实际并没有下线，但是哨兵误以为它下线了。一般发生在网络压力较大、网络拥塞、或者是主库本身压力较大的情况下<br>小黑： 怎么减少误判呢？<br>小胖： 一般呢，在我们要决定一件特别犹豫的事的时候，一般会找好多人询问。哨兵机制也是类似。我多放几个哨兵看守，少数服从多数，从而减少误判。这就是所谓的<code>哨兵集群</code>。大多数的哨兵都标记为<em>主观下线</em>，主库才能标记为<em>客观下线</em>。客观事实嘛。<br>小黑：客观下线那就得切换主库了，如何选择的新主库？<br>小胖：简单来说，在多个从库中，先按照一定的筛选条件，把不符合条件的从库去掉。然后，我们再按照一定的规则，给剩下的从库逐个打分，将得分最高的从库选为新主库。<br>小黑憨憨笑着说：那你讲讲都是什么条件和规则。<br>小胖： 一般条件下，要保证从库仍然在线运行。并且保证网络连接状态一直良好。不然刚选上主库，没反应了，还得再次选。具体的判断就要使用配置项<code>down-after-milliseconds * 10</code>。在down-after-milliseconds毫秒内主从节点都没有联系上，就认为主从节点断连了。如果断连次数超过10次，就说明从库网络状况不好，剔除。就完成了筛选工作。剩下的就要打分决定了。打分为三个规则依次进行三轮打分。三个规则分别是<em>从库优先级</em>（用户自己设置 slave-priority）、<em>从库复制进度</em>（和旧主库同步程度最接近的从库得分高，找slave_repl_offset 最接近 master_repl_offset）、<em>从库ID号</em>（ID号小得分高）。选主就完成了。</p>
-<p>小黑：我总结一下选主的过程： 按照在线状态、网络状态、筛选过滤掉一部分不符合要求的从库，然后一次按照优先级、复制进度、ID号大小再对剩余的从库进行打分，只要有得分最好的从库出现，就把它选为新主库。</p>
+        <p>这几天小黑和小胖闲聊Redis,就一个问题展开了讨论：<strong>主库挂了，如何不间断服务</strong>。<br><img src="https://pic.downk.cc/item/5fcf8a363ffa7d37b312ddd0.jpg"><br>小黑：Redis的主从库集群，使访问更加的稳固。如果从库发生了故障，客户端还可以继续向主库或其他从库发送请求，进行相关操作，但是如果是主库发生了故障，那就直接影响到从库的同步，从库没有办法从主库进行数据复制操作了。一脸懵的看向小胖，那Redis是怎么解决这个问题的？ </p>
+<p>小胖：主库挂了，Redis会重新选择一个从库作为主库，然后继续运行。  </p>
+<p>小黑：卧槽 这么神奇？通过什么机制就能确定主库挂了？那么多从库，要选择哪一个从库作为主库？选了主库之后，其他的从库怎么确定他就是新的主库？ </p>
+<p>小胖：你的问题怎么这么多，那我大致就给你讲讲吧。 解决这些问题就要靠<code>哨兵机制</code>了。再Redis主从集群中，哨兵机制是实现主从库自动切换的关键机制，你先吧这个名字记一下。</p>
+<p>小黑：<code>哨兵机制</code> ？跟那时候打仗放哨一样，有情况就通知呗。  </p>
+<p>小胖： 有那么个意思。哨兵其实就是一个运行再特殊模式下的Redis进程，主从库实例运行的同时，它也在运行。主要有三个任务：<code>监控、选主、通知</code>。<br><img src="https://pic.downk.cc/item/5fcf8a543ffa7d37b312ff1d.jpg"><br>小黑：好像懂点了。  </p>
+<p>小胖：我们先看<strong>监控</strong>。 哨兵进程再运行时，会周期性的给所有的主从库发送PING命令，检测他们是否仍在线运行。如果<em>从库</em>没有再规定的时间内响应哨兵的PING命令，哨兵就会把它标记为“下线状态”；同样的，如果<em>主库</em>也没有再规定的时间内响应哨兵的PING命令，哨兵就会判定主库下线，接着就开始自动切换主库的流程了。  </p>
+<p>小黑：（猛地点点头）你继续，怎么个自动切换主库法？   </p>
+<p>小胖： 这个流程首先是执行哨兵的第二个任务，<strong>选主</strong>。主库挂了以后，哨兵就需要从很多个从库里，按照一定的规则选择一个从库实例，把它作为新的主库。这一步完成后，现在的集群里就有了新的主库了。</p>
+<p>小黑： 奥。  </p>
+<p>小胖紧接着说： 然后，哨兵会执行最后一个任务<strong>通知</strong>。在执行通知任务时候，哨兵会把新主库的连接信息发给其他从库，让他们执行replicaof命令，和新主库建立连接，并进行数据复制。同时，哨兵会把新主库的连接信息通知给客户端，让他们把请求操作发到新主库上。</p>
+<p>小黑：在监控中通过PING 命令来确定主库挂不挂，那要是哨兵的网络有问题，那可不是误判了么。</p>
+<p>小胖： 这个问题有点深度。那就来说说如何判断主库的下线状态。哨兵对主库的下线判断有<code>主观下线</code>和<code>客观下线</code>两种。我就先解释下什么是<strong>主观下线</strong>。<br>哨兵进程会使用PING命令检测它自己和主、从库的网络连接情况，用来判断实例的状态。如果哨兵发现主库或从库对PING命令超时了，那么哨兵就会先把它标记为<strong>主观下线</strong>。<br>如果检测的是从库，那么，哨兵简单地把它标记为<em>主观下线</em>就行了，因为从库的下线影响一般不太大，集群的对外服务不会间断。  但是，如果检测的是主库，那么，哨兵还不能简单地把它标记为<em>主观下线</em>，开启主从切换。因为很有可能存在这么一个情况：那就是哨兵误判了，其实主库并没有故障。可是，一旦启动了主从切换，后续的选主和通知操作都会带来额外的计算和通信的开销。 为了避免这些不必要的开销，我们要特别注意误判的情况。  </p>
+<p>小黑：什么是<code>误判</code>、什么情况下会发生？</p>
+<p>小胖：很简单，就是主库实际并没有下线，但是哨兵误以为它下线了。一般发生在网络压力较大、网络拥塞、或者是主库本身压力较大的情况下</p>
+<p>小黑： 怎么减少误判呢？</p>
+<p>小胖： 一般呢，在我们要决定一件特别犹豫的事的时候，一般会找好多人询问。哨兵机制也是类似。我多放几个哨兵看守，少数服从多数，从而减少误判。这就是所谓的<code>哨兵集群</code>。大多数的哨兵都标记为<em>主观下线</em>，主库才能标记为<em>客观下线</em>。客观事实嘛。<br><img src="https://pic.downk.cc/item/5fcf8a5b3ffa7d37b3130614.jpg"><br>小黑：客观下线那就得切换主库了，如何选择的新主库？</p>
+<p>小胖：简单来说，在多个从库中，先按照一定的筛选条件，把不符合条件的从库去掉。然后，我们再按照一定的规则，给剩下的从库逐个打分，将得分最高的从库选为新主库。</p>
+<p>小黑憨憨笑着说：那你讲讲都是什么条件和规则。</p>
+<p>小胖： 一般条件下，要保证从库仍然在线运行。并且保证网络连接状态一直良好。不然刚选上主库，没反应了，还得再次选。具体的判断就要使用配置项<code>down-after-milliseconds * 10</code>。在down-after-milliseconds毫秒内主从节点都没有联系上，就认为主从节点断连了。如果断连次数超过10次，就说明从库网络状况不好，剔除。就完成了筛选工作。剩下的就要打分决定了。打分为三个规则依次进行三轮打分。三个规则分别是<em>从库优先级</em>（用户自己设置 slave-priority）、<em>从库复制进度</em>（和旧主库同步程度最接近的从库得分高，找slave_repl_offset 最接近 master_repl_offset）、<em>从库ID号</em>（ID号小得分高）。选主就完成了。<br><img src="https://pic.downk.cc/item/5fcf8a633ffa7d37b3130fcd.jpg"><br><img src="https://pic.downk.cc/item/5fcf8a763ffa7d37b313284d.jpg"><br>小黑：我总结一下选主的过程： 按照在线状态、网络状态、筛选过滤掉一部分不符合要求的从库，然后一次按照优先级、复制进度、ID号大小再对剩余的从库进行打分，只要有得分最好的从库出现，就把它选为新主库。</p>
 
     </div>
     <div>
@@ -337,7 +360,10 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/13/collection/" rel="prev" title="JAVA 集合框架">
+      <i class="fa fa-chevron-left"></i> JAVA 集合框架
+    </a></div>
       <div class="post-nav-item">
     <a href="/2020/11/30/nginx/" rel="next" title="Nginx">
       Nginx <i class="fa fa-chevron-right"></i>
@@ -416,20 +442,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -463,7 +489,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
