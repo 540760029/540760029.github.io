@@ -197,14 +197,14 @@
   </url>
   
   <url>
-    <loc>http://www.lxf.life/tags/markdown/</loc>
+    <loc>http://www.lxf.life/tags/nginx/</loc>
     <lastmod>2022-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.lxf.life/tags/nginx/</loc>
+    <loc>http://www.lxf.life/tags/markdown/</loc>
     <lastmod>2022-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -248,14 +248,14 @@
   </url>
   
   <url>
-    <loc>http://www.lxf.life/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
+    <loc>http://www.lxf.life/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.lxf.life/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>http://www.lxf.life/categories/markdown%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2022-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
