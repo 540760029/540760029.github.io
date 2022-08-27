@@ -4,8 +4,11 @@ description:
 date: 2020-09-19 17:27:08
 tags: 排序
 categories: 数据结构与算法
+sticky: 3
 ---
-
+<div class="gallery-group-main">
+{% galleryGroup '壁紙' '收藏的一些壁紙' '/Gallery/wallpaper' https://i.loli.net/2019/11/10/T7Mu8Aod3egmC4Q.png %}
+</div>
 ### 排序模板
 
 `less()`方法进行比较，`exch()`方法进行交换 ，通过`comparable`接口实现`less()`方法。

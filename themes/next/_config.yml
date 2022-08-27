@@ -98,8 +98,8 @@ creative_commons:
 
 # Schemes
 #scheme: Pisces
-#scheme: Muse
-scheme: Mist
+scheme: Muse
+#scheme: Mist
 #scheme: Pisces
 #scheme: Gemini
 
@@ -356,14 +356,14 @@ codeblock:
   # Code Highlight theme
   # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
   # See: https://github.com/chriskempson/tomorrow-theme
-  highlight_theme: solarized
+  highlight_theme: normal
   # Add copy button on codeblock
   copy_button:
     enable: true
     # Show text copy result.
     show_result: true
     # Available values: default | flat | mac
-    style: mac
+    style: flat
 
 back2top:
   enable: true
@@ -815,7 +815,7 @@ pdf:
 mermaid:
   enable: false
   # Available themes: default | dark | forest | neutral
-  theme: forest
+  theme: dark
 
 
 # ---------------------------------------------------------------
@@ -882,7 +882,7 @@ canvas_ribbon:
 vendors:
   # Internal path prefix.
   _internal: lib
-  
+
   # Internal version: 3.1.0
   # anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
   anime:
