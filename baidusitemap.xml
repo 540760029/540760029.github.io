@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.lxf.life/2022/08/27/%E7%AE%97%E6%B3%951/</loc>
-    <lastmod>2022-08-27</lastmod>
+    <loc>http://www.lxf.life/2020/09/11/markdown/</loc>
+    <lastmod>2022-08-28</lastmod>
   </url>
   <url>
-    <loc>http://www.lxf.life/2020/09/19/algor1/</loc>
-    <lastmod>2022-08-27</lastmod>
+    <loc>http://www.lxf.life/2022/08/27/%E7%AE%97%E6%B3%951/</loc>
+    <lastmod>2022-08-28</lastmod>
   </url>
   <url>
     <loc>http://www.lxf.life/2022/08/27/tt1/</loc>
+    <lastmod>2022-08-28</lastmod>
+  </url>
+  <url>
+    <loc>http://www.lxf.life/2020/09/19/algor1/</loc>
     <lastmod>2022-08-27</lastmod>
   </url>
   <url>
@@ -22,10 +26,6 @@
   </url>
   <url>
     <loc>http://www.lxf.life/2020/10/24/javaauth/</loc>
-    <lastmod>2022-08-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.lxf.life/2020/09/11/markdown/</loc>
     <lastmod>2022-08-27</lastmod>
   </url>
   <url>
