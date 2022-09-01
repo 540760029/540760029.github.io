@@ -1,5 +1,5 @@
 ---
-title: markdown
+title: markdown语法
 date: 2020-09-11 17:17:01
 tags: markdown
 categories: markdown语法
@@ -34,6 +34,15 @@ ___粗斜体文本___
 <u>带下划线</u>
 ```
 
+*斜体文本*
+_斜体文本_
+**粗体文本**
+__粗体文本__
+***粗斜体文本***
+___粗斜体文本___
+~~删除线~~
+<u>带下划线</u>
+
 ### 分割线
 
 你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：
@@ -53,6 +62,8 @@ ___粗斜体文本___
 
 [^1]: 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
 ```
+
+创建脚注格式类似这样 [^1]。
 
 
 
@@ -101,7 +112,7 @@ Markdown 区块引用是在段落开头使用 **>** 符号 ，然后后面紧跟
 > 学的不仅是技术更是梦想
 ```
 
-### markdown 代码
+###  代码
 
 如果是段落上的一个函数或片段的代码可以用反引号把它包起来（**`**），例如：
 
@@ -125,7 +136,7 @@ $(document).ready(function () {
 });
 ```
 
-### markdown 链接
+###  链接
 
 链接使用方法如下：
 
@@ -141,22 +152,22 @@ $(document).ready(function () {
 
 <www.baidu.com>
 
-### markdown 图片
+###  图片
 
 Markdown 图片语法格式如下：
 
 ```markdown
 ![alt 属性文本](图片地址)
 ```
-![本人](aaa.jpg)
+<img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="某某图片" style="zoom:50%;" />
 
 Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。
 
 ```markdown
-<img src="logo.png" width="50%">
+<img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="某某图片" style="zoom:50%;" />
 ```
 
-### markdown 表格
+###  表格
 
 Markdown 制作表格使用 **|** 来分隔不同的单元格，使用 **-** 来分隔表头和其他行。
 
@@ -186,25 +197,22 @@ Markdown 制作表格使用 **|** 来分隔不同的单元格，使用 **-** 来
 | 单元格 | 单元格 | 单元格 |
 ```
 
-### markdown 支持的HTML 元素
+###  支持的HTML 元素
 
-目前支持的 HTML 元素有：`<kbd> <b> <i> <em> <sup> <sub> <br>`等 ，如：
+目前支持的 HTML 元素有：`<kbd> <b> <i> <em> <sup> <sub> <br>`等 ，
 
-使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> 
+如：
 
-### 上标与下标
-```bash
-H<sub>2</sub>O
-爆米<sup>TM</sup>
-```
->`H<sub>2</sub>O  爆米<sup>TM</sup>
+1. 使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> 
 
-### 换行
-两个空格加回车
+    `<kbd>Ctrl</kbd> `+`<kbd>Alt</kbd>`+`<kbd>Del</kbd>`
 
-### 公式
+2. 下标 H<sub>2</sub>O
 
+    `H<sub>2</sub>O`
 
-$$
-\mathbf{V}_1
-$$
+3. 上标  爆米<sup>TM</sup>
+
+    `爆米<sup>TM</sup>`
+
+[^1]: 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
