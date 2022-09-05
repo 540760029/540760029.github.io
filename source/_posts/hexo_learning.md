@@ -52,15 +52,15 @@ $ hexo deploy
 {% post_link md的名字  显示的名字%}
 
 如：
-{% post_link algor1 排序模板 %}
+{% post_link markdown markdown %}
 ```
 效果：
 
-{% post_link algor1 排序模板 %}
+{% post_link markdown markdown %}
 
 2、引用永久链接： hexo 生成的文章是 /年/月/日/文件 格式，所以markdown引用链接就可以了：
 ```
-[排序模板](/2020/09/19/algor1)
+[排序模板](/2020/09/11/markdown)
 ```
 效果：
-[排序模板](/2020/09/19/algor1)
+[排序模板](/2020/09/11/markdown)
