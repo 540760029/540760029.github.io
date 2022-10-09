@@ -3,7 +3,93 @@
   <entry>
     <title>Spring</title>
     <url>/2022/09/03/Spring/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>ArrayList:</p>
+<p>底层通过数组实现</p>
+<p>初始容量：10</p>
+<p>扩容  1.5倍</p>
+<p>LinkedList 双向链表</p>
+<p>hashMap</p>
+<p>初始容量：16</p>
+<p>最大容量： 2<sup>30</sup></p>
+<p>默认加载因子：0.75</p>
+<p>转换成树的阈值：8</p>
+<p>取消树的阈值：6</p>
+<p>对容器进行树化的最小容量：64</p>
+<p>《<em>代码大全2</em>》</p>
+<p>《<em>黑客与画家</em>》</p>
+<p>《<em>万历十五年</em>》</p>
+<p>全球通史</p>
+<p>浮生六记</p>
+<p>白夜行</p>
+<p>百年孤独</p>
+<p>少年得到</p>
+<p>java7</p>
+<p>默认容量是16 必须是2的幂次方，不是的话向上调整为2的幂</p>
+<p>-为什么2的幂</p>
+<p>  hash &amp;( length-1 ) </p>
+<p>length-1 二进制全为1 进行按位与，快速拿到数组的下标</p>
+<p>负载因子0.75</p>
+<ul>
+<li>时间和空间提供的折中</li>
+</ul>
+<p>当数据到达容量*负载因子的时候，扩容一倍</p>
+<p>允许传入key 为null 的值，放在第0位</p>
+<p><strong>get()方法</strong></p>
+<p>首先通过key 取hash,取hash用的是 hash(k)&amp;(length-1), 得到桶的位置，在遍历冲突链，判断key是否相等返回value值 </p>
+<p><strong>put()方法</strong></p>
+<p>将对应的key 和value 放到map里，会做一次查找，看是否包含该元组，如果找到直接返回，找不到，则插入新的entry,插入的方式是头插法。</p>
+<p>先扩容再插入元素</p>
+<p><strong>remove()方法</strong></p>
+<p>删除key对应的entry，找到key,删除</p>
+<p>java8 的改进</p>
+<p>数组+链表+红黑树</p>
+<p>当链表的元素到达8个时，会将链表转换为红黑树，在这些位置进行查找时可以降低时间复杂度为O(logN)。</p>
+<p>put()</p>
+<p>第一次put 的时候会触发resize 操作进行初始化数组长度</p>
+<p>找到具体的数组下标，如果此位置没有值，那么直接初始化一个node,并放在这个位置</p>
+<p>如果有数据，首先判断该位置的第一个数据和我们要插入的数据，key 是不是相等，如果是，覆盖value，并取出返回这个节点旧值，</p>
+<p>如果这个节点是红黑树的节点，调用红黑树的插入方法，如果不是，则为链表，插入到链表的最后面如果插入的是链表中的第8个，会触发转红黑树的操作</p>
+<p>如果插入的值导致了size 超过了阈值，触发扩容操作。每次扩容容量为原来的2倍，并进行数据迁移<br>： 将数组扩大一倍，将阈值扩大一倍 ，遍历数组，进行数据迁移</p>
+<p>get()</p>
+<p>计算key的hash值找到数组下标</p>
+<p>判断数组该位置的key 是不是刚好是要找的值，如果不是</p>
+<p>判断元素类型是否为TreeNode,如果是，用红黑树的方法读取数据，如果不是</p>
+<p>遍历链表，直到找到相等的key,返回value</p>
+<p>concurrentHashMap:</p>
+<p> 1.7 </p>
+<p>采用分段锁技术，默认情况下将数组分成16个段， 每个段内的结构类似于hashMap,有数组和链表组成</p>
+<p>put()</p>
+<p>再进行put 操作的过程中，通过key 的hash值来确定具体的桶位置，如果这个桶没有初始化，则用第0个segment的数据进行初始化，</p>
+<p>存储值的时候，首先要对这个segment进行加锁，如果被其他线程获得，则调用scanAndLockForPut()自旋获直到获取锁为止，然后通过 hash&amp;(length-1)找到具体的数组下标，没有元素，则放入该键值对，有值就进行遍历，看有没有相同的key,覆盖value 返回旧值，没有相同key 的时候，先判断需不需要进行扩容，扩容后插入该值，不需要则插到头节点，然后释放锁</p>
+<p>1.8</p>
+<p>采用 数组+链表+红黑树的方式实现，加锁采用的是CAS+synchronized实现</p>
+<p>put()</p>
+<ol>
+<li>传入一个不为空的键值对，如果为空就直接报错了。hashMap 是可以为空的</li>
+</ol>
+<ul>
+<li><p>基于并发考虑，hashMap 在get 到空值的时候，可以通过contains(key )来判断是否包这个key</p>
+<p>  而并发的map,在get(key)时候得null 值，不能判断是映射的value是null,还是没有找到对应的key,</p>
+<p>  并发环境下contains(key)不靠谱</p>
+</li>
+</ul>
+<ol start="2">
+<li>接着判断table是否为空，如果为空就进入初始化阶段       </li>
+<li>如果判断数组中某个指定的桶式空的，那就直接把键值对插入到桶中作为头节点，这个操作没锁</li>
+<li>如果要插入的桶中的hash 值为-1，也就是MOVED 状态，那就说明有线程正在进行扩容操作，那么当前线程就进入协助扩容阶段</li>
+<li>需要把数据插入到链表或者树中，如果这个节点是一个链表节点，那么就遍历这个链表，如果发现有相同的key值就更新value,如果遍历完了都没有发现相同的key,就需要在链表的尾部插入该数据，插入结束后判断该链表节点个数是否大于8，并且size&gt;=64就进行树化，否则只进行扩容操作</li>
+<li>如果这个节点是一个红黑树的节点，那就需要按照树的插入规则进行插入。</li>
+<li>put结束后，需要给map 已存储的数量+1，在addCount方法中判断是否需要扩容</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> V <span class="title function_">putVal</span><span class="params">(K key, V value, <span class="type">boolean</span> onlyIfAbsent)</span> &#123;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">if</span> (key == <span class="literal">null</span> || value == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">        <span class="comment">//hash值   </span></span><br><span class="line">        <span class="type">int</span> <span class="variable">hash</span> <span class="operator">=</span> spread(key.hashCode());</span><br><span class="line">        <span class="comment">//记录相应链表的长度   </span></span><br><span class="line">        <span class="type">int</span> <span class="variable">binCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    	<span class="comment">//无限循环状态</span></span><br><span class="line">       <span class="keyword">for</span> (Node&lt;K,V&gt;[] tab = table;;) &#123;</span><br><span class="line">           Node&lt;K,V&gt; f; <span class="type">int</span> n, i, fh;</span><br><span class="line">           </span><br><span class="line">           <span class="comment">//tab如果为空就进行初始化</span></span><br><span class="line">           <span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">               tab = initTable();</span><br><span class="line">          </span><br><span class="line">           <span class="comment">//找到hash值对应的数组下标，得到第一个节点f</span></span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">               <span class="comment">//如果数组位置为空，用一次cas操作将这个新值放入其中即可，这个put</span></span><br><span class="line">               <span class="comment">//如果cas失败，那就是有并发操作，进到下一个循环就好了。</span></span><br><span class="line">               <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                            <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">                   <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">           &#125;</span><br><span class="line">           </span><br><span class="line">           <span class="comment">// hash 居然可以等于 MOVED，这个需要到后面才能看明白，</span></span><br><span class="line">           <span class="comment">// 不过从名字上也能猜到，肯定是因为在扩容</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> ((fh = f.hash) == MOVED)</span><br><span class="line">               tab = helpTransfer(tab, f);</span><br><span class="line">           <span class="comment">//====================================================</span></span><br><span class="line">           <span class="comment">// 走到这说明 这个位置不空</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="type">V</span> <span class="variable">oldVal</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">                <span class="comment">//获取头节点的监视器锁</span></span><br><span class="line">               <span class="keyword">synchronized</span> (f) &#123;</span><br><span class="line">                   </span><br><span class="line">                   <span class="keyword">if</span> (tabAt(tab, i) == f) &#123;</span><br><span class="line">                       <span class="comment">//------------------------</span></span><br><span class="line">                       <span class="comment">//头节点的hash大于0 说明式链表</span></span><br><span class="line">                       <span class="keyword">if</span> (fh &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                           <span class="comment">//链表的长度</span></span><br><span class="line">                           binCount = <span class="number">1</span>;</span><br><span class="line">                           <span class="comment">//遍历链表</span></span><br><span class="line">                           <span class="keyword">for</span> (Node&lt;K,V&gt; e = f;; ++binCount) &#123;</span><br><span class="line">                               K ek;</span><br><span class="line">                               <span class="comment">//如果发现了相等的key,覆盖value，返回旧value</span></span><br><span class="line">                               <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                                   ((ek = e.key) == key ||</span><br><span class="line">                                    (ek != <span class="literal">null</span> &amp;&amp; key.equals(ek)))) &#123;</span><br><span class="line">                                   oldVal = e.val;</span><br><span class="line">                                   <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                       e.val = value;</span><br><span class="line">                                   <span class="keyword">break</span>;</span><br><span class="line">                               &#125;</span><br><span class="line">                               <span class="comment">//不相等且遍历到了最后，则插入链表的末端</span></span><br><span class="line">                               Node&lt;K,V&gt; pred = e;</span><br><span class="line">                               <span class="keyword">if</span> ((e = e.next) == <span class="literal">null</span>) &#123;</span><br><span class="line">                                   pred.next = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key,</span><br><span class="line">                                                             value, <span class="literal">null</span>);</span><br><span class="line">                                   <span class="keyword">break</span>;</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125;</span><br><span class="line">                       &#125;</span><br><span class="line">                       </span><br><span class="line">                       <span class="comment">//---------------------------------------</span></span><br><span class="line">                       <span class="comment">//如果是红黑树</span></span><br><span class="line">                       <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> TreeBin) &#123;</span><br><span class="line">                           Node&lt;K,V&gt; p;</span><br><span class="line">                           binCount = <span class="number">2</span>;</span><br><span class="line">                           <span class="comment">//调用红黑树的方法插入新节点</span></span><br><span class="line">                           <span class="keyword">if</span> ((p = ((TreeBin&lt;K,V&gt;)f).putTreeVal(hash, key,</span><br><span class="line">                                                          value)) != <span class="literal">null</span>) &#123;</span><br><span class="line">                               oldVal = p.val;</span><br><span class="line">                               <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                   p.val = value;</span><br><span class="line">                           &#125;</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//</span></span><br><span class="line">               <span class="keyword">if</span> (binCount != <span class="number">0</span>) &#123;</span><br><span class="line">                   <span class="comment">//如果链表的长度大于阈值，树化</span></span><br><span class="line">                   <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD)</span><br><span class="line">                       <span class="comment">//如果长度小于64 是不会进行树化的，只能进行扩容操作</span></span><br><span class="line">                       treeifyBin(tab, i);</span><br><span class="line">                   <span class="keyword">if</span> (oldVal != <span class="literal">null</span>)</span><br><span class="line">                       <span class="keyword">return</span> oldVal;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           </span><br><span class="line">           </span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<p>get()</p>
+<p>通过key 的hash,找到key所在的数组下标，如果不为空并且头节点就是要找的值，直接返回该值</p>
+<p>如果 hash&lt;0 则调用node的find方法找到与key 相同的节点,找不到返回null</p>
+<p>如果不是，则调用链表的查找方法，找到该值。找不到返回null,</p>
+<p>Synchronized</p>
+<p>同一时刻，最多只有一个线程执行该段代码，以达到保证并发安全的效果</p>
+]]></content>
       <categories>
         <category>Spring 系列</category>
       </categories>
@@ -172,6 +258,90 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown语法</title>
+    <url>/2020/09/11/markdown/</url>
+    <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>Markdown 可以使用以下几种字体：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*斜体文本*</span></span><br><span class="line"><span class="emphasis">_斜体文本_</span></span><br><span class="line"><span class="strong">**粗体文本**</span></span><br><span class="line"><span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*粗斜体文本*</span>**</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_粗斜体文本_</span>__</span></span><br><span class="line">~~删除线~~</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>带下划线<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><em>斜体文本</em><br><em>斜体文本</em><br><strong>粗体文本</strong><br><strong>粗体文本</strong><br><strong><em>粗斜体文本</em></strong><br><strong><em>粗斜体文本</em></strong><br><del>删除线</del><br><u>带下划线</u></p>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">*</span> <span class="emphasis">* *</span></span></span><br><span class="line"><span class="strong">**</span><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">- - -</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">----------</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">创建脚注格式类似这样 [^1]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^1</span>]: <span class="link">菜鸟教程 -- 学的不仅是技术，更是梦想！！！</span></span><br></pre></td></tr></table></figure>
+
+<p>创建脚注格式类似这样 [^1]。</p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>Markdown 支持有序列表和无序列表。</p>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>无序列表使用星号(*<strong>**)、加号(</strong>+<strong>)或是减号(</strong>-**)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure>
+
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h3><p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; 区块引用</span></span><br><span class="line"><span class="quote">&gt; 菜鸟教程</span></span><br><span class="line"><span class="quote">&gt; 学的不仅是技术更是梦想</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（**`**），例如：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`printf()`</span> 函数</span><br></pre></td></tr></table></figure>
+
+<p>你也可以用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```javascript</span></span><br><span class="line"><span class="code">$(document).ready(function () &#123;</span></span><br><span class="line"><span class="code">    alert(&#x27;***&#x27;);</span></span><br><span class="line"><span class="code">&#125;);</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;***&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接使用方法如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">链接名称</span>](<span class="link">链接地址</span>)</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">&lt;链接地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a href="www.baidu.com">百度</a></p>
+<p>&lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Markdown 图片语法格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt 属性文本</span>](<span class="link">图片地址</span>)</span><br></pre></td></tr></table></figure>
+<img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="某某图片" style="zoom:50%;">
+
+<p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;某某图片&quot;</span> <span class="attr">style</span>=<span class="string">&quot;zoom:50%;&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>Markdown 制作表格使用 <strong>|</strong> 来分隔不同的单元格，使用 <strong>-</strong> 来分隔表头和其他行。</p>
+<p>语法格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|  表头   | 表头  |</span><br><span class="line">|  ----  | ----  |</span><br><span class="line">| 单元格  | 单元格 |</span><br><span class="line">| 单元格  | 单元格 |</span><br></pre></td></tr></table></figure>
+
+<p>对齐方式</p>
+<p><strong>我们可以设置表格的对齐方式：</strong></p>
+<ul>
+<li><strong>-:</strong> 设置内容和标题栏居右对齐。</li>
+<li><strong>:-</strong> 设置内容和标题栏居左对齐。</li>
+<li><strong>:-:</strong> 设置内容和标题栏居中对齐。</li>
+</ul>
+<p>实例如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| 左对齐 | 右对齐 | 居中对齐 |</span><br><span class="line">| :-----| ----: | :----: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure>
+
+<h3 id="支持的HTML-元素"><a href="#支持的HTML-元素" class="headerlink" title="支持的HTML 元素"></a>支持的HTML 元素</h3><p>目前支持的 HTML 元素有：<code>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等 ，</p>
+<p>如：</p>
+<ol>
+<li><p>使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> </p>
+<p> <code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; </code>+<code>&lt;kbd&gt;Alt&lt;/kbd&gt;</code>+<code>&lt;kbd&gt;Del&lt;/kbd&gt;</code></p>
+</li>
+<li><p>下标 H<sub>2</sub>O</p>
+<p> <code>H&lt;sub&gt;2&lt;/sub&gt;O</code></p>
+</li>
+<li><p>上标  爆米<sup>TM</sup></p>
+<p> <code>爆米&lt;sup&gt;TM&lt;/sup&gt;</code></p>
+</li>
+</ol>
+<p>[^1]: 菜鸟教程 – 学的不仅是技术，更是梦想！！！</p>
+]]></content>
+      <categories>
+        <category>markdown语法</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx</title>
     <url>/2020/11/30/nginx/</url>
     <content><![CDATA[<blockquote>
@@ -259,87 +429,46 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown语法</title>
-    <url>/2020/09/11/markdown/</url>
-    <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+    <title>Rabbitmq</title>
+    <url>/2022/10/09/rabbitmq/</url>
+    <content><![CDATA[<h2 id="下载RabbitMQ"><a href="#下载RabbitMQ" class="headerlink" title="下载RabbitMQ"></a>下载RabbitMQ</h2><blockquote>
+<p>下载地址：<a href="https://www.rabbitmq.com/download.html">https://www.rabbitmq.com/download.html</a></p>
+</blockquote>
+<h2 id="下载Erlang"><a href="#下载Erlang" class="headerlink" title="下载Erlang"></a>下载Erlang</h2><blockquote>
+<p>Erlang和RabbitMQ版本对照：<a href="https://www.rabbitmq.com/which-erlang.html">https://www.rabbitmq.com/which-erlang.html</a><br>下载地址：<a href="https://packagecloud.io/rabbitmq/erlang/packages/el/7/erlang-23.2.7-2.el7.x86_64.rpm">https://packagecloud.io/rabbitmq/erlang/packages/el/7/erlang-23.2.7-2.el7.x86_64.rpm</a></p>
+</blockquote>
+<h2 id="安装Erlang"><a href="#安装Erlang" class="headerlink" title="安装Erlang"></a>安装Erlang</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -Uvh erlang-23.2.7-2.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<p>查看版本号：<code>erl -v</code></p>
+<h2 id="安装RabbitMQ"><a href="#安装RabbitMQ" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h2><ol>
+<li>安装必要依赖组件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install build-essential openssl openssl-devel unixODBC unixODBC-devel make gcc gcc-c++ kernel-devel m4 ncurses-devel tk tc xz</span><br></pre></td></tr></table></figure></li>
+<li>安装socat<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y socat</span><br></pre></td></tr></table></figure></li>
+<li>rmp 安装<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -Uvh rabbitmq-server-3.8.35-1.el8.noarch.rpm</span><br></pre></td></tr></table></figure>
 
-<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>Markdown 可以使用以下几种字体：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*斜体文本*</span></span><br><span class="line"><span class="emphasis">_斜体文本_</span></span><br><span class="line"><span class="strong">**粗体文本**</span></span><br><span class="line"><span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*粗斜体文本*</span>**</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_粗斜体文本_</span>__</span></span><br><span class="line">~~删除线~~</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>带下划线<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p><em>斜体文本</em><br><em>斜体文本</em><br><strong>粗体文本</strong><br><strong>粗体文本</strong><br><strong><em>粗斜体文本</em></strong><br><strong><em>粗斜体文本</em></strong><br><del>删除线</del><br><u>带下划线</u></p>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">*</span> <span class="emphasis">* *</span></span></span><br><span class="line"><span class="strong">**</span><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">- - -</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">----------</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">创建脚注格式类似这样 [^1]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^1</span>]: <span class="link">菜鸟教程 -- 学的不仅是技术，更是梦想！！！</span></span><br></pre></td></tr></table></figure>
-
-<p>创建脚注格式类似这样 [^1]。</p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>Markdown 支持有序列表和无序列表。</p>
-<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>无序列表使用星号(*<strong>**)、加号(</strong>+<strong>)或是减号(</strong>-**)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure>
-
-<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h3><p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; 区块引用</span></span><br><span class="line"><span class="quote">&gt; 菜鸟教程</span></span><br><span class="line"><span class="quote">&gt; 学的不仅是技术更是梦想</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（**`**），例如：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`printf()`</span> 函数</span><br></pre></td></tr></table></figure>
-
-<p>你也可以用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```javascript</span></span><br><span class="line"><span class="code">$(document).ready(function () &#123;</span></span><br><span class="line"><span class="code">    alert(&#x27;***&#x27;);</span></span><br><span class="line"><span class="code">&#125;);</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;***&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接使用方法如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">链接名称</span>](<span class="link">链接地址</span>)</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">&lt;链接地址&gt;</span><br></pre></td></tr></table></figure>
-
-<p><a href="www.baidu.com">百度</a></p>
-<p>&lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a></p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Markdown 图片语法格式如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt 属性文本</span>](<span class="link">图片地址</span>)</span><br></pre></td></tr></table></figure>
-<img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="某某图片" style="zoom:50%;">
-
-<p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;某某图片&quot;</span> <span class="attr">style</span>=<span class="string">&quot;zoom:50%;&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>Markdown 制作表格使用 <strong>|</strong> 来分隔不同的单元格，使用 <strong>-</strong> 来分隔表头和其他行。</p>
-<p>语法格式如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|  表头   | 表头  |</span><br><span class="line">|  ----  | ----  |</span><br><span class="line">| 单元格  | 单元格 |</span><br><span class="line">| 单元格  | 单元格 |</span><br></pre></td></tr></table></figure>
-
-<p>对齐方式</p>
-<p><strong>我们可以设置表格的对齐方式：</strong></p>
-<ul>
-<li><strong>-:</strong> 设置内容和标题栏居右对齐。</li>
-<li><strong>:-</strong> 设置内容和标题栏居左对齐。</li>
-<li><strong>:-:</strong> 设置内容和标题栏居中对齐。</li>
-</ul>
-<p>实例如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| 左对齐 | 右对齐 | 居中对齐 |</span><br><span class="line">| :-----| ----: | :----: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure>
-
-<h3 id="支持的HTML-元素"><a href="#支持的HTML-元素" class="headerlink" title="支持的HTML 元素"></a>支持的HTML 元素</h3><p>目前支持的 HTML 元素有：<code>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等 ，</p>
-<p>如：</p>
-<ol>
-<li><p>使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> </p>
-<p> <code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; </code>+<code>&lt;kbd&gt;Alt&lt;/kbd&gt;</code>+<code>&lt;kbd&gt;Del&lt;/kbd&gt;</code></p>
-</li>
-<li><p>下标 H<sub>2</sub>O</p>
-<p> <code>H&lt;sub&gt;2&lt;/sub&gt;O</code></p>
-</li>
-<li><p>上标  爆米<sup>TM</sup></p>
-<p> <code>爆米&lt;sup&gt;TM&lt;/sup&gt;</code></p>
 </li>
 </ol>
-<p>[^1]: 菜鸟教程 – 学的不仅是技术，更是梦想！！！</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li>启动rabbitmq:<code>systemctl start rabbitmq-server</code> </li>
+<li>查看状态： <code>systemctl status rabbitmq-server</code></li>
+<li>开机自启动：<code>systemctl enable rabbitmq-server</code></li>
+<li>关闭rabbitmq:<code>systemctl stop rabbitmq-server</code> </li>
+<li>重启rabbitmq:<code>systemctl restart rabbitmq-server</code> </li>
+</ol>
+<h2 id="管理界面插件"><a href="#管理界面插件" class="headerlink" title="管理界面插件"></a>管理界面插件</h2><p><code>rabbitmq-plugins enable rabbitmq_management</code><br>rabbitmq有一个默认的账号密码guest，但该情况仅限于本机localhost进行访问，所以需要添加一个远程登录的用户</p>
+<ol>
+<li>添加用户：<code>rabbitmqctl add_user 用户名 密码</code></li>
+<li>设置用户角色,分配操作权限：<code>rabbitmqctl set_user_tags 用户名 角色</code></li>
+<li>为用户添加资源权限(授予访问虚拟机根节点的所有权限)：<code>rabbitmqctl set_permissions -p / 用户名 &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code></li>
+<li>修改密码：<code>rabbitmqctl change_ password 用户名 新密码</code></li>
+<li>删除用户：<code>rabbitmqctl delete_user 用户名</code></li>
+<li>查看用户清单: <code>rabbitmqctl list_users</code><h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3></li>
+<li><code>administrator</code> :可以登录控制台、查看所有信息、并对rabbitmq进行管理</li>
+<li><code>monToring</code>:监控者；登录控制台，查看所有信息</li>
+<li><code>policymaker</code>:策略制定者；登录控制台指定策略</li>
+<li><code>managment</code>:普通管理员；登录控制</li>
+</ol>
 ]]></content>
-      <categories>
-        <category>markdown语法</category>
-      </categories>
       <tags>
-        <tag>markdown</tag>
+        <tag>rabbitmq安装</tag>
       </tags>
   </entry>
 </search>

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.lxf.life/2022/10/09/rabbitmq/</loc>
+    <lastmod>2022-10-09</lastmod>
+  </url>
+  <url>
     <loc>http://www.lxf.life/2022/09/03/Spring/</loc>
-    <lastmod>2022-09-03</lastmod>
+    <lastmod>2022-09-19</lastmod>
   </url>
   <url>
     <loc>http://www.lxf.life/2020/09/11/markdown/</loc>

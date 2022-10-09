@@ -1,3 +1,4 @@
+http://www.lxf.life/2022/10/09/rabbitmq/
 http://www.lxf.life/2022/09/03/Spring/
 http://www.lxf.life/2022/08/27/hexo_learning/
 http://www.lxf.life/2020/11/30/nginx/
