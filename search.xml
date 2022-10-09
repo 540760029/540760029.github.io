@@ -1,146 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>选择排序</title>
-    <url>/2020/09/19/algor1/</url>
-    <content><![CDATA[<div class="gallery-group-main">
-
-  <figure class="gallery-group">
-  <img class="gallery-group-img no-lightbox" src="https://i.loli.net/2019/11/10/T7Mu8Aod3egmC4Q.png" alt="Group Image Gallery">
-  <figcaption>
-  <div class="gallery-group-name">壁紙</div>
-  <p>收藏的一些壁紙</p>
-  <a href="/Gallery/wallpaper"></a>
-  </figcaption>
-  </figure>
-  
-</div>
-### 排序模板
-
-<p><code>less()</code>方法进行比较，<code>exch()</code>方法进行交换 ，通过<code>comparable</code>接口实现<code>less()</code>方法。</p>
-<span id="more"></span>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="comment">/*排序算法*/</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">// 比较两个元素的大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">less</span><span class="params">(Comparable v, Comparable w)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v.compareTo(w)&lt;<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交换两个元素</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">exch</span><span class="params">(Comparable[] a, <span class="type">int</span> i,<span class="type">int</span> j)</span>&#123;</span><br><span class="line">        <span class="type">Comparable</span> <span class="variable">t</span>  <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">// 单行打印数组</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;a.length;i++)</span><br><span class="line">            StdOut.print(a[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        StdOut.println();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//测试数组元素是否有序</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isSorted</span><span class="params">(Comparable[] a )</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)</span><br><span class="line">            <span class="keyword">if</span>(less(a[i],a[i-<span class="number">1</span>])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="comment">/*从标准输入读取字符串，并排序输出*/</span></span><br><span class="line">        String[] a = In.readStrings();</span><br><span class="line">        sort(a);</span><br><span class="line">        <span class="keyword">assert</span> <span class="title function_">isSorted</span><span class="params">(a)</span>;</span><br><span class="line">        show(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><blockquote>
-<p>该模板适用于任何实现了Comparable 接口的数据类型。Java中 Integer 和 Double 以及String和其他许多高级数据类型（如File和URL）都实现了Comparable接口</p>
-</blockquote>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>一种最简单的排序算法：首先，找到数组中最小的那个元素，其次将它和数组的第一个元素交换位置。再次在剩下的元素中找到最小的元素，将他和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法就叫做<code>选择排序</code>，因为不断的选择剩余元素之中的最小者。<br>算法的时间效率取决于比较的次数。</p>
-<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p><img src="/.life//select.gif" alt="select"></p>
-<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>对于长度为N的数组，选择排序需要大约N<sup>2</sup>/2次比较和N 次交换</p>
-<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Selection</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> a.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span> ;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;N;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span> (less(a[j],a[min])) min =j;</span><br><span class="line">            &#125;</span><br><span class="line">            exch(a,i,min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">less</span><span class="params">(Comparable v, Comparable w)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v.compareTo(w)&lt;<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">exch</span><span class="params">(Comparable[] a, <span class="type">int</span> i,<span class="type">int</span> j)</span>&#123;</span><br><span class="line">        <span class="type">Comparable</span> <span class="variable">t</span>  <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;a.length;i++)</span><br><span class="line">            StdOut.print(a[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        StdOut.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isSorted</span><span class="params">(Comparable[] a )</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)</span><br><span class="line">            <span class="keyword">if</span>(less(a[i],a[i-<span class="number">1</span>])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        String[] a = In.readStrings();</span><br><span class="line">        sort(a);</span><br><span class="line">        <span class="keyword">assert</span> <span class="title function_">isSorted</span><span class="params">(a)</span>;</span><br><span class="line">        show(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>运行时间和输入无关</code> 。为了找出最小元素而扫描一遍数组并不能为下一遍扫描提供什么信息。 某些情况下是缺点。比如 数据本身有序<br><code>数据移动是最少的</code>。每次交换都会改变两个数组的元素的值，因此选择排序用了N次交换–交换次数和数组的大小是线性关系。</p>
-]]></content>
+    <title>Spring</title>
+    <url>/2022/09/03/Spring/</url>
+    <content><![CDATA[]]></content>
       <categories>
-        <category>数据结构与算法</category>
+        <category>Spring 系列</category>
       </categories>
       <tags>
-        <tag>排序</tag>
+        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
-    <title>插入排序</title>
-    <url>/2020/09/21/algor2/</url>
-    <content><![CDATA[<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>通常人们整理桥牌的方法是一张一张的来，将每一张牌插入到其他已经有序的牌中的适当位置。再计算机中的实现中，为了给要插入的元素腾出空间，我们需要将其余的所有元素再插入之前都向右移动一位。这种算法叫做<code>插入排序</code>。<br>选择排序一样，当前索引左半边的所有元素都是有序的，但它们的最终位置还不确定，为了给更小的元素腾出空间，他们可能会被移动。但是当索引到达数组的右端时，数组就排序完成了。<br>和选择排序不同的是，插入排序所需的时间取决于输入中元素的初始顺序。例如，对一个很大且其中的元素已经有序的数组进行排序将会比随机顺序的数组或是逆序数组进行排序要快的多。</p>
-<h3 id="排序模板"><a href="#排序模板" class="headerlink" title="排序模板"></a>排序模板</h3><p><a href="/2020/09/19/algor1">排序模板</a></p>
-<h3 id="插入排序-1"><a href="#插入排序-1" class="headerlink" title="插入排序"></a>插入排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Insertion</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> a.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span> ;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i;j&gt;<span class="number">0</span>&amp;&amp;less(a[j],a[j-<span class="number">1</span>]);j--)&#123;</span><br><span class="line">                exch(a,j,j-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">less</span><span class="params">(Comparable v, Comparable w)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v.compareTo(w)&lt;<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">exch</span><span class="params">(Comparable[] a, <span class="type">int</span> i,<span class="type">int</span> j)</span>&#123;</span><br><span class="line">        <span class="type">Comparable</span> <span class="variable">t</span>  <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;a.length;i++)</span><br><span class="line">            StdOut.print(a[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        StdOut.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isSorted</span><span class="params">(Comparable[] a )</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)</span><br><span class="line">            <span class="keyword">if</span>(less(a[i],a[i-<span class="number">1</span>])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        String[] a = In.readStrings();</span><br><span class="line">        sort(a);</span><br><span class="line">        <span class="keyword">assert</span> <span class="title function_">isSorted</span><span class="params">(a)</span>;</span><br><span class="line">        show(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="https://pic.downk.cc/item/5f69c784160a154a673ef0bc.jpg"></p>
-<h3 id="动画插入排序"><a href="#动画插入排序" class="headerlink" title="动画插入排序"></a>动画插入排序</h3><p><img src="https://pic.downk.cc/item/5f69c0d3160a154a673bc4da.gif"></p>
-<h3 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h3><p>对插入排序和选择排序，分别对1000个数进行100次排序求和  比时间</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">time</span><span class="params">(String alg,Comparable[] a)</span>&#123;</span><br><span class="line">        <span class="type">Stopwatch</span> <span class="variable">timer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Stopwatch</span>();</span><br><span class="line">        <span class="keyword">switch</span> (alg)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Insertion&quot;</span>: Insertion.sort(a); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Selection&quot;</span>: Selection.sort(a); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timer.elapsedTime();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">timeRandomInput</span><span class="params">(String alg,<span class="type">int</span> N, <span class="type">int</span> T)</span>&#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        Double[] a = <span class="keyword">new</span> <span class="title class_">Double</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> <span class="number">0</span>; t &lt; T ; t++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">                a[i] = StdRandom.uniform();</span><br><span class="line">            &#125;</span><br><span class="line">            total += time(alg,a);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">alg1</span> <span class="operator">=</span> args[<span class="number">0</span>];</span><br><span class="line">        <span class="type">String</span> <span class="variable">alg2</span> <span class="operator">=</span> args[<span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> Integer.parseInt(args[<span class="number">2</span>]);</span><br><span class="line">        <span class="type">int</span> <span class="variable">T</span> <span class="operator">=</span> Integer.parseInt(args[<span class="number">3</span>]);</span><br><span class="line">        <span class="type">double</span> <span class="variable">t1</span> <span class="operator">=</span> timeRandomInput(alg1,N,T);</span><br><span class="line">        <span class="type">double</span> <span class="variable">t2</span> <span class="operator">=</span> timeRandomInput(alg2,N,T);</span><br><span class="line">        System.out.println(t2);</span><br><span class="line">        System.out.println(t1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：结果第一行是插入排序结果<br>      第二行是选择排序的结果</p>
-</blockquote>
-<p>第一次结果：<br><img src="https://pic.downk.cc/item/5f69f65c160a154a675582a4.jpg"></p>
-<p>第二次结果：<br><img src="https://pic.downk.cc/item/5f69f690160a154a67559fdf.jpg"></p>
+    <title>Hexo 教程</title>
+    <url>/2022/08/27/hexo_learning/</url>
+    <content><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="创建一个新文章-md-文件"><a href="#创建一个新文章-md-文件" class="headerlink" title="创建一个新文章 .md 文件"></a>创建一个新文章 .md 文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="将md-生成静态文件"><a href="#将md-生成静态文件" class="headerlink" title="将md 生成静态文件"></a>将md 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="启动本地服务器查看"><a href="#启动本地服务器查看" class="headerlink" title="启动本地服务器查看"></a>启动本地服务器查看</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="无误后将文章发布到GitHub"><a href="#无误后将文章发布到GitHub" class="headerlink" title="无误后将文章发布到GitHub"></a>无误后将文章发布到GitHub</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="引用自己写的别的文章"><a href="#引用自己写的别的文章" class="headerlink" title="引用自己写的别的文章"></a>引用自己写的别的文章</h3><p>有两种方式：<br>1、通过模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link md的名字  显示的名字%&#125;</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line">&#123;% post_link markdown markdown %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<a href="/2020/09/11/markdown/" title="markdown">markdown</a>
+
+<p>2、引用永久链接： hexo 生成的文章是 /年/月/日/文件 格式，所以markdown引用链接就可以了：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[排序模板](/2020/09/11/markdown)</span><br></pre></td></tr></table></figure>
+<p>效果：<br><a href="/2020/09/11/markdown">排序模板</a></p>
 ]]></content>
       <categories>
-        <category>数据结构与算法</category>
+        <category>hexo 教程</category>
       </categories>
       <tags>
-        <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Jwt权限控制api 访问</title>
-    <url>/2020/09/26/auth/</url>
-    <content><![CDATA[<p>给一个api 上添加 <code>@ScopeLevel</code>   来确定这个api 的等级</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/name/&#123;name&#125;&quot;)</span></span><br><span class="line"> <span class="meta">@ScopeLevel</span></span><br><span class="line"> <span class="keyword">public</span> Banner <span class="title function_">getByName</span><span class="params">(<span class="meta">@PathVariable</span> <span class="meta">@NotBlank</span> String name)</span>&#123;</span><br><span class="line">     <span class="type">Banner</span> <span class="variable">banner</span> <span class="operator">=</span> bannerService.getByName(name);</span><br><span class="line">     <span class="keyword">if</span> (banner==<span class="literal">null</span>)&#123;</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NotFoundException</span>(<span class="number">30005</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> banner;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>@ScopeLevel</code> 注解:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ScopeLevel &#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>之所以可以完成是因为:</p>
-<ol>
-<li>通过<code>TokenController</code> 获取token</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/v1/token&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TokenController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WxAuthenticationService wxAuthenticationService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取token</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String,String&gt; <span class="title function_">getToken</span><span class="params">(<span class="meta">@RequestBody</span> <span class="meta">@Validated</span> TokenGetDTO userData)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Map&lt;String,String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (userData.getType())&#123;</span><br><span class="line">            <span class="keyword">case</span> USER_WX:</span><br><span class="line">                token = wxAuthenticationService.code2Session(userData.getAccount());</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> USER_Email:<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NotFoundException</span>(<span class="number">10003</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        map.put(<span class="string">&quot;token&quot;</span>,token);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 验证token</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/verify&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String, Boolean&gt; <span class="title function_">verify</span><span class="params">(<span class="meta">@RequestBody</span> TokenDTO token)</span> &#123;</span><br><span class="line">        Map&lt;String, Boolean&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">valid</span> <span class="operator">=</span> JwtToken.verifyToken(token.getToken());</span><br><span class="line">        map.put(<span class="string">&quot;is_valid&quot;</span>, valid);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>TokenGetDTO</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TokenGetDTO</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;account 不允许为空&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String account;</span><br><span class="line">    <span class="meta">@TokenPassword(message=&quot;&#123;token.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> LoginType type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>LoginType</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">LoginType</span> &#123;</span><br><span class="line">    USER_WX(<span class="number">0</span>,<span class="string">&quot;微信登录&quot;</span>),</span><br><span class="line">    USER_Email(<span class="number">1</span>,<span class="string">&quot;邮箱登录&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer value;</span><br><span class="line">    LoginType(Integer value,String description)&#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>WxAuthenticationService</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WxAuthenticationService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ObjectMapper mapper;  <span class="comment">//用于反序列化 .readValue()方法</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//用appid  secret  code 码 换取session</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;wx.code2session&#125;&quot;)</span> </span><br><span class="line">    <span class="comment">//https://api.weixin.qq.com/sns/jscode2session?appid=&#123;0&#125;&amp;secret=&#123;1&#125;&amp;js_code=&#123;2&#125;&amp;grant_type=authorization_code</span></span><br><span class="line">    <span class="keyword">private</span> String code2SessionUrl;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;wx.appid&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String appid;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;wx.appsecret&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String appsecret;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">code2Session</span><span class="params">(String code)</span> &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//messageFormat.format 模板填充&#123;0&#125;&#123;1&#125;&#123;2&#125;,组装成一个可以使用的url.</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> MessageFormat.format(<span class="built_in">this</span>.code2SessionUrl, <span class="built_in">this</span>.appid, <span class="built_in">this</span>.appsecret, code);</span><br><span class="line">        <span class="comment">//RestTemplate 用来发送http 请求</span></span><br><span class="line">        <span class="type">RestTemplate</span> <span class="variable">rest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">        <span class="comment">//发送请求 </span></span><br><span class="line">        <span class="type">String</span> <span class="variable">sessionText</span> <span class="operator">=</span> rest.getForObject(url, String.class);</span><br><span class="line">        Map&lt;String, Object&gt; session = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//将String 序列化到session 中 </span></span><br><span class="line">            <span class="comment">//访问微信服务器正确将得到</span></span><br><span class="line">            <span class="comment">//&#123;&quot;appid&quot;:&quot;xxx&quot;,&quot;session&quot;:&quot;xxx&quot;&#125;</span></span><br><span class="line">            session = mapper.readValue(sessionText, Map.class);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.registerUser(session);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//发放令牌</span></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">registerUser</span><span class="params">(Map&lt;String, Object&gt; session)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">openid</span> <span class="operator">=</span> (String) session.get(<span class="string">&quot;openid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (openid == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//如果没获取到openid,抛出获取用户openid失败异常</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ParameterException</span>(<span class="number">20004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//通过openid 获得这个user</span></span><br><span class="line">        Optional&lt;User&gt; userOptional = <span class="built_in">this</span>.userRepository.findByOpenid(openid);</span><br><span class="line">        <span class="keyword">if</span> (userOptional.isPresent()) &#123;</span><br><span class="line">			<span class="comment">// 入如果user不为空,获取id 颁发令牌</span></span><br><span class="line">            <span class="keyword">return</span> JwtToken.makeToken(userOptional.get().getId());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//user 为空 先注册到user 表</span></span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> User.builder().openid(openid)</span><br><span class="line">                .build();</span><br><span class="line">        userRepository.save(user);</span><br><span class="line">        <span class="comment">// 再次重新获得该用户id ,颁发令牌</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">uid</span> <span class="operator">=</span> user.getId();</span><br><span class="line">        <span class="keyword">return</span> JwtToken.makeToken(uid);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>UserRepository</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;User, Long&gt; &#123;</span><br><span class="line">    User <span class="title function_">findByEmail</span><span class="params">(String email)</span>;</span><br><span class="line">    Optional&lt;User&gt; <span class="title function_">findByOpenid</span><span class="params">(String openid)</span>;</span><br><span class="line">    User <span class="title function_">findFirstById</span><span class="params">(Long id)</span>;</span><br><span class="line">    User <span class="title function_">findByUnifyUid</span><span class="params">(Long uuid)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><code>jwtToken</code>    令牌生成具体方法//    默认可访问的等级是8   8以下的都可以被访问</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtToken</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String jwtKey;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer expiredTimeIn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Integer</span> <span class="variable">defaultScope</span> <span class="operator">=</span> <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//密钥 :  yml 配置的</span></span><br><span class="line">    <span class="comment">//security:</span></span><br><span class="line">    <span class="comment">//	jwt-key: sssssssfan</span></span><br><span class="line">    <span class="comment">//	token-expired-in: 86400</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;security.jwt-key&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setJwtKey</span><span class="params">(String jwtKey)</span> &#123;</span><br><span class="line">        JwtToken.jwtKey = jwtKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;security.token-expired-in&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setExpiredTimeIn</span><span class="params">(Integer expiredTimeIn)</span> &#123;</span><br><span class="line">        JwtToken.expiredTimeIn = expiredTimeIn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Optional&lt;Map&lt;String, Claim&gt;&gt; <span class="title function_">getClaims</span><span class="params">(String token)</span> &#123;</span><br><span class="line">        DecodedJWT decodedJWT;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(JwtToken.jwtKey);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            decodedJWT = jwtVerifier.verify(token);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> Optional.empty();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(decodedJWT.getClaims());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title function_">verifyToken</span><span class="params">(String token)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(JwtToken.jwtKey);</span><br><span class="line">            <span class="type">JWTVerifier</span> <span class="variable">verifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">            verifier.verify(token);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">makeToken</span><span class="params">(Long uid, Integer scope)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> JwtToken.getToken(uid, scope);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">makeToken</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> JwtToken.getToken(uid, JwtToken.defaultScope);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 颁发jwt 令牌</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">getToken</span><span class="params">(Long uid, Integer scope)</span> &#123;</span><br><span class="line">        <span class="comment">//使用HMAC256 算法 对key 加密</span></span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(JwtToken.jwtKey);</span><br><span class="line">        Map&lt;String, Date&gt; map = JwtToken.calculateExpiredIssues();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 颁发jwt</span></span><br><span class="line">        <span class="keyword">return</span> JWT.create()</span><br><span class="line">                .withClaim(<span class="string">&quot;uid&quot;</span>, uid)</span><br><span class="line">                .withClaim(<span class="string">&quot;scope&quot;</span>, scope)</span><br><span class="line">                .withExpiresAt(map.get(<span class="string">&quot;expiredTime&quot;</span>))</span><br><span class="line">                .withIssuedAt(map.get(<span class="string">&quot;now&quot;</span>))</span><br><span class="line">                .sign(algorithm);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Date&gt; <span class="title function_">calculateExpiredIssues</span><span class="params">()</span> &#123;</span><br><span class="line">        Map&lt;String, Date&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">Calendar</span> <span class="variable">calendar</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">        <span class="type">Date</span> <span class="variable">now</span> <span class="operator">=</span> calendar.getTime(); <span class="comment">//当前时间</span></span><br><span class="line">        calendar.add(Calendar.SECOND, JwtToken.expiredTimeIn); <span class="comment">// 过期时间</span></span><br><span class="line">        map.put(<span class="string">&quot;now&quot;</span>, now);</span><br><span class="line">        map.put(<span class="string">&quot;expiredTime&quot;</span>, calendar.getTime());</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>用拦截器获取所有的http 访问:</p>
-<p><code>PermissionInterceptor</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PermissionInterceptor</span> <span class="keyword">extends</span> <span class="title class_">HandlerInterceptorAdapter</span> &#123;</span><br><span class="line"><span class="comment">//或者     implement  HandlerInterceptor  都可以</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PermissionInterceptor</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// 获取注解 scopelevel的值</span></span><br><span class="line">        Optional&lt;ScopeLevel&gt; scopeLevel = <span class="built_in">this</span>.getScopeLevel(handler);</span><br><span class="line">        <span class="comment">// 不存在 任何人可访问</span></span><br><span class="line">        <span class="keyword">if</span> (!scopeLevel.isPresent())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 获取 Header Authorization 的值,也就是 token值</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">bearerToken</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        <span class="comment">//空值 报不合法异常</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(bearerToken))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnAuthenticatedException</span>(<span class="number">10004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//非jwt Bearer 开头的令牌 不合法异常</span></span><br><span class="line">        <span class="keyword">if</span> (!bearerToken.startsWith(<span class="string">&quot;Bearer&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnAuthenticatedException</span>(<span class="number">10004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 防止非法输入   输入中带空格</span></span><br><span class="line">        String tokens[] = bearerToken.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (!(tokens.length ==<span class="number">2</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnAuthenticatedException</span>(<span class="number">10004</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//提取token  tokens[0] 值是Bearer</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> tokens[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">//验证token</span></span><br><span class="line">        <span class="comment">//optionalMap :: optional[&#123;uid=com.auth0.jwt.impl.JsonNodeClaim@7211e007, exp=com.auth0.jwt.impl.JsonNodeClaim@ea3d01c, iat=com.auth0.jwt.impl.JsonNodeClaim@25cfbd5, scope=com.auth0.jwt.impl.JsonNodeClaim@4e547dbe&#125;]</span></span><br><span class="line">        Optional&lt;Map&lt;String, Claim&gt;&gt; optionalMap = JwtToken.getClaims(token);</span><br><span class="line">        <span class="comment">//将optionalMap 的值放入 map</span></span><br><span class="line">        Map&lt;String, Claim&gt; map = optionalMap.orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">UnAuthenticatedException</span>(<span class="number">10004</span>));</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">valid</span> <span class="operator">=</span> hasPermission(scopeLevel.get(), map);</span><br><span class="line">        <span class="keyword">return</span> valid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取ScopeLevel 的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> handler</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Optional&lt;ScopeLevel&gt; <span class="title function_">getScopeLevel</span><span class="params">(Object handler)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (handler <span class="keyword">instanceof</span> HandlerMethod) &#123;</span><br><span class="line">            <span class="type">HandlerMethod</span> <span class="variable">handlerMethod</span> <span class="operator">=</span> (HandlerMethod) handler;</span><br><span class="line">            <span class="type">ScopeLevel</span> <span class="variable">scopeLevel</span> <span class="operator">=</span> handlerMethod.getMethod().getAnnotation(ScopeLevel.class);</span><br><span class="line">            <span class="keyword">if</span> (scopeLevel == <span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> Optional.empty();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>  Optional.of(scopeLevel);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Optional.empty();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断 scopeLevel 和 defaultscope (8) 的大小. 超过8 不能访问</span></span><br><span class="line">    <span class="comment">// 当给一个类加上@ScopeLevel() 默认4 </span></span><br><span class="line">    <span class="comment">// 可以做到 没有登录访问不了api</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">hasPermission</span><span class="params">(ScopeLevel scopeLevel, Map&lt;String, Claim&gt; map)</span> &#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">level</span> <span class="operator">=</span> scopeLevel.value();</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">scope</span> <span class="operator">=</span> map.get(<span class="string">&quot;scope&quot;</span>).asInt();</span><br><span class="line">        <span class="keyword">if</span> (level &gt; scope) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ForbiddenException</span>(<span class="number">10005</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="built_in">super</span>.postHandle(request, response, handler, modelAndView);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="built_in">super</span>.afterCompletion(request, response, handler, ex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>将拦截器加入到(注册到)系统,也就是成功拦截一切的http 访问</p>
-<p><code>PermissionInterceptor</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InterceptorConfiguration</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> <span class="title class_">PermissionInterceptor</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>总结: </p>
-<ol>
-<li>用户登录 颁发jwt 令牌 ,该令牌中 放入了uid 和 scope 值     ``JwtToken.makeToken()`</li>
-<li>用拦截器获取任何http访问 ``PermissionInterceptor<code>  </code>PermissionInterceptor`</li>
-<li>拦截器中获取自定义注解@ScopeLevel 的值  <code>PermissionInterceptor</code>中的<code>getScopeLevel() </code>方法<ol>
-<li>为空值,所有权限可访问</li>
-</ol>
-</li>
-<li>在Header的 <code>Authorization</code>  获取token   <code>PermissionInterceptor</code>的 <code>preHandle  .     request.getHeader(&quot;Authorization&quot;)   </code></li>
-<li>获取token 的   scope   <code>JwtToken.getClaims(token).get(&quot;scope&quot;)</code></li>
-<li>比较  level 和 scope 值,判断是否可以访问 <code>PermissionInterceptor</code>.<code>hasPermission()</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>jwt</category>
-      </categories>
-      <tags>
-        <tag>jwt令牌</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>访问网页出错</title>
-    <url>/2020/09/11/day1/</url>
-    <content><![CDATA[<ol>
-<li>在Chrome地址栏中输入:   chrome://net-internals/#hsts; 进入Domain Sercurity Policy界面。</li>
-<li>在下图中输入二级域名查询是否使用了强制 HTTPS 请求。<br><img src="/.life//cuowu.png" alt="错误"></li>
-<li>如果有查询结果，则在最下方的delete栏处，删除该域名的信息<br><img src="/.life//delete.png" alt="删除"></li>
-<li>再次查询，如下图所示，“NOT FOUND”则表示删除成功。<br><img src="/.life//restore.png" alt="重新查询"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>错误积累</category>
-      </categories>
-      <tags>
-        <tag>HSTS</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -273,159 +172,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo 教程</title>
-    <url>/2022/08/27/hexo_learning/</url>
-    <content><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="创建一个新文章-md-文件"><a href="#创建一个新文章-md-文件" class="headerlink" title="创建一个新文章 .md 文件"></a>创建一个新文章 .md 文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="将md-生成静态文件"><a href="#将md-生成静态文件" class="headerlink" title="将md 生成静态文件"></a>将md 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="启动本地服务器查看"><a href="#启动本地服务器查看" class="headerlink" title="启动本地服务器查看"></a>启动本地服务器查看</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="无误后将文章发布到GitHub"><a href="#无误后将文章发布到GitHub" class="headerlink" title="无误后将文章发布到GitHub"></a>无误后将文章发布到GitHub</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="引用自己写的别的文章"><a href="#引用自己写的别的文章" class="headerlink" title="引用自己写的别的文章"></a>引用自己写的别的文章</h3><p>有两种方式：<br>1、通过模板：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link md的名字  显示的名字%&#125;</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line">&#123;% post_link algor1 排序模板 %&#125;</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<a href="/2020/09/19/algor1/" title="排序模板">排序模板</a>
-
-<p>2、引用永久链接： hexo 生成的文章是 /年/月/日/文件 格式，所以markdown引用链接就可以了：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[排序模板](/2020/09/19/algor1)</span><br></pre></td></tr></table></figure>
-<p>效果：<br><a href="/2020/09/19/algor1">排序模板</a></p>
-]]></content>
-      <categories>
-        <category>hexo 教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 启动 Jar 包</title>
-    <url>/2020/10/24/javaauth/</url>
-    <content><![CDATA[<p>java -Dfile.encoding=UTF-8  -jar target/merak-0.0.1-RC4.jar</p>
-<p>HTTP 请求<br>filter interceptor aop -&gt; controller<br>controller -&gt; aop-&gt; interceptor-&gt;filter</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>反转字符串（Lc344)</title>
-    <url>/2020/10/12/lc344/</url>
-    <content><![CDATA[<blockquote>
-<p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。<br>你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。</p>
-</blockquote>
-<p>示例1：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]</span><br><span class="line">输出：[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]</span><br></pre></td></tr></table></figure>
-<p>示例2：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[&quot;H&quot;,&quot;a&quot;,&quot;n&quot;,&quot;n&quot;,&quot;a&quot;,&quot;h&quot;]</span><br><span class="line">输出：[&quot;h&quot;,&quot;a&quot;,&quot;n&quot;,&quot;n&quot;,&quot;a&quot;,&quot;H&quot;]</span><br></pre></td></tr></table></figure>
-<p>解题思路：   </p>
-<ol>
-<li> 双指针思想。<br><img src="https://pic.downk.cc/item/5f842d171cd1bbb86bf253d8.png"><br>代码：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverseString</span><span class="params">(<span class="type">char</span>[] s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> s.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = n - <span class="number">1</span>; left &lt; right; ++left, --right) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">tmp</span> <span class="operator">=</span> s[left];</span><br><span class="line">            s[left] = s[right];</span><br><span class="line">            s[right] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-复杂度分析：  </li>
-</ol>
-<ul>
-<li> 时间复杂度O(N),其中N为字符数组的长度，一共执行了N/2次的交换</li>
-<li> 空间复杂度O(1),只使用了常数空间来存放若干变量。</li>
-</ul>
-<ol start="2">
-<li>递归<br>代码： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverseString</span><span class="params">(<span class="type">char</span>[] s)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="literal">null</span> || s.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    reverseStringHelper(s, <span class="number">0</span>, s.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverseStringHelper</span><span class="params">(<span class="type">char</span>[] s, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    swap(s, left, right);</span><br><span class="line">    reverseStringHelper(s, ++left, --right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">char</span>[] array, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="type">char</span> <span class="variable">temp</span> <span class="operator">=</span> array[i];</span><br><span class="line">    array[i] = array[j];</span><br><span class="line">    array[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>力扣</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/09/11/markdown/</url>
-    <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>Markdown 可以使用以下几种字体：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*斜体文本*</span></span><br><span class="line"><span class="emphasis">_斜体文本_</span></span><br><span class="line"><span class="strong">**粗体文本**</span></span><br><span class="line"><span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*粗斜体文本*</span>**</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_粗斜体文本_</span>__</span></span><br><span class="line">~~删除线~~</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>带下划线<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p><em>斜体文本</em><br><em>斜体文本</em><br><strong>粗体文本</strong><br><strong>粗体文本</strong><br><strong><em>粗斜体文本</em></strong><br><strong><em>粗斜体文本</em></strong><br><del>删除线</del><br><u>带下划线</u></p>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">*</span> <span class="emphasis">* *</span></span></span><br><span class="line"><span class="strong">**</span><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">- - -</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">----------</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">创建脚注格式类似这样 [^1]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^1</span>]: <span class="link">菜鸟教程 -- 学的不仅是技术，更是梦想！！！</span></span><br></pre></td></tr></table></figure>
-
-<p>创建脚注格式类似这样 [^1]。</p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>Markdown 支持有序列表和无序列表。</p>
-<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>无序列表使用星号(*<strong>**)、加号(</strong>+<strong>)或是减号(</strong>-**)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure>
-
-<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h3><p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; 区块引用</span></span><br><span class="line"><span class="quote">&gt; 菜鸟教程</span></span><br><span class="line"><span class="quote">&gt; 学的不仅是技术更是梦想</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（**`**），例如：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`printf()`</span> 函数</span><br></pre></td></tr></table></figure>
-
-<p>你也可以用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```javascript</span></span><br><span class="line"><span class="code">$(document).ready(function () &#123;</span></span><br><span class="line"><span class="code">    alert(&#x27;***&#x27;);</span></span><br><span class="line"><span class="code">&#125;);</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;***&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接使用方法如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">链接名称</span>](<span class="link">链接地址</span>)</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">&lt;链接地址&gt;</span><br></pre></td></tr></table></figure>
-
-<p><a href="www.baidu.com">百度</a></p>
-<p>&lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a></p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Markdown 图片语法格式如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt 属性文本</span>](<span class="link">图片地址</span>)</span><br></pre></td></tr></table></figure>
-<img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="某某图片" style="zoom:50%;">
-
-<p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;某某图片&quot;</span> <span class="attr">style</span>=<span class="string">&quot;zoom:50%;&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>Markdown 制作表格使用 <strong>|</strong> 来分隔不同的单元格，使用 <strong>-</strong> 来分隔表头和其他行。</p>
-<p>语法格式如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|  表头   | 表头  |</span><br><span class="line">|  ----  | ----  |</span><br><span class="line">| 单元格  | 单元格 |</span><br><span class="line">| 单元格  | 单元格 |</span><br></pre></td></tr></table></figure>
-
-<p>对齐方式</p>
-<p><strong>我们可以设置表格的对齐方式：</strong></p>
-<ul>
-<li><strong>-:</strong> 设置内容和标题栏居右对齐。</li>
-<li><strong>:-</strong> 设置内容和标题栏居左对齐。</li>
-<li><strong>:-:</strong> 设置内容和标题栏居中对齐。</li>
-</ul>
-<p>实例如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| 左对齐 | 右对齐 | 居中对齐 |</span><br><span class="line">| :-----| ----: | :----: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure>
-
-<h3 id="支持的HTML-元素"><a href="#支持的HTML-元素" class="headerlink" title="支持的HTML 元素"></a>支持的HTML 元素</h3><p>目前支持的 HTML 元素有：<code>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等 ，</p>
-<p>如：</p>
-<ol>
-<li><p>使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> </p>
-<p> <code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; </code>+<code>&lt;kbd&gt;Alt&lt;/kbd&gt;</code>+<code>&lt;kbd&gt;Del&lt;/kbd&gt;</code></p>
-</li>
-<li><p>下标 H<sub>2</sub>O</p>
-<p> <code>H&lt;sub&gt;2&lt;/sub&gt;O</code></p>
-</li>
-<li><p>上标  爆米<sup>TM</sup></p>
-<p> <code>爆米&lt;sup&gt;TM&lt;/sup&gt;</code></p>
-</li>
-</ol>
-<p>[^1]: 菜鸟教程 – 学的不仅是技术，更是梦想！！！</p>
-]]></content>
-      <categories>
-        <category>markdown语法</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Nginx</title>
     <url>/2020/11/30/nginx/</url>
     <content><![CDATA[<blockquote>
@@ -513,21 +259,87 @@
       </tags>
   </entry>
   <entry>
-    <title>Tt1</title>
-    <url>/2022/08/27/tt1/</url>
-    <content><![CDATA[<h1 id="sds"><a href="#sds" class="headerlink" title="sds"></a>sds</h1>]]></content>
-  </entry>
-  <entry>
-    <title>算法1</title>
-    <url>/2022/08/27/%E7%AE%97%E6%B3%951/</url>
-    <content><![CDATA[<p><img src="http://lixiaofan.info/typora/thinker-1294493_640.jpg" alt="thinker-1294493_640"></p>
-<p><img src="http://lixiaofan.info/typora/animal-3086397_640.jpg" alt="animal-3086397_640"></p>
-<p><img src="http://lixiaofan.info/typora/brain-2546101_640.jpg" alt="brain-2546101_640"></p>
-<p><img src="http://lixiaofan.info/typora/head-2428333_640.png" alt="head-2428333_640"></p>
-<p><img src="http://lixiaofan.info/typora/primate-460871_640.jpg" alt="primate-460871_640"></p>
-<p><img src="http://lixiaofan.info/typora/siberian-husky-1771662_640.jpg" alt="siberian-husky-1771662_640"></p>
-<p><img src="http://lixiaofan.info/typora/beautiful-dog-5240940_640.jpg" alt="beautiful-dog-5240940_640"></p>
-<p><img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="siberian-husky-5780631_640"></p>
+    <title>Markdown语法</title>
+    <url>/2020/09/11/markdown/</url>
+    <content><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>分为六个级别</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>Markdown 可以使用以下几种字体：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*斜体文本*</span></span><br><span class="line"><span class="emphasis">_斜体文本_</span></span><br><span class="line"><span class="strong">**粗体文本**</span></span><br><span class="line"><span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*粗斜体文本*</span>**</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_粗斜体文本_</span>__</span></span><br><span class="line">~~删除线~~</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>带下划线<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><em>斜体文本</em><br><em>斜体文本</em><br><strong>粗体文本</strong><br><strong>粗体文本</strong><br><strong><em>粗斜体文本</em></strong><br><strong><em>粗斜体文本</em></strong><br><del>删除线</del><br><u>带下划线</u></p>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">*</span> <span class="emphasis">* *</span></span></span><br><span class="line"><span class="strong">**</span><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">- - -</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">----------</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">创建脚注格式类似这样 [^1]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^1</span>]: <span class="link">菜鸟教程 -- 学的不仅是技术，更是梦想！！！</span></span><br></pre></td></tr></table></figure>
+
+<p>创建脚注格式类似这样 [^1]。</p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>Markdown 支持有序列表和无序列表。</p>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>无序列表使用星号(*<strong>**)、加号(</strong>+<strong>)或是减号(</strong>-**)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure>
+
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h3><p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; 区块引用</span></span><br><span class="line"><span class="quote">&gt; 菜鸟教程</span></span><br><span class="line"><span class="quote">&gt; 学的不仅是技术更是梦想</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（**`**），例如：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`printf()`</span> 函数</span><br></pre></td></tr></table></figure>
+
+<p>你也可以用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```javascript</span></span><br><span class="line"><span class="code">$(document).ready(function () &#123;</span></span><br><span class="line"><span class="code">    alert(&#x27;***&#x27;);</span></span><br><span class="line"><span class="code">&#125;);</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;***&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接使用方法如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">链接名称</span>](<span class="link">链接地址</span>)</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">&lt;链接地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a href="www.baidu.com">百度</a></p>
+<p>&lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Markdown 图片语法格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt 属性文本</span>](<span class="link">图片地址</span>)</span><br></pre></td></tr></table></figure>
+<img src="http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg" alt="某某图片" style="zoom:50%;">
+
+<p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://lixiaofan.info/typora/siberian-husky-5780631_640.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;某某图片&quot;</span> <span class="attr">style</span>=<span class="string">&quot;zoom:50%;&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>Markdown 制作表格使用 <strong>|</strong> 来分隔不同的单元格，使用 <strong>-</strong> 来分隔表头和其他行。</p>
+<p>语法格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|  表头   | 表头  |</span><br><span class="line">|  ----  | ----  |</span><br><span class="line">| 单元格  | 单元格 |</span><br><span class="line">| 单元格  | 单元格 |</span><br></pre></td></tr></table></figure>
+
+<p>对齐方式</p>
+<p><strong>我们可以设置表格的对齐方式：</strong></p>
+<ul>
+<li><strong>-:</strong> 设置内容和标题栏居右对齐。</li>
+<li><strong>:-</strong> 设置内容和标题栏居左对齐。</li>
+<li><strong>:-:</strong> 设置内容和标题栏居中对齐。</li>
+</ul>
+<p>实例如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| 左对齐 | 右对齐 | 居中对齐 |</span><br><span class="line">| :-----| ----: | :----: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure>
+
+<h3 id="支持的HTML-元素"><a href="#支持的HTML-元素" class="headerlink" title="支持的HTML 元素"></a>支持的HTML 元素</h3><p>目前支持的 HTML 元素有：<code>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等 ，</p>
+<p>如：</p>
+<ol>
+<li><p>使用windows 神奇组合三键  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> </p>
+<p> <code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; </code>+<code>&lt;kbd&gt;Alt&lt;/kbd&gt;</code>+<code>&lt;kbd&gt;Del&lt;/kbd&gt;</code></p>
+</li>
+<li><p>下标 H<sub>2</sub>O</p>
+<p> <code>H&lt;sub&gt;2&lt;/sub&gt;O</code></p>
+</li>
+<li><p>上标  爆米<sup>TM</sup></p>
+<p> <code>爆米&lt;sup&gt;TM&lt;/sup&gt;</code></p>
+</li>
+</ol>
+<p>[^1]: 菜鸟教程 – 学的不仅是技术，更是梦想！！！</p>
 ]]></content>
+      <categories>
+        <category>markdown语法</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
   </entry>
 </search>
