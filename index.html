@@ -299,7 +299,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:05:42" itemprop="dateModified" datetime="2026-04-09T23:05:42+08:00">2026-04-09</time>
+      <time title="修改时间：2026-04-09 23:11:06" itemprop="dateModified" datetime="2026-04-09T23:11:06+08:00">2026-04-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -333,66 +333,14 @@
 <li><strong>部署方便</strong>：可以在任何设备上克隆源码并进行部署</li>
 <li><strong>持续集成</strong>：可以配置CI&#x2F;CD流程自动部署博客</li>
 </ul>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在开始之前，确保你已经：</p>
-<ol>
-<li>安装了Git</li>
-<li>拥有GitHub账号</li>
-<li>已经创建了用于部署GitHub Pages的仓库（通常是 <code>username.github.io</code>）</li>
-</ol>
-<h2 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h2><h3 id="1-初始化Git仓库"><a href="#1-初始化Git仓库" class="headerlink" title="1. 初始化Git仓库"></a>1. 初始化Git仓库</h3><p>如果你的Hexo项目还没有初始化Git仓库，先进行初始化：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;初始化Hexo项目&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-创建GitHub仓库"><a href="#2-创建GitHub仓库" class="headerlink" title="2. 创建GitHub仓库"></a>2. 创建GitHub仓库</h3><p>如果还没有创建GitHub仓库：</p>
-<ol>
-<li>登录GitHub</li>
-<li>点击右上角的「+」号，选择「New repository」</li>
-<li>仓库名称填写 <code>username.github.io</code>（username是你的GitHub用户名）</li>
-<li>选择公开或私有仓库</li>
-<li>点击「Create repository」</li>
-</ol>
-<h3 id="3-配置远程仓库"><a href="#3-配置远程仓库" class="headerlink" title="3. 配置远程仓库"></a>3. 配置远程仓库</h3><p>将本地仓库与GitHub仓库关联：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/username/username.github.io.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-创建并切换到source分支"><a href="#4-创建并切换到source分支" class="headerlink" title="4. 创建并切换到source分支"></a>4. 创建并切换到source分支</h3><p>创建一个专门用于存储源码的分支，通常命名为 <code>source</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-配置-gitignore文件"><a href="#5-配置-gitignore文件" class="headerlink" title="5. 配置.gitignore文件"></a>5. 配置.gitignore文件</h3><p>确保你的 <code>.gitignore</code> 文件包含以下内容，避免将不必要的文件提交到仓库：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># Dependency directories</span><br><span class="line">node_modules/</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br><span class="line">yarn-error.log*</span><br><span class="line"></span><br><span class="line"># Build output</span><br><span class="line">dist/</span><br><span class="line">public/</span><br><span class="line"></span><br><span class="line"># Environment variables</span><br><span class="line">.env</span><br><span class="line">.env.local</span><br><span class="line">.env.development.local</span><br><span class="line">.env.test.local</span><br><span class="line">.env.production.local</span><br><span class="line"></span><br><span class="line"># IDE and editor files</span><br><span class="line">.vscode/</span><br><span class="line">.idea/</span><br><span class="line">*.swp</span><br><span class="line">*.swo</span><br><span class="line">*~</span><br><span class="line"></span><br><span class="line"># OS generated files</span><br><span class="line">Thumbs.db</span><br><span class="line">.DS_Store</span><br><span class="line"></span><br><span class="line"># Log files</span><br><span class="line">logs</span><br><span class="line">*.log</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-提交源码"><a href="#6-提交源码" class="headerlink" title="6. 提交源码"></a>6. 提交源码</h3><p>将所有源码文件提交到source分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;提交Hexo博客源码&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="7-推送到GitHub"><a href="#7-推送到GitHub" class="headerlink" title="7. 推送到GitHub"></a>7. 推送到GitHub</h3><p>将source分支推送到GitHub：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="8-配置部署设置"><a href="#8-配置部署设置" class="headerlink" title="8. 配置部署设置"></a>8. 配置部署设置</h3><p>在Hexo的 <code>_config.yml</code> 文件中，配置部署设置：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span>  <span class="comment"># 或 main，取决于GitHub默认分支名</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="9-部署博客"><a href="#9-部署博客" class="headerlink" title="9. 部署博客"></a>9. 部署博客</h3><p>使用Hexo命令部署博客到GitHub Pages：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>完成上述设置后，你的工作流程应该是：</p>
-<ol>
-<li>在本地修改博客内容（添加文章、修改主题等）</li>
-<li>提交源码到source分支：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;更新内容&quot;</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure></li>
-<li>部署博客到GitHub Pages：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h2><h3 id="SSL证书错误"><a href="#SSL证书错误" class="headerlink" title="SSL证书错误"></a>SSL证书错误</h3><p>如果在执行Git操作时遇到SSL证书错误，可以运行以下命令解决：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslverify <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="分支冲突"><a href="#分支冲突" class="headerlink" title="分支冲突"></a>分支冲突</h3><p>如果推送时遇到分支冲突，先拉取远程分支并解决冲突：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull origin <span class="built_in">source</span> --rebase</span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="部署失败"><a href="#部署失败" class="headerlink" title="部署失败"></a>部署失败</h3><p>如果部署失败，检查以下几点：</p>
-<ol>
-<li>GitHub仓库配置是否正确</li>
-<li>分支名称是否正确</li>
-<li>Git凭证是否有效</li>
-<li>网络连接是否正常</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过以上步骤，你已经成功将Hexo博客的源码上传到GitHub的source分支，并配置了自动部署到GitHub Pages的功能。这样，你不仅可以通过GitHub管理源码，还可以在任何设备上克隆仓库并继续开发你的博客。</p>
-<p>定期备份源码是一个好习惯，建议每次对博客进行重要修改后都提交并推送源码到GitHub，以确保数据安全。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/06/Hexo%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E4%B8%8A%E4%BC%A0%E5%88%B0GitHub%E6%8C%87%E5%8D%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -454,7 +402,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:05:35" itemprop="dateModified" datetime="2026-04-09T23:05:35+08:00">2026-04-09</time>
+      <time title="修改时间：2026-04-09 23:10:58" itemprop="dateModified" datetime="2026-04-09T23:10:58+08:00">2026-04-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -478,13 +426,6 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="Hexo博客从搭建到发布完全指南"><a href="#Hexo博客从搭建到发布完全指南" class="headerlink" title="Hexo博客从搭建到发布完全指南"></a>Hexo博客从搭建到发布完全指南</h1><p>本文档整理了 Hexo 博客从搭建、主题更换、内容管理到发布的完整流程，帮助你快速掌握 Hexo 博客的使用方法。</p>
 <h2 id="一、Hexo-博客简介"><a href="#一、Hexo-博客简介" class="headerlink" title="一、Hexo 博客简介"></a>一、Hexo 博客简介</h2><p>Hexo 是一个快速、简洁且高效的静态博客生成框架，使用 Node.js 开发。它具有以下特点：</p>
-<ul>
-<li><strong>快速生成</strong>：毫秒级的生成速度</li>
-<li><strong>支持 Markdown</strong>：使用 Markdown 编写文章</li>
-<li><strong>主题丰富</strong>：拥有大量精美的主题</li>
-<li><strong>插件生态</strong>：丰富的插件扩展功能</li>
-<li><strong>易于部署</strong>：支持一键部署到 GitHub Pages 等平台</li>
-</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/04/05/Hexo%E5%8D%9A%E5%AE%A2%E4%BB%8E%E6%90%AD%E5%BB%BA%E5%88%B0%E5%8F%91%E5%B8%83%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/#more" rel="contents">
@@ -554,7 +495,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:05:32" itemprop="dateModified" datetime="2026-04-09T23:05:32+08:00">2026-04-09</time>
+      <time title="修改时间：2026-04-09 23:10:45" itemprop="dateModified" datetime="2026-04-09T23:10:45+08:00">2026-04-09</time>
     </span>
 
   
@@ -575,15 +516,6 @@
 <li><strong>支持自定义域名</strong>：可以使用自己的域名</li>
 <li><strong>无需管理服务器</strong>：不需要维护服务器，专注于内容创作</li>
 </ul>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="1-创建-GitHub-仓库"><a href="#1-创建-GitHub-仓库" class="headerlink" title="1. 创建 GitHub 仓库"></a>1. 创建 GitHub 仓库</h3><ol>
-<li>登录你的 GitHub 账号</li>
-<li>点击右上角的 “+”, 选择 “New repository”</li>
-<li>仓库名填写 <code>username.github.io</code>（其中 <code>username</code> 是你的 GitHub 用户名）</li>
-<li>选择 “Public” 作为仓库可见性</li>
-<li>点击 “Create repository”</li>
-</ol>
-<h3 id="2-安装部署插件"><a href="#2-安装部署插件" class="headerlink" title="2. 安装部署插件"></a>2. 安装部署插件</h3><p>在博客根目录执行以下命令安装 <code>hexo-deployer-git</code> 插件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/04/04/%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83Hexo%E5%8D%9A%E5%AE%A2%E5%88%B0GitHub/#more" rel="contents">
@@ -653,7 +585,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:05:26" itemprop="dateModified" datetime="2026-04-09T23:05:26+08:00">2026-04-09</time>
+      <time title="修改时间：2026-04-09 23:10:32" itemprop="dateModified" datetime="2026-04-09T23:10:32+08:00">2026-04-09</time>
     </span>
 
   
@@ -667,19 +599,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="更改Hexo主题教程"><a href="#更改Hexo主题教程" class="headerlink" title="更改Hexo主题教程"></a>更改Hexo主题教程</h1><h2 id="为什么要更改Hexo主题？"><a href="#为什么要更改Hexo主题？" class="headerlink" title="为什么要更改Hexo主题？"></a>为什么要更改Hexo主题？</h2><p>Hexo 是一个强大的静态博客生成器，而主题则决定了博客的外观和用户体验。一个好的主题不仅能让你的博客看起来更加专业和美观，还能提供更好的功能和用户体验。</p>
-<h2 id="选择适合的主题"><a href="#选择适合的主题" class="headerlink" title="选择适合的主题"></a>选择适合的主题</h2><p>在更改主题之前，你需要选择一个适合你博客风格和内容的主题。以下是一些推荐的主题资源：</p>
-<ul>
-<li><strong>Hexo 官方主题库</strong>：<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></li>
-<li><strong>GitHub</strong>：搜索 “hexo theme” 找到更多主题</li>
-<li><strong>热门主题推荐</strong>：<ul>
-<li>NexT</li>
-<li>Fluid</li>
-<li>Butterfly</li>
-<li>Matery</li>
-<li>Icarus</li>
-</ul>
-</li>
-</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/04/03/%E6%9B%B4%E6%94%B9Hexo%E4%B8%BB%E9%A2%98%E6%95%99%E7%A8%8B/#more" rel="contents">
@@ -749,7 +668,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:04:38" itemprop="dateModified" datetime="2026-04-09T23:04:38+08:00">2026-04-09</time>
+      <time title="修改时间：2026-04-09 23:11:29" itemprop="dateModified" datetime="2026-04-09T23:11:29+08:00">2026-04-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -772,21 +691,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="Swift-语言入门介绍"><a href="#Swift-语言入门介绍" class="headerlink" title="Swift 语言入门介绍"></a>Swift 语言入门介绍</h1><h2 id="什么是-Swift？"><a href="#什么是-Swift？" class="headerlink" title="什么是 Swift？"></a>什么是 Swift？</h2><p>Swift 是 Apple 公司于 2014 年推出的一种强大的、现代化的编程语言，用于开发 iOS、macOS、watchOS 和 tvOS 应用。它结合了 C 和 Objective-C 的优点，并添加了许多现代编程语言的特性，使代码更安全、更简洁、更易于维护。</p>
-<h2 id="Swift-的特点"><a href="#Swift-的特点" class="headerlink" title="Swift 的特点"></a>Swift 的特点</h2><h3 id="1-安全性"><a href="#1-安全性" class="headerlink" title="1. 安全性"></a>1. 安全性</h3><ul>
-<li>类型安全：Swift 是一种类型安全的语言，它会在编译时检查类型错误</li>
-<li>内存安全：通过自动引用计数 (ARC) 管理内存，减少内存泄漏</li>
-<li>可选类型：明确处理 nil 值，避免空指针异常</li>
-</ul>
-<h3 id="2-现代性"><a href="#2-现代性" class="headerlink" title="2. 现代性"></a>2. 现代性</h3><ul>
-<li>简洁的语法：减少样板代码，提高代码可读性</li>
-<li>函数式编程支持：支持闭包、高阶函数等函数式编程特性</li>
-<li>面向协议编程：通过协议实现代码复用和扩展</li>
-</ul>
-<h3 id="3-性能"><a href="#3-性能" class="headerlink" title="3. 性能"></a>3. 性能</h3><ul>
-<li>编译优化：Swift 代码编译为高效的原生代码</li>
-<li>运行时优化：减少运行时开销</li>
-<li>与 Objective-C 互操作：可以与现有的 Objective-C 代码无缝集成</li>
-</ul>
+<h2 id="Swift-的特点"><a href="#Swift-的特点" class="headerlink" title="Swift 的特点"></a>Swift 的特点</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/04/01/Swift-%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/#more" rel="contents">
@@ -856,7 +761,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:06:03" itemprop="dateModified" datetime="2026-04-09T23:06:03+08:00">2026-04-09</time>
+      <time title="修改时间：2026-04-09 23:11:45" itemprop="dateModified" datetime="2026-04-09T23:11:45+08:00">2026-04-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -879,60 +784,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="Swift-月考项目-学生成绩管理系统开发"><a href="#Swift-月考项目-学生成绩管理系统开发" class="headerlink" title="Swift 月考项目 - 学生成绩管理系统开发"></a>Swift 月考项目 - 学生成绩管理系统开发</h1><h2 id="一、题目说明"><a href="#一、题目说明" class="headerlink" title="一、题目说明"></a>一、题目说明</h2><p>本项目要求基于 Swift 5.0+ 开发一个带交互式菜单的学生成绩管理系统，综合运用 Swift 基础核心知识点（元组、可选型、运算符、字符串、循环、分支、函数等），通过控制台菜单交互实现学生信息的结构化存储、多维度查询、成绩统计、评优资格校验等功能，考察对 Swift 基础语法的综合应用能力与交互式程序开发思维。</p>
-<p><strong>分组要求</strong>：每组3-4人</p>
-<h2 id="二、核心要求"><a href="#二、核心要求" class="headerlink" title="二、核心要求"></a>二、核心要求</h2><h3 id="1-数据结构定义（基础层）"><a href="#1-数据结构定义（基础层）" class="headerlink" title="1. 数据结构定义（基础层）"></a>1. 数据结构定义（基础层）</h3><h4 id="必选属性："><a href="#必选属性：" class="headerlink" title="必选属性："></a>必选属性：</h4><ul>
-<li>姓名（String）</li>
-<li>学号（String，唯一标识）</li>
-<li>年龄（Int）</li>
-<li>语文成绩（Int）</li>
-<li>数学成绩（Int）</li>
-<li>英语成绩（Int）</li>
-</ul>
-<h4 id="可选型属性："><a href="#可选型属性：" class="headerlink" title="可选型属性："></a>可选型属性：</h4><ul>
-<li>是否缺考（Bool?）</li>
-<li>评优备注（String?）</li>
-</ul>
-<h4 id="数据结构定义："><a href="#数据结构定义：" class="headerlink" title="数据结构定义："></a>数据结构定义：</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">StudentInfo</span> <span class="operator">=</span> (</span><br><span class="line">    name: <span class="type">String</span>,          <span class="comment">// 姓名</span></span><br><span class="line">    studentID: <span class="type">String</span>,     <span class="comment">// 学号（唯一）</span></span><br><span class="line">    age: <span class="type">Int</span>,              <span class="comment">// 年龄</span></span><br><span class="line">    chinese: <span class="type">Int</span>,          <span class="comment">// 语文成绩</span></span><br><span class="line">    math: <span class="type">Int</span>,             <span class="comment">// 数学成绩</span></span><br><span class="line">    english: <span class="type">Int</span>,          <span class="comment">// 英语成绩</span></span><br><span class="line">    isAbsent: <span class="type">Bool</span>?,       <span class="comment">// 是否缺考（可选型）</span></span><br><span class="line">    awardRemark: <span class="type">String</span>?   <span class="comment">// 评优备注（可选型）</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h4 id="场景示例："><a href="#场景示例：" class="headerlink" title="场景示例："></a>场景示例：</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 场景1：全科目及格、平均分≥80（有评优资格）</span></span><br><span class="line"><span class="keyword">let</span> student1: <span class="type">StudentInfo</span> <span class="operator">=</span> (<span class="string">&quot;张三&quot;</span>, <span class="string">&quot;2023001&quot;</span>, <span class="number">18</span>, <span class="number">92</span>, <span class="number">88</span>, <span class="number">90</span>, <span class="literal">false</span>, <span class="string">&quot;成绩优异&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 场景2：有科目不及格（无评优资格）</span></span><br><span class="line"><span class="keyword">let</span> student2: <span class="type">StudentInfo</span> <span class="operator">=</span> (<span class="string">&quot;李四&quot;</span>, <span class="string">&quot;2023002&quot;</span>, <span class="number">17</span>, <span class="number">85</span>, <span class="number">58</span>, <span class="number">78</span>, <span class="literal">false</span>, <span class="string">&quot;数学需补考&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 场景3：存在缺考（无评优资格）</span></span><br><span class="line"><span class="keyword">let</span> student3: <span class="type">StudentInfo</span> <span class="operator">=</span> (<span class="string">&quot;王五&quot;</span>, <span class="string">&quot;2023003&quot;</span>, <span class="number">18</span>, <span class="number">0</span>, <span class="number">95</span>, <span class="number">89</span>, <span class="literal">true</span>, <span class="string">&quot;语文缺考&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 场景4：可选属性全为 nil（无评优资格）</span></span><br><span class="line"><span class="keyword">let</span> student4: <span class="type">StudentInfo</span> <span class="operator">=</span> (<span class="string">&quot;赵六&quot;</span>, <span class="string">&quot;2022004&quot;</span>, <span class="number">19</span>, <span class="number">75</span>, <span class="number">79</span>, <span class="number">82</span>, <span class="literal">nil</span>, <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-交互式菜单设计（交互层）"><a href="#2-交互式菜单设计（交互层）" class="headerlink" title="2. 交互式菜单设计（交互层）"></a>2. 交互式菜单设计（交互层）</h3><h4 id="菜单展示效果："><a href="#菜单展示效果：" class="headerlink" title="菜单展示效果："></a>菜单展示效果：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">==================== 学生成绩管理系统 ====================</span><br><span class="line">请选择操作（输入数字序号）：</span><br><span class="line">1. 查询所有学生完整信息</span><br><span class="line">2. 按学号查询单个学生信息</span><br><span class="line">3. 统计指定科目成绩（语文/数学/英语）</span><br><span class="line">4. 筛选有评优资格的学生</span><br><span class="line">5. 筛选单科成绩≥90分的学生</span><br><span class="line">6. 查看系统数据汇总（总人数、平均分等）</span><br><span class="line">0. 退出系统</span><br><span class="line">=========================================================</span><br></pre></td></tr></table></figure>
-
-<h4 id="输入校验要求："><a href="#输入校验要求：" class="headerlink" title="输入校验要求："></a>输入校验要求：</h4><ul>
-<li>输入非数字&#x2F;不在 0-6 范围内 → 提示「输入错误，请重新选择」</li>
-<li>重新显示菜单，不退出程序</li>
-</ul>
-<h4 id="循环逻辑要求："><a href="#循环逻辑要求：" class="headerlink" title="循环逻辑要求："></a>循环逻辑要求：</h4><ul>
-<li>执行完非「0」功能后，打印「按回车键返回主菜单…」</li>
-<li>接收回车输入后，重新显示菜单</li>
-</ul>
-<h3 id="3-核心功能实现（功能层）"><a href="#3-核心功能实现（功能层）" class="headerlink" title="3. 核心功能实现（功能层）"></a>3. 核心功能实现（功能层）</h3><h4 id="功能1：查询所有学生完整信息"><a href="#功能1：查询所有学生完整信息" class="headerlink" title="功能1：查询所有学生完整信息"></a>功能1：查询所有学生完整信息</h4><ul>
-<li>遍历学生数组，格式化打印每个学生的信息卡片</li>
-<li>可选属性 nil 替换为「无」，平均分保留 1 位小数</li>
-<li>排版清晰（用分隔符区分不同学生）</li>
-</ul>
-<h4 id="功能2：按学号查询单个学生信息"><a href="#功能2：按学号查询单个学生信息" class="headerlink" title="功能2：按学号查询单个学生信息"></a>功能2：按学号查询单个学生信息</h4><ul>
-<li>接收用户输入的学号，遍历数组匹配对应学生</li>
-<li>找到：打印完整信息卡片；未找到：提示「未查询到学号为 XXX 的学生」</li>
-</ul>
-<h4 id="功能3：统计指定科目成绩"><a href="#功能3：统计指定科目成绩" class="headerlink" title="功能3：统计指定科目成绩"></a>功能3：统计指定科目成绩</h4><ul>
-<li>接收用户输入的科目名称（「语文」&#x2F;「数学」&#x2F;「英语」），校验输入合法性</li>
-<li>统计该科目的：最高分、最低分、平均分（保留 1 位小数）、及格人数（≥60分）</li>
-</ul>
-<h4 id="功能4：筛选有评优资格的学生"><a href="#功能4：筛选有评优资格的学生" class="headerlink" title="功能4：筛选有评优资格的学生"></a>功能4：筛选有评优资格的学生</h4><ul>
-<li>评优条件：所有科目及格（≥60分）且平均分≥80分且无缺考</li>
-<li>打印符合条件的学生信息，按平均分从高到低排序</li>
-</ul>
-<h4 id="功能5：筛选单科成绩≥90分的学生"><a href="#功能5：筛选单科成绩≥90分的学生" class="headerlink" title="功能5：筛选单科成绩≥90分的学生"></a>功能5：筛选单科成绩≥90分的学生</h4><ul>
-<li>接收用户输入的科目名称，校验输入合法性</li>
-<li>打印该科目成绩≥90分的学生信息，按成绩从高到低排序</li>
-</ul>
-<h4 id="功能6：查看系统数据汇总"><a href="#功能6：查看系统数据汇总" class="headerlink" title="功能6：查看系统数据汇总"></a>功能6：查看系统数据汇总</h4><ul>
-<li>统计总学生人数</li>
-<li>统计各科目平均分（保留 1 位小数）</li>
-<li>统计有评优资格的学生人数</li>
-<li>统计缺考学生人数</li>
-</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/03/02/Swift-%E6%9C%88%E8%80%83%E9%A1%B9%E7%9B%AE-%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/#more" rel="contents">
