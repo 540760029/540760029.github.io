@@ -1,6 +1,6 @@
 ---
 title: 如何发布Hexo博客到GitHub
-date: 2026-04-09 20:37:10
+date: 2026-04-04 20:37:10
 tags:
   - Hexo
   - GitHub
@@ -20,6 +20,8 @@ GitHub Pages 是 GitHub 提供的静态网站托管服务，它具有以下优�
 - **支持自定义域名**：可以使用自己的域名
 - **无需管理服务器**：不需要维护服务器，专注于内容创作
 
+<!-- more -->
+
 ## 准备工作
 
 ### 1. 创建 GitHub 仓库
@@ -38,7 +40,6 @@ GitHub Pages 是 GitHub 提供的静态网站托管服务，它具有以下优�
 npm install hexo-deployer-git --save
 ```
 
-<!-- more -->
 
 ## 配置部署信息
 
