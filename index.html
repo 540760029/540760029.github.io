@@ -207,7 +207,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-09 21:35:13 / 修改时间：21:26:40" itemprop="dateCreated datePublished" datetime="2026-04-09T21:35:13+08:00">2026-04-09</time>
+      <time title="创建时间：2026-04-09 21:35:13 / 修改时间：21:58:24" itemprop="dateCreated datePublished" datetime="2026-04-09T21:35:13+08:00">2026-04-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -284,48 +284,14 @@
 <li>统计有评优资格的学生人数</li>
 <li>统计缺考学生人数</li>
 </ul>
-<h2 id="三、项目实现思路"><a href="#三、项目实现思路" class="headerlink" title="三、项目实现思路"></a>三、项目实现思路</h2><h3 id="1-数据存储"><a href="#1-数据存储" class="headerlink" title="1. 数据存储"></a>1. 数据存储</h3><ul>
-<li>使用数组存储学生信息：<code>var students: [StudentInfo] = []</code></li>
-<li>初始化时添加示例数据，方便测试</li>
-</ul>
-<h3 id="2-菜单循环"><a href="#2-菜单循环" class="headerlink" title="2. 菜单循环"></a>2. 菜单循环</h3><ul>
-<li>使用 <code>while true</code> 循环实现菜单的持续显示</li>
-<li>根据用户输入执行对应功能</li>
-<li>输入 0 时退出循环</li>
-</ul>
-<h3 id="3-功能实现"><a href="#3-功能实现" class="headerlink" title="3. 功能实现"></a>3. 功能实现</h3><ul>
-<li><strong>查询功能</strong>：使用 <code>for-in</code> 循环遍历学生数组</li>
-<li><strong>统计功能</strong>：使用 <code>reduce</code> 方法计算总和，使用 <code>max()</code> 和 <code>min()</code> 方法获取最值</li>
-<li><strong>筛选功能</strong>：使用 <code>filter</code> 方法筛选符合条件的学生</li>
-<li><strong>排序功能</strong>：使用 <code>sorted</code> 方法按指定条件排序</li>
-</ul>
-<h3 id="4-输入处理"><a href="#4-输入处理" class="headerlink" title="4. 输入处理"></a>4. 输入处理</h3><ul>
-<li>使用 <code>readLine()</code> 读取用户输入</li>
-<li>对输入进行类型转换和合法性校验</li>
-<li>处理输入错误的情况</li>
-</ul>
-<h2 id="四、代码示例"><a href="#四、代码示例" class="headerlink" title="四、代码示例"></a>四、代码示例</h2><h3 id="主程序结构"><a href="#主程序结构" class="headerlink" title="主程序结构"></a>主程序结构</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义学生信息类型</span></span><br><span class="line"><span class="keyword">typealias</span> <span class="type">StudentInfo</span> <span class="operator">=</span> (</span><br><span class="line">    name: <span class="type">String</span>,</span><br><span class="line">    studentID: <span class="type">String</span>,</span><br><span class="line">    age: <span class="type">Int</span>,</span><br><span class="line">    chinese: <span class="type">Int</span>,</span><br><span class="line">    math: <span class="type">Int</span>,</span><br><span class="line">    english: <span class="type">Int</span>,</span><br><span class="line">    isAbsent: <span class="type">Bool</span>?,</span><br><span class="line">    awardRemark: <span class="type">String</span>?</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化学生数据</span></span><br><span class="line"><span class="keyword">var</span> students: [<span class="type">StudentInfo</span>] <span class="operator">=</span> [</span><br><span class="line">    (<span class="string">&quot;张三&quot;</span>, <span class="string">&quot;2023001&quot;</span>, <span class="number">18</span>, <span class="number">92</span>, <span class="number">88</span>, <span class="number">90</span>, <span class="literal">false</span>, <span class="string">&quot;成绩优异&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;李四&quot;</span>, <span class="string">&quot;2023002&quot;</span>, <span class="number">17</span>, <span class="number">85</span>, <span class="number">58</span>, <span class="number">78</span>, <span class="literal">false</span>, <span class="string">&quot;数学需补考&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;王五&quot;</span>, <span class="string">&quot;2023003&quot;</span>, <span class="number">18</span>, <span class="number">0</span>, <span class="number">95</span>, <span class="number">89</span>, <span class="literal">true</span>, <span class="string">&quot;语文缺考&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;赵六&quot;</span>, <span class="string">&quot;2022004&quot;</span>, <span class="number">19</span>, <span class="number">75</span>, <span class="number">79</span>, <span class="number">82</span>, <span class="literal">nil</span>, <span class="literal">nil</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主菜单循环</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> &#123;</span><br><span class="line">    <span class="comment">// 显示菜单</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;==================== 学生成绩管理系统 ====================&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请选择操作（输入数字序号）：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;1. 查询所有学生完整信息&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;2. 按学号查询单个学生信息&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;3. 统计指定科目成绩（语文/数学/英语）&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;4. 筛选有评优资格的学生&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;5. 筛选单科成绩≥90分的学生&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;6. 查看系统数据汇总（总人数、平均分等）&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;0. 退出系统&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=========================================================&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 读取用户输入</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> input <span class="operator">=</span> <span class="built_in">readLine</span>(), <span class="keyword">let</span> choice <span class="operator">=</span> <span class="type">Int</span>(input) <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;输入错误，请重新选择&quot;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 根据选择执行对应功能</span></span><br><span class="line">    <span class="keyword">switch</span> choice &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;退出系统&quot;</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="comment">// 查询所有学生完整信息</span></span><br><span class="line">        showAllStudents()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="comment">// 按学号查询单个学生信息</span></span><br><span class="line">        searchStudentByID()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        <span class="comment">// 统计指定科目成绩</span></span><br><span class="line">        statisticsBySubject()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="comment">// 筛选有评优资格的学生</span></span><br><span class="line">        filterAwardStudents()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        <span class="comment">// 筛选单科成绩≥90分的学生</span></span><br><span class="line">        filterHighScoreStudents()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        <span class="comment">// 查看系统数据汇总</span></span><br><span class="line">        showSystemSummary()</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;输入错误，请重新选择&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 按回车键返回主菜单</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;按回车键返回主菜单...&quot;</span>)</span><br><span class="line">    <span class="keyword">_</span> <span class="operator">=</span> <span class="built_in">readLine</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="功能函数示例"><a href="#功能函数示例" class="headerlink" title="功能函数示例"></a>功能函数示例</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示所有学生信息</span></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">showAllStudents</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> student <span class="keyword">in</span> students &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;<span class="subst">\n</span>-------------------- 学生信息 --------------------&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;姓名：<span class="subst">\(student.name)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;学号：<span class="subst">\(student.studentID)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;年龄：<span class="subst">\(student.age)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;语文：<span class="subst">\(student.chinese)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;数学：<span class="subst">\(student.math)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;英语：<span class="subst">\(student.english)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;是否缺考：<span class="subst">\(student.isAbsent <span class="operator">??</span> <span class="literal">false</span> <span class="operator">?</span> <span class="string">&quot;是&quot;</span> : <span class="string">&quot;否&quot;</span>)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;评优备注：<span class="subst">\(student.awardRemark <span class="operator">??</span> <span class="string">&quot;无&quot;</span>)</span>&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> average <span class="operator">=</span> <span class="type">Double</span>(student.chinese <span class="operator">+</span> student.math <span class="operator">+</span> student.english) <span class="operator">/</span> <span class="number">3.0</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;平均分：<span class="subst">\(String(format: <span class="string">&quot;%.1f&quot;</span>, average))</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;--------------------------------------------------&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按学号查询学生</span></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">searchStudentByID</span>() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请输入学号：&quot;</span>)</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> inputID <span class="operator">=</span> <span class="built_in">readLine</span>() <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;输入错误&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> student <span class="operator">=</span> students.first(where: &#123; <span class="variable">$0</span>.studentID <span class="operator">==</span> inputID &#125;) &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;<span class="subst">\n</span>-------------------- 学生信息 --------------------&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;姓名：<span class="subst">\(student.name)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;学号：<span class="subst">\(student.studentID)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;年龄：<span class="subst">\(student.age)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;语文：<span class="subst">\(student.chinese)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;数学：<span class="subst">\(student.math)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;英语：<span class="subst">\(student.english)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;是否缺考：<span class="subst">\(student.isAbsent <span class="operator">??</span> <span class="literal">false</span> <span class="operator">?</span> <span class="string">&quot;是&quot;</span> : <span class="string">&quot;否&quot;</span>)</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;评优备注：<span class="subst">\(student.awardRemark <span class="operator">??</span> <span class="string">&quot;无&quot;</span>)</span>&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> average <span class="operator">=</span> <span class="type">Double</span>(student.chinese <span class="operator">+</span> student.math <span class="operator">+</span> student.english) <span class="operator">/</span> <span class="number">3.0</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;平均分：<span class="subst">\(String(format: <span class="string">&quot;%.1f&quot;</span>, average))</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;--------------------------------------------------&quot;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;未查询到学号为 <span class="subst">\(inputID)</span> 的学生&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="五、项目要求"><a href="#五、项目要求" class="headerlink" title="五、项目要求"></a>五、项目要求</h2><ol>
-<li><strong>代码规范</strong>：代码结构清晰，命名规范，添加必要的注释</li>
-<li><strong>功能完整</strong>：实现所有要求的功能，处理边界情况</li>
-<li><strong>交互友好</strong>：菜单界面美观，用户输入有提示，错误处理完善</li>
-<li><strong>代码质量</strong>：逻辑清晰，避免冗余代码，使用 Swift 语言特性</li>
-</ol>
-<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>本项目是一个综合性的 Swift 基础练习，通过实现学生成绩管理系统，巩固 Swift 的核心知识点，包括：</p>
-<ul>
-<li>元组的使用</li>
-<li>可选型的处理</li>
-<li>控制流（循环、分支）</li>
-<li>函数的定义和调用</li>
-<li>数组的操作（遍历、筛选、排序）</li>
-<li>字符串处理</li>
-<li>输入输出操作</li>
-</ul>
-<p>通过完成这个项目，不仅可以熟悉 Swift 的基本语法，还能培养交互式程序开发的思维，为后续的 iOS 应用开发打下基础。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/09/Swift-%E6%9C%88%E8%80%83%E9%A1%B9%E7%9B%AE-%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -381,7 +347,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-09 21:24:44 / 修改时间：21:17:34" itemprop="dateCreated datePublished" datetime="2026-04-09T21:24:44+08:00">2026-04-09</time>
+      <time title="创建时间：2026-04-09 21:24:44 / 修改时间：21:58:08" itemprop="dateCreated datePublished" datetime="2026-04-09T21:24:44+08:00">2026-04-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -419,56 +385,14 @@
 <li>运行时优化：减少运行时开销</li>
 <li>与 Objective-C 互操作：可以与现有的 Objective-C 代码无缝集成</li>
 </ul>
-<h2 id="Swift-的基本语法"><a href="#Swift-的基本语法" class="headerlink" title="Swift 的基本语法"></a>Swift 的基本语法</h2><h3 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 常量（不可变）</span></span><br><span class="line"><span class="keyword">let</span> name <span class="operator">=</span> <span class="string">&quot;Swift&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量（可变）</span></span><br><span class="line"><span class="keyword">var</span> age <span class="operator">=</span> <span class="number">5</span></span><br><span class="line">age <span class="operator">=</span> <span class="number">6</span> <span class="comment">// 可以修改</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本数据类型</span></span><br><span class="line"><span class="keyword">let</span> integer: <span class="type">Int</span> <span class="operator">=</span> <span class="number">42</span></span><br><span class="line"><span class="keyword">let</span> decimal: <span class="type">Double</span> <span class="operator">=</span> <span class="number">3.14</span></span><br><span class="line"><span class="keyword">let</span> text: <span class="type">String</span> <span class="operator">=</span> <span class="string">&quot;Hello, Swift!&quot;</span></span><br><span class="line"><span class="keyword">let</span> isActive: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可选类型</span></span><br><span class="line"><span class="keyword">var</span> optionalValue: <span class="type">String</span>? <span class="operator">=</span> <span class="string">&quot;Optional value&quot;</span></span><br><span class="line">optionalValue <span class="operator">=</span> <span class="literal">nil</span> <span class="comment">// 可以设置为 nil</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// if 语句</span></span><br><span class="line"><span class="keyword">if</span> age <span class="operator">&gt;=</span> <span class="number">18</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;成年人&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;未成年人&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// switch 语句</span></span><br><span class="line"><span class="keyword">switch</span> day &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;Monday&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;工作日&quot;</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;Saturday&quot;</span>, <span class="string">&quot;Sunday&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;周末&quot;</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;其他&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span><span class="operator">...</span><span class="number">5</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> count <span class="operator">&lt;</span> <span class="number">10</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(count)</span><br><span class="line">    count <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">greet</span>(<span class="params">name</span>: <span class="type">String</span>) -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello, <span class="subst">\(name)</span>!&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> message <span class="operator">=</span> greet(name: <span class="string">&quot;Swift&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(message) <span class="comment">// 输出: Hello, Swift!</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">introduce</span>() &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;我是 <span class="subst">\(name)</span>，今年 <span class="subst">\(age)</span> 岁&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>: <span class="title class_ inherited__">Person</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> school: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>, <span class="params">age</span>: <span class="type">Int</span>, <span class="params">school</span>: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.school <span class="operator">=</span> school</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name, age: age)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">func</span> <span class="title function_">introduce</span>() &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;我是 <span class="subst">\(name)</span>，今年 <span class="subst">\(age)</span> 岁，在 <span class="subst">\(school)</span> 上学&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Swift-的应用领域"><a href="#Swift-的应用领域" class="headerlink" title="Swift 的应用领域"></a>Swift 的应用领域</h2><ol>
-<li><strong>iOS 应用开发</strong>：使用 Swift 开发 iPhone 和 iPad 应用</li>
-<li><strong>macOS 应用开发</strong>：开发 Mac 桌面应用</li>
-<li><strong>watchOS 应用开发</strong>：开发 Apple Watch 应用</li>
-<li><strong>tvOS 应用开发</strong>：开发 Apple TV 应用</li>
-<li><strong>服务器端开发</strong>：使用 Vapor 等框架开发后端服务</li>
-<li><strong>跨平台开发</strong>：通过 SwiftUI 和 Catalyst 实现跨平台应用</li>
-</ol>
-<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><h3 id="官方资源"><a href="#官方资源" class="headerlink" title="官方资源"></a>官方资源</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.swift.org/swift-book/">Swift 官方文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/swift/">Apple 开发者网站</a></li>
-</ul>
-<h3 id="在线教程"><a href="#在线教程" class="headerlink" title="在线教程"></a>在线教程</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://swift.org/">Swift.org</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.raywenderlich.com/categories/ios">raywenderlich.com</a></li>
-<li><a target="_blank" rel="noopener" href="https://swiftgg.cn/">Swift 中文网</a></li>
-</ul>
-<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><ul>
-<li>《The Swift Programming Language》</li>
-<li>《Swift 实战》</li>
-<li>《iOS 开发指南：从入门到精通》</li>
-</ul>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><h3 id="必要工具"><a href="#必要工具" class="headerlink" title="必要工具"></a>必要工具</h3><ul>
-<li>Xcode：Apple 官方的集成开发环境 (IDE)</li>
-<li>Swift Playgrounds：学习和实验 Swift 代码的工具</li>
-<li>Visual Studio Code：配合 Swift 插件使用</li>
-</ul>
-<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
-<li>在 Mac 上安装 Xcode（从 Mac App Store 下载）</li>
-<li>打开 Xcode，接受许可协议</li>
-<li>安装 Xcode 命令行工具</li>
-<li>开始编写 Swift 代码</li>
-</ol>
-<h2 id="示例项目"><a href="#示例项目" class="headerlink" title="示例项目"></a>示例项目</h2><p>以下是一个简单的 Swift 示例，演示如何创建一个基本的 iOS 应用：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ViewController</span>: <span class="title class_ inherited__">UIViewController</span> &#123;</span><br><span class="line">    <span class="keyword">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> label: <span class="type">UILabel</span>!</span><br><span class="line">    <span class="keyword">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> textField: <span class="type">UITextField</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">func</span> <span class="title function_">viewDidLoad</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="comment">// Do any additional setup after loading the view.</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">@IBAction</span> <span class="keyword">func</span> <span class="title function_">buttonTapped</span>(<span class="keyword">_</span> <span class="params">sender</span>: <span class="type">UIButton</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> text <span class="operator">=</span> textField.text, <span class="operator">!</span>text.isEmpty &#123;</span><br><span class="line">            label.text <span class="operator">=</span> <span class="string">&quot;Hello, <span class="subst">\(text)</span>!&quot;</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            label.text <span class="operator">=</span> <span class="string">&quot;Please enter your name&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Swift 是一种现代化、安全、高效的编程语言，为 Apple 平台的应用开发提供了强大的工具。它的语法简洁明了，同时具备强大的功能，使开发者能够快速构建高质量的应用。</p>
-<p>如果你对移动应用开发感兴趣，Swift 是一个很好的起点。通过学习 Swift，你不仅可以开发 iOS 应用，还可以拓展到其他 Apple 平台，甚至服务器端开发。</p>
-<p>希望本教程对你有所帮助！祝你在 Swift 学习之路上取得成功！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/09/Swift-%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -524,7 +448,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-09 20:37:10 / 修改时间：20:42:04" itemprop="dateCreated datePublished" datetime="2026-04-09T20:37:10+08:00">2026-04-09</time>
+      <time title="创建时间：2026-04-09 20:37:10 / 修改时间：21:57:52" itemprop="dateCreated datePublished" datetime="2026-04-09T20:37:10+08:00">2026-04-09</time>
     </span>
 
   
@@ -554,62 +478,14 @@
 </ol>
 <h3 id="2-安装部署插件"><a href="#2-安装部署插件" class="headerlink" title="2. 安装部署插件"></a>2. 安装部署插件</h3><p>在博客根目录执行以下命令安装 <code>hexo-deployer-git</code> 插件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置部署信息"><a href="#配置部署信息" class="headerlink" title="配置部署信息"></a>配置部署信息</h2><h3 id="1-修改配置文件"><a href="#1-修改配置文件" class="headerlink" title="1. 修改配置文件"></a>1. 修改配置文件</h3><p>打开 <code>_config.yml</code> 文件，找到 <code>deploy</code> 部分，修改为：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
-
-<p>将 <code>username</code> 替换为你的 GitHub 用户名。</p>
-<h3 id="2-配置-Git"><a href="#2-配置-Git" class="headerlink" title="2. 配置 Git"></a>2. 配置 Git</h3><p>确保你已经配置了 Git 的用户信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;your.email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="解决-SSL-证书问题"><a href="#解决-SSL-证书问题" class="headerlink" title="解决 SSL 证书问题"></a>解决 SSL 证书问题</h2><p>如果在部署过程中遇到 SSL 证书验证错误，可以执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslverify <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：这会禁用 Git 的 SSL 证书验证，可能会带来安全风险，仅在必要时使用。</p>
-<h2 id="执行部署"><a href="#执行部署" class="headerlink" title="执行部署"></a>执行部署</h2><h3 id="1-生成静态文件"><a href="#1-生成静态文件" class="headerlink" title="1. 生成静态文件"></a>1. 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-部署到-GitHub"><a href="#2-部署到-GitHub" class="headerlink" title="2. 部署到 GitHub"></a>2. 部署到 GitHub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
-
-<p>或者使用 Hexo 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>如果需要强制覆盖仓库，可以使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy --force</span><br></pre></td></tr></table></figure>
-
-<h2 id="验证部署"><a href="#验证部署" class="headerlink" title="验证部署"></a>验证部署</h2><p>部署完成后，你可以通过以下步骤验证：</p>
-<ol>
-<li>访问 <code>https://username.github.io</code>（其中 <code>username</code> 是你的 GitHub 用户名）</li>
-<li>检查博客是否正常显示</li>
-<li>确认所有文章和页面都已正确部署</li>
-</ol>
-<h2 id="后续更新"><a href="#后续更新" class="headerlink" title="后续更新"></a>后续更新</h2><p>当你添加新文章或修改博客内容后，只需再次执行以下命令即可更新 GitHub Pages 上的内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="常见问题及解决方案"><a href="#常见问题及解决方案" class="headerlink" title="常见问题及解决方案"></a>常见问题及解决方案</h2><h3 id="1-部署失败，出现-SSL-证书错误"><a href="#1-部署失败，出现-SSL-证书错误" class="headerlink" title="1. 部署失败，出现 SSL 证书错误"></a>1. 部署失败，出现 SSL 证书错误</h3><p><strong>解决方案</strong>：执行 <code>git config --global http.sslverify false</code> 命令禁用 SSL 证书验证。</p>
-<h3 id="2-部署成功但网站不显示"><a href="#2-部署成功但网站不显示" class="headerlink" title="2. 部署成功但网站不显示"></a>2. 部署成功但网站不显示</h3><p><strong>解决方案</strong>：</p>
-<ul>
-<li>等待几分钟，GitHub Pages 需要时间生成页面</li>
-<li>检查仓库设置，确保 GitHub Pages 源设置为 <code>gh-pages</code> 分支</li>
-<li>检查 <code>_config.yml</code> 中的 <code>url</code> 配置是否正确</li>
-</ul>
-<h3 id="3-图片或资源文件不显示"><a href="#3-图片或资源文件不显示" class="headerlink" title="3. 图片或资源文件不显示"></a>3. 图片或资源文件不显示</h3><p><strong>解决方案</strong>：</p>
-<ul>
-<li>确保使用相对路径或正确的绝对路径</li>
-<li>检查文件权限</li>
-<li>执行 <code>hexo clean</code> 清理缓存后重新部署</li>
-</ul>
-<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><p>以下是我发布博客到 GitHub 的步骤：</p>
-<ol>
-<li>创建 GitHub 仓库：<code>540760029/540760029.github.io</code></li>
-<li>安装部署插件：<code>npm install hexo-deployer-git --save</code></li>
-<li>配置部署信息：修改 <code>_config.yml</code> 文件</li>
-<li>解决 SSL 问题：<code>git config --global http.sslverify false</code></li>
-<li>执行部署：<code>hexo deploy --force</code></li>
-<li>验证部署：访问 <code>https://540760029.github.io</code></li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>发布 Hexo 博客到 GitHub Pages 是一个简单但强大的过程，它让你能够免费托管你的博客并通过互联网访问。通过遵循本教程的步骤，你可以轻松地将你的 Hexo 博客部署到 GitHub，并在未来方便地更新内容。</p>
-<p>希望本教程对你有所帮助！如果你有任何问题，欢迎在评论区留言。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/09/%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83Hexo%E5%8D%9A%E5%AE%A2%E5%88%B0GitHub/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -665,7 +541,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-09 20:22:34 / 修改时间：20:23:07" itemprop="dateCreated datePublished" datetime="2026-04-09T20:22:34+08:00">2026-04-09</time>
+      <time title="创建时间：2026-04-09 20:22:34 / 修改时间：21:57:35" itemprop="dateCreated datePublished" datetime="2026-04-09T20:22:34+08:00">2026-04-09</time>
     </span>
 
   
@@ -692,88 +568,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="安装主题的方法"><a href="#安装主题的方法" class="headerlink" title="安装主题的方法"></a>安装主题的方法</h2><h3 id="方法一：通过-npm-安装"><a href="#方法一：通过-npm-安装" class="headerlink" title="方法一：通过 npm 安装"></a>方法一：通过 npm 安装</h3><ol>
-<li>在博客根目录执行以下命令：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-theme-next</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>将主题文件复制到 themes 目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcopy node_modules\hexo-theme-next themes\next /E /I</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：通过-Git-克隆"><a href="#方法二：通过-Git-克隆" class="headerlink" title="方法二：通过 Git 克隆"></a>方法二：通过 Git 克隆</h3><ol>
-<li>进入 themes 目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>克隆主题仓库：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git next</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><ol>
-<li>打开 <code>_config.yml</code> 文件，找到主题配置部分：</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span>  <span class="comment"># 将默认的 landscape 改为你安装的主题名称</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>保存文件并退出。</li>
-</ol>
-<h2 id="预览主题效果"><a href="#预览主题效果" class="headerlink" title="预览主题效果"></a>预览主题效果</h2><ol>
-<li>清理缓存：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run clean</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>启动本地服务器：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run server</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>在浏览器中访问 <code>http://localhost:4000</code> 查看主题效果。</li>
-</ol>
-<h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><p>每个主题都有自己的配置文件，通常位于 <code>themes/主题名称/_config.yml</code>。你可以根据需要修改这些配置，例如：</p>
-<ul>
-<li>更改颜色方案</li>
-<li>调整布局</li>
-<li>启用或禁用功能</li>
-<li>添加社交链接</li>
-<li>配置评论系统</li>
-</ul>
-<p>以 NexT 主题为例，你可以修改 <code>themes/next/_config.yml</code> 文件来定制主题。</p>
-<h2 id="常见问题及解决方案"><a href="#常见问题及解决方案" class="headerlink" title="常见问题及解决方案"></a>常见问题及解决方案</h2><h3 id="主题不生效"><a href="#主题不生效" class="headerlink" title="主题不生效"></a>主题不生效</h3><ul>
-<li>确保主题名称配置正确</li>
-<li>执行 <code>npm run clean</code> 清理缓存</li>
-<li>重新启动服务器</li>
-</ul>
-<h3 id="主题配置不生效"><a href="#主题配置不生效" class="headerlink" title="主题配置不生效"></a>主题配置不生效</h3><ul>
-<li>确保修改的是正确的配置文件</li>
-<li>某些主题可能需要在主配置文件中添加特定配置</li>
-</ul>
-<h3 id="主题依赖问题"><a href="#主题依赖问题" class="headerlink" title="主题依赖问题"></a>主题依赖问题</h3><ul>
-<li>有些主题可能需要额外的依赖包，查看主题文档并安装所需依赖</li>
-</ul>
-<h2 id="实战案例：更换为-NexT-主题"><a href="#实战案例：更换为-NexT-主题" class="headerlink" title="实战案例：更换为 NexT 主题"></a>实战案例：更换为 NexT 主题</h2><p>以下是我更换为 NexT 主题的步骤：</p>
-<ol>
-<li><p>使用 npm 安装主题：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-theme-next</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复制主题文件到 themes 目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcopy node_modules\hexo-theme-next themes\next /E /I</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 <code>_config.yml</code> 文件，将主题改为 next：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>清理缓存并启动服务器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run clean</span><br><span class="line">npm run server</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问 <code>http://localhost:4000</code> 查看效果。</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>更改 Hexo 主题是一个简单但重要的过程，它可以让你的博客焕然一新。通过选择适合的主题并进行适当的配置，你可以创建一个既美观又实用的博客。</p>
-<p>希望本教程对你有所帮助！如果你有任何问题，欢迎在评论区留言。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/09/%E6%9B%B4%E6%94%B9Hexo%E4%B8%BB%E9%A2%98%E6%95%99%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
