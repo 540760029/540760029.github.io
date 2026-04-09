@@ -575,6 +575,10 @@ math:
     enable: true
     # Available values: none | ams | all
     tags: all
+    # MathJax config
+    cdn:
+      # MathJax 3
+      url: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
   katex:
     enable: false
