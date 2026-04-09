@@ -574,11 +574,11 @@ math:
   mathjax:
     enable: true
     # Available values: none | ams | all
-    tags: all
+    tags: ams
     # MathJax config
     cdn:
-      # MathJax 3
-      url: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+      # MathJax 2
+      url: https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-MML-AM_CHTML
 
   katex:
     enable: false
