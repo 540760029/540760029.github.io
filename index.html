@@ -146,13 +146,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -174,6 +174,264 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://540760029.github.io/2026/04/10/Python%E8%AF%AD%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李小凡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术分享站">
+      <meta itemprop="description" content="分享技术，记录生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 技术分享站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/10/Python%E8%AF%AD%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">Python语法和数据结构详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-10 18:00:00 / 修改时间：23:27:46" itemprop="dateCreated datePublished" datetime="2026-04-10T18:00:00+08:00">2026-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Python语法和数据结构详解"><a href="#Python语法和数据结构详解" class="headerlink" title="Python语法和数据结构详解"></a>Python语法和数据结构详解</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>Python是一种简单易学、功能强大的编程语言，被广泛应用于Web开发、数据科学、人工智能、自动化脚本等领域。本文将详细介绍Python的基本语法和数据结构，帮助读者快速掌握Python编程的核心概念。</p>
+<h2 id="二、Python基本语法"><a href="#二、Python基本语法" class="headerlink" title="二、Python基本语法"></a>二、Python基本语法</h2><h3 id="1-变量和数据类型"><a href="#1-变量和数据类型" class="headerlink" title="1. 变量和数据类型"></a>1. 变量和数据类型</h3><p>Python是一种动态类型语言，不需要显式声明变量类型。</p>
+<p><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20code%20variable%20definition%20x%20equals%2010,%20name%20equals%20%22Alice%22,%20is_student%20equals%20True&image_size=square" alt="变量定义"></p>
+<p><strong>基本数据类型</strong>：</p>
+<ul>
+<li>整数（int）：如 10, -5, 0</li>
+<li>浮点数（float）：如 3.14, -2.5, 0.0</li>
+<li>字符串（str）：如 “Hello”, ‘Python’</li>
+<li>布尔值（bool）：True, False</li>
+<li>空值（None）：表示不存在的值</li>
+</ul>
+<h3 id="2-运算符"><a href="#2-运算符" class="headerlink" title="2. 运算符"></a>2. 运算符</h3><p><strong>算术运算符</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20arithmetic%20operators%20plus%20minus%20times%20divide%20modulo%20exponent&image_size=square" alt="算术运算符"></p>
+<p><strong>比较运算符</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20comparison%20operators%20equals%20not%20equals%20greater%20than%20less%20than%20greater%20than%20or%20equal%20less%20than%20or%20equal&image_size=square" alt="比较运算符"></p>
+<p><strong>逻辑运算符</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20logical%20operators%20and%20or%20not&image_size=square" alt="逻辑运算符"></p>
+<h3 id="3-控制流"><a href="#3-控制流" class="headerlink" title="3. 控制流"></a>3. 控制流</h3><p><strong>条件语句</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20if%20elif%20else%20statement&image_size=square" alt="条件语句"></p>
+<p><strong>循环语句</strong>：</p>
+<ul>
+<li><p>for循环：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20for%20loop%20example&image_size=square" alt="for循环"></p>
+</li>
+<li><p>while循环：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20while%20loop%20example&image_size=square" alt="while循环"></p>
+</li>
+</ul>
+<p><strong>循环控制</strong>：</p>
+<ul>
+<li>break：跳出循环</li>
+<li>continue：跳过当前循环，进入下一次循环</li>
+<li>pass：占位符，不做任何操作</li>
+</ul>
+<h3 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h3><p><strong>函数定义</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20function%20definition&image_size=square" alt="函数定义"></p>
+<p><strong>参数类型</strong>：</p>
+<ul>
+<li>位置参数</li>
+<li>默认参数</li>
+<li>可变参数（*args）</li>
+<li>关键字参数（**kwargs）</li>
+</ul>
+<p><strong>返回值</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20function%20return%20value&image_size=square" alt="函数返回值"></p>
+<h3 id="5-面向对象编程"><a href="#5-面向对象编程" class="headerlink" title="5. 面向对象编程"></a>5. 面向对象编程</h3><p><strong>类的定义</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20class%20definition&image_size=square" alt="类的定义"></p>
+<p><strong>继承</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20class%20inheritance&image_size=square" alt="类的继承"></p>
+<p><strong>多态</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20polymorphism%20example&image_size=square" alt="多态"></p>
+<h3 id="6-模块和包"><a href="#6-模块和包" class="headerlink" title="6. 模块和包"></a>6. 模块和包</h3><p><strong>导入模块</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20import%20module&image_size=square" alt="导入模块"></p>
+<p><strong>创建包</strong>：</p>
+<ul>
+<li>创建一个目录，包含 <code>__init__.py</code> 文件</li>
+<li>目录中的模块可以被导入</li>
+</ul>
+<h3 id="7-异常处理"><a href="#7-异常处理" class="headerlink" title="7. 异常处理"></a>7. 异常处理</h3><p><strong>try-except语句</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20try%20except%20statement&image_size=square" alt="异常处理"></p>
+<p><strong>自定义异常</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20custom%20exception&image_size=square" alt="自定义异常"></p>
+<h3 id="8-文件操作"><a href="#8-文件操作" class="headerlink" title="8. 文件操作"></a>8. 文件操作</h3><p><strong>打开和关闭文件</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20file%20operations&image_size=square" alt="文件操作"></p>
+<p><strong>with语句</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20with%20statement%20for%20file%20operations&image_size=square" alt="with语句"></p>
+<h2 id="三、Python数据结构"><a href="#三、Python数据结构" class="headerlink" title="三、Python数据结构"></a>三、Python数据结构</h2><h3 id="1-列表（List）"><a href="#1-列表（List）" class="headerlink" title="1. 列表（List）"></a>1. 列表（List）</h3><p><strong>列表定义</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20list%20definition&image_size=square" alt="列表定义"></p>
+<p><strong>列表操作</strong>：</p>
+<ul>
+<li>添加元素：append(), insert(), extend()</li>
+<li>删除元素：remove(), pop(), clear()</li>
+<li>访问元素：通过索引</li>
+<li>切片：list[start:end:step]</li>
+<li>其他操作：sort(), reverse(), count(), index()</li>
+</ul>
+<p><strong>示例</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20list%20operations%20example&image_size=square" alt="列表操作示例"></p>
+<h3 id="2-元组（Tuple）"><a href="#2-元组（Tuple）" class="headerlink" title="2. 元组（Tuple）"></a>2. 元组（Tuple）</h3><p><strong>元组定义</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20tuple%20definition&image_size=square" alt="元组定义"></p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>不可变：一旦创建，不能修改</li>
+<li>可以包含不同类型的元素</li>
+<li>可以通过索引访问元素</li>
+<li>可以切片操作</li>
+</ul>
+<p><strong>示例</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20tuple%20operations%20example&image_size=square" alt="元组操作示例"></p>
+<h3 id="3-字典（Dictionary）"><a href="#3-字典（Dictionary）" class="headerlink" title="3. 字典（Dictionary）"></a>3. 字典（Dictionary）</h3><p><strong>字典定义</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20dictionary%20definition&image_size=square" alt="字典定义"></p>
+<p><strong>字典操作</strong>：</p>
+<ul>
+<li>添加键值对：dict[key] &#x3D; value</li>
+<li>删除键值对：del dict[key], dict.pop(key)</li>
+<li>访问值：dict[key]</li>
+<li>其他操作：keys(), values(), items(), get()</li>
+</ul>
+<p><strong>示例</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20dictionary%20operations%20example&image_size=square" alt="字典操作示例"></p>
+<h3 id="4-集合（Set）"><a href="#4-集合（Set）" class="headerlink" title="4. 集合（Set）"></a>4. 集合（Set）</h3><p><strong>集合定义</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20set%20definition&image_size=square" alt="集合定义"></p>
+<p><strong>集合操作</strong>：</p>
+<ul>
+<li>添加元素：add()</li>
+<li>删除元素：remove(), discard()</li>
+<li>集合运算：union(), intersection(), difference()</li>
+<li>其他操作：issubset(), issuperset()</li>
+</ul>
+<p><strong>示例</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20set%20operations%20example&image_size=square" alt="集合操作示例"></p>
+<h3 id="5-高级数据结构"><a href="#5-高级数据结构" class="headerlink" title="5. 高级数据结构"></a>5. 高级数据结构</h3><p><strong>列表推导式</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20list%20comprehension&image_size=square" alt="列表推导式"></p>
+<p><strong>字典推导式</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20dictionary%20comprehension&image_size=square" alt="字典推导式"></p>
+<p><strong>生成器表达式</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20generator%20expression&image_size=square" alt="生成器表达式"></p>
+<h2 id="四、Python内置函数"><a href="#四、Python内置函数" class="headerlink" title="四、Python内置函数"></a>四、Python内置函数</h2><p><strong>常用内置函数</strong>：</p>
+<ul>
+<li>len()：返回对象长度</li>
+<li>max()：返回最大值</li>
+<li>min()：返回最小值</li>
+<li>sum()：返回总和</li>
+<li>sorted()：返回排序后的列表</li>
+<li>reversed()：返回反转后的迭代器</li>
+<li>enumerate()：返回索引和值的配对</li>
+<li>zip()：将多个可迭代对象打包</li>
+<li>map()：对可迭代对象的每个元素应用函数</li>
+<li>filter()：过滤可迭代对象</li>
+<li>reduce()：对可迭代对象进行累积操作</li>
+</ul>
+<p><strong>示例</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20built%20in%20functions%20example&image_size=square" alt="内置函数示例"></p>
+<h2 id="五、Python标准库"><a href="#五、Python标准库" class="headerlink" title="五、Python标准库"></a>五、Python标准库</h2><p><strong>常用标准库</strong>：</p>
+<ul>
+<li>os：操作系统相关功能</li>
+<li>sys：系统相关功能</li>
+<li>math：数学函数</li>
+<li>random：随机数生成</li>
+<li>datetime：日期和时间处理</li>
+<li>json：JSON数据处理</li>
+<li>re：正则表达式</li>
+<li>collections：高级数据结构</li>
+<li>itertools：迭代工具</li>
+<li>functools：函数工具</li>
+</ul>
+<p><strong>示例</strong>：<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20standard%20library%20example&image_size=square" alt="标准库示例"></p>
+<h2 id="六、实际应用示例"><a href="#六、实际应用示例" class="headerlink" title="六、实际应用示例"></a>六、实际应用示例</h2><h3 id="1-数据处理"><a href="#1-数据处理" class="headerlink" title="1. 数据处理"></a>1. 数据处理</h3><p><strong>示例</strong>：计算列表中元素的平均值<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20data%20processing%20example&image_size=square" alt="数据处理示例"></p>
+<h3 id="2-文本处理"><a href="#2-文本处理" class="headerlink" title="2. 文本处理"></a>2. 文本处理</h3><p><strong>示例</strong>：统计文本中单词的频率<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20text%20processing%20example&image_size=square" alt="文本处理示例"></p>
+<h3 id="3-文件处理"><a href="#3-文件处理" class="headerlink" title="3. 文件处理"></a>3. 文件处理</h3><p><strong>示例</strong>：读取文件并统计行数<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20file%20processing%20example&image_size=square" alt="文件处理示例"></p>
+<h3 id="4-网络请求"><a href="#4-网络请求" class="headerlink" title="4. 网络请求"></a>4. 网络请求</h3><p><strong>示例</strong>：使用requests库获取网页内容<br><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=handwritten%20python%20network%20request%20example&image_size=square" alt="网络请求示例"></p>
+<h2 id="七、Python编程最佳实践"><a href="#七、Python编程最佳实践" class="headerlink" title="七、Python编程最佳实践"></a>七、Python编程最佳实践</h2><h3 id="1-代码风格"><a href="#1-代码风格" class="headerlink" title="1. 代码风格"></a>1. 代码风格</h3><ul>
+<li>遵循PEP 8编码规范</li>
+<li>使用4个空格进行缩进</li>
+<li>行长度不超过79个字符</li>
+<li>模块级导入按标准库、第三方库、本地模块的顺序</li>
+</ul>
+<h3 id="2-命名规范"><a href="#2-命名规范" class="headerlink" title="2. 命名规范"></a>2. 命名规范</h3><ul>
+<li>变量和函数名：小写字母，单词之间用下划线</li>
+<li>类名：首字母大写，驼峰命名法</li>
+<li>常量：全部大写，单词之间用下划线</li>
+</ul>
+<h3 id="3-代码组织"><a href="#3-代码组织" class="headerlink" title="3. 代码组织"></a>3. 代码组织</h3><ul>
+<li>函数和类应该有明确的职责</li>
+<li>使用文档字符串（docstring）说明函数和类的功能</li>
+<li>避免重复代码，使用函数和类进行代码复用</li>
+<li>处理异常，提高代码的健壮性</li>
+</ul>
+<h3 id="4-性能优化"><a href="#4-性能优化" class="headerlink" title="4. 性能优化"></a>4. 性能优化</h3><ul>
+<li>使用列表推导式代替显式循环</li>
+<li>避免在循环中进行昂贵的操作</li>
+<li>使用生成器节省内存</li>
+<li>合理使用数据结构，选择合适的容器</li>
+</ul>
+<h2 id="八、学习资源推荐"><a href="#八、学习资源推荐" class="headerlink" title="八、学习资源推荐"></a>八、学习资源推荐</h2><h3 id="1-官方文档"><a href="#1-官方文档" class="headerlink" title="1. 官方文档"></a>1. 官方文档</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/3/">Python官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/3/library/">Python标准库文档</a></li>
+</ul>
+<h3 id="2-书籍"><a href="#2-书籍" class="headerlink" title="2. 书籍"></a>2. 书籍</h3><ul>
+<li>《Python编程：从入门到实践》（Eric Matthes）</li>
+<li>《流畅的Python》（Luciano Ramalho）</li>
+<li>《Python Cookbook》（David Beazley &amp; Brian K. Jones）</li>
+</ul>
+<h3 id="3-在线课程"><a href="#3-在线课程" class="headerlink" title="3. 在线课程"></a>3. 在线课程</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/python">Coursera：Python for Everybody</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.edx.org/course/introduction-to-python-absolute-beginner">edX：Introduction to Python</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codecademy.com/learn/learn-python-3">Codecademy：Learn Python</a></li>
+</ul>
+<h3 id="4-练习平台"><a href="#4-练习平台" class="headerlink" title="4. 练习平台"></a>4. 练习平台</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/">LeetCode</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackerrank.com/">HackerRank</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codewars.com/">Codewars</a></li>
+</ul>
+<h2 id="九、总结"><a href="#九、总结" class="headerlink" title="九、总结"></a>九、总结</h2><p>Python是一种功能强大、语法简洁的编程语言，通过本文的学习，你应该已经掌握了Python的基本语法和数据结构。Python的语法设计注重可读性和简洁性，使得代码易于理解和维护。</p>
+<p>Python的数据结构丰富多样，包括列表、元组、字典、集合等，它们各有特点和适用场景：</p>
+<ul>
+<li>列表：有序、可变，适用于需要频繁修改的场景</li>
+<li>元组：有序、不可变，适用于需要保护数据不被修改的场景</li>
+<li>字典：键值对，适用于需要快速查找的场景</li>
+<li>集合：无序、唯一，适用于需要去重和集合运算的场景</li>
+</ul>
+<p>Python的内置函数和标准库提供了丰富的功能，使得编程变得更加高效。通过学习和实践，你将能够使用Python解决各种实际问题，从简单的脚本到复杂的应用程序。</p>
+<p>Python的应用领域非常广泛，包括Web开发、数据科学、人工智能、自动化脚本等。掌握Python编程技能，将为你的职业发展打开更多可能性。</p>
+<p>希望本文能够帮助你快速入门Python编程，为你的学习和工作提供有力的支持。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1117,7 +1375,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-10 11:56:25" itemprop="dateModified" datetime="2026-04-10T11:56:25+08:00">2026-04-10</time>
+      <time title="修改时间：2026-04-10 23:29:58" itemprop="dateModified" datetime="2026-04-10T23:29:58+08:00">2026-04-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1125,7 +1383,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+          <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">\[人工智能]</span></a>
         </span>
     </span>
 
@@ -1139,7 +1397,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="从0开始学习人工智能完全指南"><a href="#从0开始学习人工智能完全指南" class="headerlink" title="从0开始学习人工智能完全指南"></a>从0开始学习人工智能完全指南</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>人工智能（Artificial Intelligence, AI）已经成为当今科技领域最热门的方向之一，它正在改变我们的生活、工作和社会。从智能助手到自动驾驶，从医疗诊断到金融分析，AI的应用无处不在。如果你想从0开始学习人工智能，本文将为你提供一个清晰的学习路径和资源推荐。</p>
+          <hr>
+<h1 id="从0开始学习人工智能完全指南"><a href="#从0开始学习人工智能完全指南" class="headerlink" title="从0开始学习人工智能完全指南"></a>从0开始学习人工智能完全指南</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>人工智能（Artificial Intelligence, AI）已经成为当今科技领域最热门的方向之一，它正在改变我们的生活、工作和社会。从智能助手到自动驾驶，从医疗诊断到金融分析，AI的应用无处不在。如果你想从0开始学习人工智能，本文将为你提供一个清晰的学习路径和资源推荐。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/04/09/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/#more" rel="contents">
@@ -1512,99 +1771,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/04/03/%E6%9B%B4%E6%94%B9Hexo%E4%B8%BB%E9%A2%98%E6%95%99%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://540760029.github.io/2026/04/01/Swift-%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李小凡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术分享站">
-      <meta itemprop="description" content="分享技术，记录生活">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 技术分享站">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/01/Swift-%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">Swift 语言入门介绍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-04-01 21:24:44" itemprop="dateCreated datePublished" datetime="2026-04-01T21:24:44+08:00">2026-04-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-09 23:11:29" itemprop="dateModified" datetime="2026-04-09T23:11:29+08:00">2026-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Swift-语言入门介绍"><a href="#Swift-语言入门介绍" class="headerlink" title="Swift 语言入门介绍"></a>Swift 语言入门介绍</h1><h2 id="什么是-Swift？"><a href="#什么是-Swift？" class="headerlink" title="什么是 Swift？"></a>什么是 Swift？</h2><p>Swift 是 Apple 公司于 2014 年推出的一种强大的、现代化的编程语言，用于开发 iOS、macOS、watchOS 和 tvOS 应用。它结合了 C 和 Objective-C 的优点，并添加了许多现代编程语言的特性，使代码更安全、更简洁、更易于维护。</p>
-<h2 id="Swift-的特点"><a href="#Swift-的特点" class="headerlink" title="Swift 的特点"></a>Swift 的特点</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/04/01/Swift-%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
