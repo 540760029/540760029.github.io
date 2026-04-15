@@ -10,6 +10,7 @@ tags: [Python, Numpy, Pandas, Matplotlib, 数据科学]
 ## 一、引言
 
 Python是一种功能强大的编程语言，其生态系统非常丰富，拥有大量的第三方库。这些库大大扩展了Python的功能，使得Python在数据科学、机器学习、Web开发等领域都有广泛的应用。本文将详细介绍三个最常用的Python库：Numpy、Pandas和Matplotlib，它们是数据科学和数据分析的核心工具。
+<!-- more -->
 
 ## 二、Numpy库
 
